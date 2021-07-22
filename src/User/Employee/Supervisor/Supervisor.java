@@ -57,4 +57,34 @@ public class Supervisor extends Employee implements SupervisorPrivilages, CSPriv
         // TODO Auto-generated method stub
         
     }
+
+    @Override
+    public void viewCustomerPersonalisation() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void viewCustomerDetails() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void contactCustomer() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void contactDesigner() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void contactSupervisor() {
+        // TODO Auto-generated method stub
+        
+    }
 }

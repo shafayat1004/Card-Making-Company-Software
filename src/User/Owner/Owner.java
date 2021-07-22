@@ -54,12 +54,6 @@ public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages
         // TODO Auto-generated method stub
         
     }
-    
-    @Override
-    public void setMeetingWithSupervisor() {
-        // TODO Auto-generated method stub
-        
-    }
 
     @Override
     public void paySalaryToCSEmployees() {
@@ -105,6 +99,36 @@ public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages
 
     @Override
     public void viewCusAssigned2Des() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void viewCustomerPersonalisation() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void viewCustomerDetails() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void contactCustomer() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void contactDesigner() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void contactSupervisor() {
         // TODO Auto-generated method stub
         
     }
