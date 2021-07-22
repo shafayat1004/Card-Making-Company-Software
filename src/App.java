@@ -1,4 +1,4 @@
-import Supervisor.Supervisor;
+import User.Employee.Supervisor.Supervisor;
 
 public class App {
     public static void main(String[] args) throws Exception {
