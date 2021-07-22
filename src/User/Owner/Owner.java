@@ -55,4 +55,10 @@ public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages
         
     }
     
+    @Override
+    public void setMeetingWithSupervisor() {
+        // TODO Auto-generated method stub
+        
+    }
+    
 }
