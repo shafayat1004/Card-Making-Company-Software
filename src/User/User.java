@@ -32,7 +32,7 @@ public abstract class User {
     public Address getUsrAddress() {
         return usrAddress;
     }
-    public void setUsrAddress(Address empAddress) {
+    public void setUsrAddress(Address usrAddress) {
         this.usrAddress = usrAddress;
     }
     public User() {
