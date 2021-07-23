@@ -1,5 +1,5 @@
 package SigninSignUp.Login;
-
+//Might need to make it a controller
 public class Login {
     String emailFromButton, passwordFromButton, confirmedPasswordFromButton, userIDFromButton;
 
