@@ -1,4 +1,4 @@
-package Privilages.Owner;
+package application.Privilages.Owner;
 
 public interface OwnerPrivilages {
     public void hireSupervisor();

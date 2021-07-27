@@ -1,11 +1,11 @@
-package User.Employee.Supervisor;
+package application.User.Employee.Supervisor;
 
 import java.util.ArrayList;
 
-import Privilages.CustomerService.CSPrivilages;
-import Privilages.Supervisor.SupervisorPrivilages;
-import User.Employee.Employee;
-import User.Employee.CustomerService.CustomerService;
+import application.Privilages.CustomerService.CSPrivilages;
+import application.Privilages.Supervisor.SupervisorPrivilages;
+import application.User.Employee.Employee;
+import application.User.Employee.CustomerService.CustomerService;
 
 public class Supervisor extends Employee implements SupervisorPrivilages, CSPrivilages{
     ArrayList<CustomerService> CSEmpUnderSup;

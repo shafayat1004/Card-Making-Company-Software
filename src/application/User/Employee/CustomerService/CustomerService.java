@@ -1,10 +1,10 @@
-package User.Employee.CustomerService;
+package application.User.Employee.CustomerService;
 
 import java.util.ArrayList;
 
-import Privilages.CustomerService.CSPrivilages;
-import User.Customer.Customer;
-import User.Employee.Employee;
+import application.Privilages.CustomerService.CSPrivilages;
+import application.User.Customer.Customer;
+import application.User.Employee.Employee;
 
 public class CustomerService extends Employee implements CSPrivilages{
     ArrayList<Customer> customersUnderEmp;

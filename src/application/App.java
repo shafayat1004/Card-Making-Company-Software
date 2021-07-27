@@ -1,4 +1,5 @@
-import User.Employee.Supervisor.Supervisor;
+package application;
+import application.User.Employee.Supervisor.Supervisor;
 
 public class App {
     public static void main(String[] args) throws Exception {

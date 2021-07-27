@@ -1,4 +1,4 @@
-package Privilages.CustomerService;
+package application.Privilages.CustomerService;
 
 public interface CSPrivilages {
     public void viewCustomerPersonalisation();

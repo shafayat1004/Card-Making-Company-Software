@@ -1,6 +1,6 @@
-package User;
+package application.User;
 
-import Address.Address;
+import application.Address.Address;
 
 public abstract class User {
     Address usrAddress;

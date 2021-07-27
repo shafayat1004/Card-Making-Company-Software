@@ -1,4 +1,4 @@
-package Address;
+package application.Address;
 
 public class Address {
     String houseName, streetName, block, area, thana, zipcode, city, district, upazila, division;

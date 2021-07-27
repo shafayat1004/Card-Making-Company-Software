@@ -1,4 +1,4 @@
-package Email;
+package application.Email;
 
 public class Email {
     

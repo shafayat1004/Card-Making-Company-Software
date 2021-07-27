@@ -1,9 +1,9 @@
-package User.Owner;
+package application.User.Owner;
 
-import Privilages.CustomerService.CSPrivilages;
-import Privilages.Owner.OwnerPrivilages;
-import Privilages.Supervisor.SupervisorPrivilages;
-import User.User;
+import application.Privilages.CustomerService.CSPrivilages;
+import application.Privilages.Owner.OwnerPrivilages;
+import application.Privilages.Supervisor.SupervisorPrivilages;
+import application.User.User;
 
 public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages, CSPrivilages{
 

@@ -1,4 +1,4 @@
-package Privilages.Supervisor;
+package application.Privilages.Supervisor;
 
 public interface SupervisorPrivilages {
     public void paySalaryToCSEmployees();
