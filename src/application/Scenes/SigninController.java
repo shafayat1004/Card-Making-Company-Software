@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -21,6 +22,9 @@ public class SigninController {
     @FXML private TextField passwordTextField;
     @FXML private Button signinCheckButton;
     @FXML private Button signupButton;
+    @FXML private Button backToWelCome;
+    @FXML private ComboBox<String> userTypeSelectionCombobx;
+
     private Parent root;
     private Scene scene;
     private Stage stage;
@@ -94,10 +98,16 @@ public class SigninController {
 
     @FXML
     void initialize() {
+        
+        userTypeSelectionCombobx.getItems().addAll(
+            "Customer", "Customer Service Employee", "Supervisor", "Designer", "Owner"
+        );
+
         assert idTextField != null : "fx:id=\"idTextField\" was not injected: check your FXML file 'Signin.fxml'.";
         assert passwordTextField != null : "fx:id=\"passwordTextField\" was not injected: check your FXML file 'Signin.fxml'.";
         assert signinCheckButton != null : "fx:id=\"signinCheckButton\" was not injected: check your FXML file 'Signin.fxml'.";
         assert signupButton != null : "fx:id=\"signupButton\" was not injected: check your FXML file 'Signin.fxml'.";
-
+        assert backToWelCome != null : "fx:id=\"backToWelCome\" was not injected: check your FXML file 'Signin.fxml'.";
+        assert userTypeSelectionCombobx != null : "fx:id=\"userTypeSelectionCombobx\" was not injected: check your FXML file 'Signin.fxml'.";
     }
 }

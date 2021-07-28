@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,12 +14,14 @@
             <Font size="31.0" />
          </font>
       </Label>
-      <TextField fx:id="idTextField" layoutX="564.0" layoutY="242.0" />
-      <TextField fx:id="passwordTextField" layoutX="563.0" layoutY="279.0" />
-      <Button fx:id="signinCheckButton" layoutX="614.0" layoutY="320.0" mnemonicParsing="false" onAction="#signinCheckButtonOnClick" text="Signin" />
-      <Button fx:id="signupButton" layoutX="535.0" layoutY="359.0" mnemonicParsing="false" onAction="#signupButtonOnClick" text="Do not have an account? Click here!" />
-      <Label layoutX="495.0" layoutY="247.0" text="UserID" />
-      <Label layoutX="488.0" layoutY="283.0" text="Password" />
-      <Button fx:id="backToWelCome" layoutX="558.0" layoutY="396.0" mnemonicParsing="false" onAction="#backToWelComeOnClick" text="Go Back To Welcome Page" />
+      <TextField fx:id="idTextField" layoutX="564.0" layoutY="271.0" />
+      <TextField fx:id="passwordTextField" layoutX="563.0" layoutY="308.0" />
+      <Button fx:id="signinCheckButton" layoutX="614.0" layoutY="349.0" mnemonicParsing="false" onAction="#signinCheckButtonOnClick" text="Signin" />
+      <Button fx:id="signupButton" layoutX="535.0" layoutY="388.0" mnemonicParsing="false" onAction="#signupButtonOnClick" text="Do not have an account? Click here!" />
+      <Label layoutX="504.0" layoutY="275.0" text="UserID" />
+      <Label layoutX="488.0" layoutY="312.0" text="Password" />
+      <Button fx:id="backToWelCome" layoutX="558.0" layoutY="425.0" mnemonicParsing="false" onAction="#backToWelComeOnClick" text="Go Back To Welcome Page" />
+      <Label layoutX="492.0" layoutY="236.0" text="Signin As" />
+      <ComboBox fx:id="userTypeSelectionCombobx" layoutX="562.0" layoutY="231.0" prefWidth="150.0" visibleRowCount="5" />
    </children>
 </AnchorPane>
