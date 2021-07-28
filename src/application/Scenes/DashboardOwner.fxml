@@ -101,10 +101,5 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="locationLabel" layoutX="412.0" layoutY="36.0" prefHeight="30.0" prefWidth="289.0" text="Location:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

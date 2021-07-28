@@ -20,7 +20,19 @@ public class DashboardOwnerController {
     private Button signoutButton;
 
     @FXML
+    private Tab financialsTab;
+
+    @FXML
+    private Tab companyDirTab;
+
+    @FXML
     private Tab noticeTab;
+
+    @FXML
+    private Tab employeeListTab;
+
+    @FXML
+    private Tab personalInfoTab;
 
     @FXML
     private Tab newOrdersTab;
@@ -32,25 +44,10 @@ public class DashboardOwnerController {
     private Tab completedOrdersTab;
 
     @FXML
-    private Tab transactionsTab;
-
-    @FXML
-    private Tab employeeListTab;
-
-    @FXML
-    private Tab companyDirTab;
-
-    @FXML
-    private Tab personalInfoTab;
-
-    @FXML
     private Label idLabel;
 
     @FXML
     private Label nameLabel;
-
-    @FXML
-    private Label locationLabel;
 
     @FXML
     void companyDirTabOnClick(ActionEvent event) {
@@ -64,6 +61,11 @@ public class DashboardOwnerController {
 
     @FXML
     void employeeListTabOnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void financialsTabOnClick(ActionEvent event) {
 
     }
 
@@ -93,24 +95,18 @@ public class DashboardOwnerController {
     }
 
     @FXML
-    void transactionsTabOnClick(ActionEvent event) {
-
-    }
-
-    @FXML
     void initialize() {
-        assert signoutButton != null : "fx:id=\"signoutButton\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
-        assert noticeTab != null : "fx:id=\"noticeTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
-        assert newOrdersTab != null : "fx:id=\"newOrdersTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
-        assert ongoingOrdersTab != null : "fx:id=\"ongoingOrdersTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
-        assert completedOrdersTab != null : "fx:id=\"completedOrdersTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
-        assert transactionsTab != null : "fx:id=\"transactionsTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
-        assert employeeListTab != null : "fx:id=\"employeeListTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
-        assert companyDirTab != null : "fx:id=\"companyDirTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
-        assert personalInfoTab != null : "fx:id=\"personalInfoTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
-        assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
-        assert nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
-        assert locationLabel != null : "fx:id=\"locationLabel\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
+        assert signoutButton != null : "fx:id=\"signoutButton\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert financialsTab != null : "fx:id=\"financialsTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert companyDirTab != null : "fx:id=\"companyDirTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert noticeTab != null : "fx:id=\"noticeTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert employeeListTab != null : "fx:id=\"employeeListTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert personalInfoTab != null : "fx:id=\"personalInfoTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert newOrdersTab != null : "fx:id=\"newOrdersTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert ongoingOrdersTab != null : "fx:id=\"ongoingOrdersTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert completedOrdersTab != null : "fx:id=\"completedOrdersTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
 
     }
 }
