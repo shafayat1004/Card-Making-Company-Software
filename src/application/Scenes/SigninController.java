@@ -5,16 +5,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+
+import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-public class SigninController {
+
+public class SigninController extends SceneChanger{
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -24,6 +26,7 @@ public class SigninController {
     @FXML private Button signupButton;
     @FXML private Button backToWelCome;
     @FXML private ComboBox<String> userTypeSelectionCombobx;
+    private String[] userTypes = {"Customer", "Customer Service Employee", "Supervisor", "Designer", "Owner"};
 
     private Parent root;
     private Scene scene;
@@ -75,33 +78,48 @@ public class SigninController {
         }
     }
     @FXML
-    void signinCheckButtonOnClick(ActionEvent event) {
-        
+    void signinCheckButtonOnClick(ActionEvent event) throws IOException  {
+        String userType = userTypeSelectionCombobx.getValue();
+        if (userType == userTypes[0]) { //customer
+            //TODO implement acutal check and only then grant entry
+            sceneChange(event, "DashboardCustomer.fxml");
+            // root = FXMLLoader.load(getClass().getResource("DashboardCustomer.fxml"));
+            // stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            // scene = new Scene(root);
+            // stage.setScene(scene);
+            // stage.show();
+
+        }else if(userType == userTypes[1]){ //customer service
+            //TODO implement acutal check and only then grant entry
+            sceneChange(event, "DashboardCSEmp.fxml");
+
+        }else if(userType == userTypes[2]){ //supervisor
+            //TODO implement acutal check and only then grant entry
+            sceneChange(event, "DashboardSupervisor.fxml");
+
+        }else if(userType == userTypes[3]){ //designer
+            //TODO implement acutal check and only then grant entry
+            sceneChange(event, "DashboardDesigner.fxml");
+
+        }else if(userType == userTypes[4]){ //owner
+            //TODO implement acutal check and only then grant entry
+            sceneChange(event, "DashboardOwner.fxml");
+
+        }else{
+
+        }
     }
     @FXML
     void backToWelComeOnClick(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("..\\WelcomeScene.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        sceneChange(event, "..\\WelcomeScene.fxml");
     }
     @FXML
     void signupButtonOnClick(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Signup.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        sceneChange(event, "Signup.fxml");
     }
-    
-
     @FXML
     void initialize() {
-        
-        userTypeSelectionCombobx.getItems().addAll(
-            "Customer", "Customer Service Employee", "Supervisor", "Designer", "Owner"
-        );
+        userTypeSelectionCombobx.getItems().addAll(userTypes);
 
         assert idTextField != null : "fx:id=\"idTextField\" was not injected: check your FXML file 'Signin.fxml'.";
         assert passwordTextField != null : "fx:id=\"passwordTextField\" was not injected: check your FXML file 'Signin.fxml'.";

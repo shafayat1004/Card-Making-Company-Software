@@ -3,16 +3,13 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import application.Scenes.SceneChanger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
-public class WelcomeSceneController {
+public class WelcomeSceneController extends SceneChanger{
 
     @FXML
     private ResourceBundle resources;
@@ -28,10 +25,6 @@ public class WelcomeSceneController {
 
     @FXML
     private Button aboutUsButton;
-    
-    private Parent root;
-    private Scene scene;
-    private Stage stage;
 
     @FXML
     void aboutUsButtonOnClick(ActionEvent event) {
@@ -40,20 +33,12 @@ public class WelcomeSceneController {
 
     @FXML
     void signinButtonOnClick(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Scenes/Signin.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        sceneChange(event, "Scenes/Signin.fxml");
     }
 
     @FXML
     void signupButtonOnClick(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Scenes/Signup.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        sceneChange(event, "Scenes/Signup.fxml");
     }
 
     @FXML
