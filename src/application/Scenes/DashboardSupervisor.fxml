@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Scenes.DashboardSupervisorController">
    <children>
@@ -74,7 +75,36 @@
                   </AnchorPane>
               </content>
             </Tab>
+            <Tab fx:id="personalInfoTab" onSelectionChanged="#personalInfoTabOnClick" text="Personal Information">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="1080.0" layoutY="36.0" text="Label" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
+      <Label layoutX="42.0" layoutY="24.0" text="Supervisor Dashboard">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <Label fx:id="idLabel" layoutX="1020.0" layoutY="35.0" prefHeight="30.0" prefWidth="133.0" text="ID: ">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameLabel" layoutX="723.0" layoutY="35.0" prefHeight="30.0" prefWidth="289.0" text="Name:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="locationLabel" layoutX="412.0" layoutY="36.0" prefHeight="30.0" prefWidth="289.0" text="Location:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

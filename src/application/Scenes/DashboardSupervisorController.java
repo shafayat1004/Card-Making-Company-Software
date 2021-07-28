@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 
 public class DashboardSupervisorController {
@@ -40,6 +41,18 @@ public class DashboardSupervisorController {
     private Tab companyDirTab;
 
     @FXML
+    private Tab personalInfoTab;
+
+    @FXML
+    private Label idLabel;
+
+    @FXML
+    private Label nameLabel;
+
+    @FXML
+    private Label locationLabel;
+
+    @FXML
     void companyDirTabOnClick(ActionEvent event) {
 
     }
@@ -70,6 +83,11 @@ public class DashboardSupervisorController {
     }
 
     @FXML
+    void personalInfoTabOnClick(ActionEvent event) {
+
+    }
+
+    @FXML
     void signoutButtonOnClick(ActionEvent event) {
 
     }
@@ -89,6 +107,10 @@ public class DashboardSupervisorController {
         assert transactionsTab != null : "fx:id=\"transactionsTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
         assert employeeListTab != null : "fx:id=\"employeeListTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
         assert companyDirTab != null : "fx:id=\"companyDirTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
+        assert personalInfoTab != null : "fx:id=\"personalInfoTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
+        assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
+        assert nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
+        assert locationLabel != null : "fx:id=\"locationLabel\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
 
     }
 }
