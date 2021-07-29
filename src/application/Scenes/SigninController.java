@@ -3,17 +3,19 @@ package application.Scenes;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import application.SceneChanger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+// import javafx.stage.Stage;
+// import javafx.fxml.FXMLLoader;
+// import javafx.scene.Node;
+// import javafx.scene.Parent;
+// import javafx.scene.Scene;
 
 
 public class SigninController extends SceneChanger{
@@ -28,9 +30,9 @@ public class SigninController extends SceneChanger{
     @FXML private ComboBox<String> userTypeSelectionCombobx;
     private String[] userTypes = {"Customer", "Customer Service Employee", "Supervisor", "Designer", "Owner"};
 
-    private Parent root;
-    private Scene scene;
-    private Stage stage;
+    // private Parent root;
+    // private Scene scene;
+    // private Stage stage;
     
     private String emailFromButton, passwordFromButton, confirmedPasswordFromButton, userIDFromButton;
     
@@ -92,7 +94,7 @@ public class SigninController extends SceneChanger{
         }else if(userType == userTypes[1]){ //customer service
             //TODO implement acutal check and only then grant entry
             sceneChange(event, "DashboardCSEmp.fxml");
-
+            
         }else if(userType == userTypes[2]){ //supervisor
             //TODO implement acutal check and only then grant entry
             sceneChange(event, "DashboardSupervisor.fxml");
