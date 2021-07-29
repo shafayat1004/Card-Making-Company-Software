@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.Scenes.SceneChanger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -34,6 +33,7 @@ public class WelcomeSceneController extends SceneChanger{
     @FXML
     void signinButtonOnClick(ActionEvent event) throws IOException {
         sceneChange(event, "Scenes/Signin.fxml");
+        
     }
 
     @FXML
