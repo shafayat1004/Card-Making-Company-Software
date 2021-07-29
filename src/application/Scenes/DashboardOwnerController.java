@@ -27,6 +27,7 @@ public class DashboardOwnerController extends SceneChanger{
     @FXML private Tab newOrdersTab;
     @FXML private Tab ongoingOrdersTab;
     @FXML private Tab completedOrdersTab;
+    @FXML private Tab complaintsTab;
 
     @FXML
     void signoutButtonOnClick(ActionEvent event) throws IOException {
@@ -45,8 +46,8 @@ public class DashboardOwnerController extends SceneChanger{
         assert newOrdersTab != null : "fx:id=\"newOrdersTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert ongoingOrdersTab != null : "fx:id=\"ongoingOrdersTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert completedOrdersTab != null : "fx:id=\"completedOrdersTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert complaintsTab != null : "fx:id=\"complaintsTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
-
     }
 }
