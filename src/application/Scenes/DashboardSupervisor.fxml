@@ -10,82 +10,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Scenes.DashboardSupervisorController">
    <children>
       <Button fx:id="signoutButton" layoutX="1176.0" layoutY="39.0" mnemonicParsing="false" onAction="#signoutButtonOnClick" text="Signout" />
-      <TabPane layoutX="42.0" layoutY="86.0" prefHeight="592.0" prefWidth="1196.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-            <Tab fx:id="noticeTab" onSelectionChanged="#noticeTabOnClick" text="Notice">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="42.0" layoutY="49.0" text="NOtice" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-          <Tab fx:id="newOrdersTab" onSelectionChanged="#newOrdersTabOnClick" text="New Orders">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="369.0" prefWidth="668.0">
-                     <children>
-                        <Label layoutX="188.0" layoutY="49.0" text="Label" />
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab fx:id="ongoingOrdersTab" onSelectionChanged="#ongoingOrdersTab" text="Ongoing Orders">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="299.0" layoutY="41.0" text="Label" />
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-            <Tab fx:id="completedOrdersTab" onSelectionChanged="#completedOrdersTabOnClick" text="Completed Orders">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="446.0" layoutY="49.0" text="Label" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-            <Tab fx:id="transactionsTab" onSelectionChanged="#transactionsTabOnClick" text="Transactions">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="584.0" layoutY="46.0" text="Label" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-            <Tab fx:id="employeeListTab" onSelectionChanged="#employeeListTabOnClick" text="Employee Lists">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="754.0" layoutY="51.0" text="Label" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-            <Tab fx:id="companyDirTab" onSelectionChanged="#companyDirTabOnClick" text="Company Directory">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="995.0" layoutY="39.0" text="Label" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-            <Tab fx:id="personalInfoTab" onSelectionChanged="#personalInfoTabOnClick" text="Personal Information">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="1080.0" layoutY="36.0" text="Label" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-        </tabs>
-      </TabPane>
       <Label layoutX="42.0" layoutY="24.0" text="Supervisor Dashboard">
          <font>
             <Font size="35.0" />
@@ -106,5 +30,49 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <TabPane layoutX="51.0" layoutY="102.0" prefHeight="562.0" prefWidth="1174.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="noticeTab" text="Notice">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+          <Tab fx:id="newOrdersTab" text="New Orders">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab fx:id="ongoingOrdersTab" text="Ongoing Orders">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab fx:id="completedOrdersTab" text="Completed Orders">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab fx:id="transactionsTab" text="Transactions">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab fx:id="branchEmpListTab" text="Branch Employee Lists">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab fx:id="designerListTab" text="Designers">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab fx:id="personalInfoTab" text="Personal Information">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>
