@@ -27,6 +27,8 @@ public class DashboardSupervisorController extends SceneChanger{
     @FXML private Tab branchEmpListTab;
     @FXML private Tab designerListTab;
     @FXML private Tab personalInfoTab;
+    @FXML private Tab complaintsTab;
+
 
     @FXML
     void signoutButtonOnClick(ActionEvent event) throws IOException {
@@ -47,6 +49,7 @@ public class DashboardSupervisorController extends SceneChanger{
         assert branchEmpListTab != null : "fx:id=\"branchEmpListTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
         assert designerListTab != null : "fx:id=\"designerListTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
         assert personalInfoTab != null : "fx:id=\"personalInfoTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
+        assert complaintsTab != null : "fx:id=\"complaintsTab\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
 
     }
 }
