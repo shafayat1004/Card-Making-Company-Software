@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.SceneChanger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,7 +31,7 @@ public class DashboardSupervisorController extends SceneChanger{
 
     @FXML
     void signoutButtonOnClick(ActionEvent event) throws IOException {
-        sceneChange(event, "..\\WelcomeScene.fxml");
+        sceneChange(event, "WelcomeScene.fxml");
     }
 
     @FXML

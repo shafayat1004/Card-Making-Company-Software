@@ -1,4 +1,4 @@
-package application;
+package application.Scenes;
 
 import java.io.IOException;
 

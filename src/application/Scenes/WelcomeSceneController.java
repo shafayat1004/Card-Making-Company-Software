@@ -1,4 +1,4 @@
-package application;
+package application.Scenes;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,13 +32,13 @@ public class WelcomeSceneController extends SceneChanger{
 
     @FXML
     void signinButtonOnClick(ActionEvent event) throws IOException {
-        sceneChange(event, "Scenes/Signin.fxml");
+        sceneChange(event, "Signin.fxml");
         
     }
 
     @FXML
     void signupButtonOnClick(ActionEvent event) throws IOException {
-        sceneChange(event, "Scenes/Signup.fxml");
+        sceneChange(event, "Signup.fxml");
     }
 
     @FXML

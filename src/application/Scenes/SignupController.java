@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.SceneChanger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 // import javafx.fxml.FXMLLoader;
@@ -51,7 +50,7 @@ public class SignupController extends SceneChanger{
     }
     @FXML
     void backToWelComeOnClick(ActionEvent event) throws IOException {
-        sceneChange(event, "..\\WelcomeScene.fxml");
+        sceneChange(event, "WelcomeScene.fxml");
         // root = FXMLLoader.load(getClass().getResource("..\\WelcomeScene.fxml"));
         // stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         // scene = new Scene(root);
