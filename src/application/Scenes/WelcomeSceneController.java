@@ -8,7 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class WelcomeSceneController extends SceneChanger{
+public class WelcomeSceneController extends Controller{
 
     @FXML
     private ResourceBundle resources;
