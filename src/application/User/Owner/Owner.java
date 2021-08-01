@@ -7,6 +7,9 @@ import application.User.User;
 
 public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages, CSPrivilages{
 
+    public Owner(String userIDFromField) {
+    }
+
     @Override
     public void hireSupervisor() {
         // TODO Auto-generated method stub

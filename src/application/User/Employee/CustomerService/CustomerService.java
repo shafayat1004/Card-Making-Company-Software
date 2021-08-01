@@ -9,6 +9,9 @@ import application.User.Employee.Employee;
 public class CustomerService extends Employee implements CSPrivilages{
     private ArrayList<Customer> customersUnderEmp;
 
+    public CustomerService(String userIDFromField) {
+    }
+
     @Override
     public void viewCustomerPersonalisation() {
         // TODO Auto-generated method stub

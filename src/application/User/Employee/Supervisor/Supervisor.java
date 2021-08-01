@@ -10,6 +10,9 @@ import application.User.Employee.CustomerService.CustomerService;
 public class Supervisor extends Employee implements SupervisorPrivilages, CSPrivilages{
     private ArrayList<CustomerService> CSEmpUnderSup;
 
+    public Supervisor(String userIDFromField) {
+    }
+
     @Override
     public void paySalaryToCSEmployees() {
         // TODO Auto-generated method stub
