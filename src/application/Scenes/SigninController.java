@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.User.Customer.Customer;
+import application.User.Employee.CustomerService.CustomerService;
+import application.User.Employee.Designer.Designer;
+import application.User.Employee.Supervisor.Supervisor;
+import application.User.Owner.Owner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,7 +22,7 @@ import javafx.scene.control.TextField;
 // import javafx.scene.Scene;
 
 
-public class SigninController extends SceneChanger{
+public class SigninController extends Controller{
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -31,59 +36,37 @@ public class SigninController extends SceneChanger{
 
     // private Parent root;
     // private Scene scene;
-    // private Stage stage;
-    
-    private String emailFromButton, passwordFromButton, confirmedPasswordFromButton, userIDFromButton;
-    
-    public boolean ifEmailExists(String email) {
-        //TODO check database for email
-        return true;
-    }
-    public boolean ifIDExists(String id){
-        //TODO Check ID from list
-        return true;
-    }
-    public boolean ifPassMatchesForID(String id, String pass){
-        //TODO Check ID from list and check if Password matches
-        return true;
-    }
-    public void verifyLogin() {
-        if (ifIDExists(userIDFromButton)){
-            if (ifPassMatchesForID(userIDFromButton, passwordFromButton)){
-                //TODO grant access
+    // private Stage stage;    
+    public boolean verifiedLogin(String userType) {
+        if (idExistsInDatabase(userIDFromField, userType)){
+            if (passMatchesForID(userIDFromField, passwordFromField, userType)){
+                return true;
             }
             else{
                 //TODO alert that pass doesnt match
+                return false;
             }
         }
         else{
             //TODO Alert that ID doesnt exist and offer signup
-        }
-    }
-    public void signup() {
-        if(ifEmailExists(emailFromButton) == false){
-            if (passwordFromButton == confirmedPasswordFromButton){
-                if (ifIDExists(userIDFromButton) == false){
-                    //TODO add email and id and password to database
-                }
-                else{
-                    //TODO Alert for new id.
-                }
-            }
-            else{
-                //TODO passwords doesnt match alert.
-            }
-        }
-        else{
-            //TODO alert that email exists offer login
+            return false;
         }
     }
     @FXML
     void signinCheckButtonOnClick(ActionEvent event) throws IOException  {
         String userType = userTypeSelectionCombobx.getValue();
+        userIDFromField = idTextField.getText();
+        passwordFromField = passwordTextField.getText();
+
         if (userType == userTypes[0]) { //customer
-            //TODO implement acutal check and only then grant entry
-            sceneChange(event, "DashboardCustomer.fxml");
+
+            if(verifiedLogin(userTypes[0])){
+                customer = new Customer(userIDFromField);
+                sceneChange(event, "DashboardCustomer.fxml", customer);
+            }
+
+
+
             // root = FXMLLoader.load(getClass().getResource("DashboardCustomer.fxml"));
             // stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             // scene = new Scene(root);
@@ -91,25 +74,38 @@ public class SigninController extends SceneChanger{
             // stage.show();
 
         }else if(userType == userTypes[1]){ //customer service
-            //TODO implement acutal check and only then grant entry
-            sceneChange(event, "DashboardCSEmp.fxml");
+            
+            if(verifiedLogin(userTypes[1])){
+                customerService = new CustomerService(userIDFromField);
+                sceneChange(event, "DashboardCSEmp.fxml", customerService);
+            }
             
         }else if(userType == userTypes[2]){ //supervisor
-            //TODO implement acutal check and only then grant entry
-            sceneChange(event, "DashboardSupervisor.fxml");
+
+            if(verifiedLogin(userTypes[2])){
+                supervisor = new Supervisor(userIDFromField);
+                sceneChange(event, "DashboardSupervisor.fxml", supervisor);
+            }
 
         }else if(userType == userTypes[3]){ //designer
-            //TODO implement acutal check and only then grant entry
-            sceneChange(event, "DashboardDesigner.fxml");
+            
+            if(verifiedLogin(userTypes[3])){
+                designer = new Designer(userIDFromField);
+                sceneChange(event, "DashboardDesigner.fxml", designer);
+            }
 
         }else if(userType == userTypes[4]){ //owner
-            //TODO implement acutal check and only then grant entry
-            sceneChange(event, "DashboardOwner.fxml");
+            
+            if(verifiedLogin(userTypes[4])){
+                owner = new Owner(userIDFromField);
+                sceneChange(event, "DashboardOwner.fxml", owner);
+            }
 
         }else{
 
         }
     }
+
     @FXML
     void backToWelComeOnClick(ActionEvent event) throws IOException {
         sceneChange(event, "WelcomeScene.fxml");
