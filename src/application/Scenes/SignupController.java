@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Email.Email;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 // import javafx.fxml.FXMLLoader;
@@ -14,35 +15,38 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 // import javafx.stage.Stage;
 
-public class SignupController extends SceneChanger{
+public class SignupController extends Controller{
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private TextField emailTextField;
-
-    @FXML
-    private TextField confirmPassTextField;
-
-    @FXML
-    private Button signupCheckButton;
-
-    @FXML
-    private Button signinButton;
-
-    @FXML
-    private TextField idTextField;
-
-    @FXML
-    private TextField passwordTextField;
+    @FXML private ResourceBundle resources;
+    @FXML private URL location;
+    @FXML private TextField emailTextField;
+    @FXML private TextField confirmPassTextField;
+    @FXML private Button signupCheckButton;
+    @FXML private Button signinButton;
+    @FXML private TextField idTextField;
+    @FXML private TextField passwordTextField;
 
     // private Parent root;
     // private Scene scene;
     // private Stage stage;
+    public void signup(String userType) {
+        if(emailExistsInDatabase(emailFromField, userType) == false){
+            if (passwordFromField == confirmedPasswordFromField){
+                if (idExistsInDatabase(userIDFromField, userType) == false){
+                    //TODO add email and id and password to database
+                }
+                else{
+                    //TODO Alert for new id.
+                }
+            }
+            else{
+                //TODO passwords doesnt match alert.
+            }
+        }
+        else{
+            //TODO alert that email exists offer login
+        }
+    }
 
     @FXML
     void signinButtonOnClick(ActionEvent event) throws IOException {
@@ -59,7 +63,10 @@ public class SignupController extends SceneChanger{
     }
     @FXML
     void signupCheckButtonOnClick(ActionEvent event) {
-
+        String emailFromField = emailTextField.getText();
+        if(isValidEmail(emailFromField)){
+            signup(emailFromField);
+        }
     }
 
     @FXML
