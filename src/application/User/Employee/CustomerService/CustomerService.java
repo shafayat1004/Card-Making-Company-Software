@@ -7,7 +7,7 @@ import application.User.Customer.Customer;
 import application.User.Employee.Employee;
 
 public class CustomerService extends Employee implements CSPrivilages{
-    ArrayList<Customer> customersUnderEmp;
+    private ArrayList<Customer> customersUnderEmp;
 
     @Override
     public void viewCustomerPersonalisation() {

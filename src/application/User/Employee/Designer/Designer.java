@@ -6,5 +6,5 @@ import application.User.Customer.Customer;
 import application.User.Employee.Employee;
 
 public class Designer extends Employee{
-    ArrayList<Customer> customersUnderEmp;
+    private ArrayList<Customer> customersUnderEmp;
 }

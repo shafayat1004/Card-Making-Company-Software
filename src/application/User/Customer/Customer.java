@@ -5,6 +5,6 @@ import application.User.Employee.Employee;
 import application.User.Employee.Designer.Designer;
 
 public class Customer extends User{
-    Employee assignedEmp;
-    Designer assignedDes;
+    private Employee assignedEmp;
+    private Designer assignedDes;
 }

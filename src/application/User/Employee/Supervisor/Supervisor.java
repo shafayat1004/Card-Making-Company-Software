@@ -8,7 +8,7 @@ import application.User.Employee.Employee;
 import application.User.Employee.CustomerService.CustomerService;
 
 public class Supervisor extends Employee implements SupervisorPrivilages, CSPrivilages{
-    ArrayList<CustomerService> CSEmpUnderSup;
+    private ArrayList<CustomerService> CSEmpUnderSup;
 
     @Override
     public void paySalaryToCSEmployees() {

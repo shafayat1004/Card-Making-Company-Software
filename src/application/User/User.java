@@ -3,9 +3,9 @@ package application.User;
 import application.Address.Address;
 
 public abstract class User {
-    Address usrAddress;
-    int id;
-    String name, mobileNum;
+    private Address usrAddress;
+    private int id;
+    private String name, mobileNum;
     //Email empEmail;
     @Override
     public String toString() {
