@@ -4,8 +4,7 @@ import application.Address.Address;
 
 public abstract class User {
     private Address usrAddress;
-    private int id;
-    private String name, mobileNum;
+    private String name, mobileNum, id;
     //Email empEmail;
     @Override
     public String toString() {
@@ -23,10 +22,10 @@ public abstract class User {
     public void setMobileNum(String mobileNum) {
         this.mobileNum = mobileNum;
     }
-    public int getId() {
+    public String getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     public Address getUsrAddress() {
@@ -34,11 +33,5 @@ public abstract class User {
     }
     public void setUsrAddress(Address usrAddress) {
         this.usrAddress = usrAddress;
-    }
-    public User() {
-        name = new String("N/A");
-        mobileNum= new String("N/A");
-        usrAddress = new Address("N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A");
-        id = 0;
     }
 }
