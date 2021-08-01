@@ -36,6 +36,7 @@ public class DashboardCSEmpController extends Controller{
     }
     public void setCurrentUser(CustomerService currentUser) {
         this.currentUser = currentUser;
+        idLabel.setText("ID: " + currentUser.getId());
     }
 
     @FXML
@@ -45,6 +46,8 @@ public class DashboardCSEmpController extends Controller{
 
     @FXML
     void initialize() {
+
+
         assert signoutButton != null : "fx:id=\"signoutButton\" was not injected: check your FXML file 'DashboardCSEmp.fxml'.";
         assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file 'DashboardCSEmp.fxml'.";
         assert nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'DashboardCSEmp.fxml'.";

@@ -36,6 +36,7 @@ public class DashboardSupervisorController extends Controller{
     }
     public void setCurrentUser(Supervisor currentUser) {
         this.currentUser = currentUser;
+        idLabel.setText("ID: " + currentUser.getId());
     }
 
     @FXML

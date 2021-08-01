@@ -38,6 +38,7 @@ public class DashboardOwnerController extends Controller{
 
     public void setCurrentUser(Owner currentUser) {
         this.currentUser = currentUser;
+        idLabel.setText("ID: " + currentUser.getId());
     }
 
     @FXML
@@ -47,6 +48,7 @@ public class DashboardOwnerController extends Controller{
 
     @FXML
     void initialize() {
+
         assert signoutButton != null : "fx:id=\"signoutButton\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert financialsTab != null : "fx:id=\"financialsTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert noticeTab != null : "fx:id=\"noticeTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";

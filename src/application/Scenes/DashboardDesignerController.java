@@ -35,6 +35,7 @@ public class DashboardDesignerController extends Controller{
     }
     public void setCurrentUser(Designer currentUser) {
         this.currentUser = currentUser;
+        idLabel.setText("ID: " + currentUser.getId());
     }
     
     @FXML
@@ -43,6 +44,7 @@ public class DashboardDesignerController extends Controller{
     }
     @FXML
     void initialize() {
+
         assert signoutButton != null : "fx:id=\"signoutButton\" was not injected: check your FXML file 'DashboardDesigner.fxml'.";
         assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file 'DashboardDesigner.fxml'.";
         assert nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'DashboardDesigner.fxml'.";
