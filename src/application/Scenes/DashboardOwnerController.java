@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.User.Owner.Owner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 
-public class DashboardOwnerController extends SceneChanger{
+public class DashboardOwnerController extends Controller{
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -28,6 +29,16 @@ public class DashboardOwnerController extends SceneChanger{
     @FXML private Tab ongoingOrdersTab;
     @FXML private Tab completedOrdersTab;
     @FXML private Tab complaintsTab;
+
+    private Owner currentUser;
+
+    public Owner getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(Owner currentUser) {
+        this.currentUser = currentUser;
+    }
 
     @FXML
     void signoutButtonOnClick(ActionEvent event) throws IOException {

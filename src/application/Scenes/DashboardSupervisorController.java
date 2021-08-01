@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.User.Employee.Supervisor.Supervisor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 
-public class DashboardSupervisorController extends SceneChanger{
+public class DashboardSupervisorController extends Controller{
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -28,6 +29,14 @@ public class DashboardSupervisorController extends SceneChanger{
     @FXML private Tab personalInfoTab;
     @FXML private Tab complaintsTab;
 
+    private Supervisor currentUser;
+
+    public Supervisor getCurrentUser() {
+        return currentUser;
+    }
+    public void setCurrentUser(Supervisor currentUser) {
+        this.currentUser = currentUser;
+    }
 
     @FXML
     void signoutButtonOnClick(ActionEvent event) throws IOException {
@@ -36,6 +45,7 @@ public class DashboardSupervisorController extends SceneChanger{
 
     @FXML
     void initialize() {
+
         assert signoutButton != null : "fx:id=\"signoutButton\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
         assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
         assert nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";

@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.User.Employee.Designer.Designer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 
-public class DashboardDesignerController extends SceneChanger{
+public class DashboardDesignerController extends Controller{
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -26,6 +27,16 @@ public class DashboardDesignerController extends SceneChanger{
     @FXML private Tab companyDirTab;
     @FXML private Tab personalInfoTab;
 
+    private Designer currentUser;
+
+
+    public Designer getCurrentUser() {
+        return currentUser;
+    }
+    public void setCurrentUser(Designer currentUser) {
+        this.currentUser = currentUser;
+    }
+    
     @FXML
     void signoutButtonOnClick(ActionEvent event) throws IOException {
         sceneChange(event, "WelcomeScene.fxml");

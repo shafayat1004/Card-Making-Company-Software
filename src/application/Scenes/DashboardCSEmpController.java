@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.User.Employee.CustomerService.CustomerService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 
-public class DashboardCSEmpController extends SceneChanger{
+public class DashboardCSEmpController extends Controller{
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -27,6 +28,15 @@ public class DashboardCSEmpController extends SceneChanger{
     @FXML private Tab branchEmpListTab;
     @FXML private Tab designerListTab;
     @FXML private Tab personalInfoTab;
+
+    private CustomerService currentUser;
+
+    public CustomerService getCurrentUser() {
+        return currentUser;
+    }
+    public void setCurrentUser(CustomerService currentUser) {
+        this.currentUser = currentUser;
+    }
 
     @FXML
     void signoutButtonOnClick(ActionEvent event) throws IOException {
