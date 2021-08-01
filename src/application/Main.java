@@ -17,6 +17,10 @@ public class Main extends Application{
         URL welcomeScene = getClass().getResource("Scenes/WelcomeScene.fxml");
         Parent root = FXMLLoader.load(welcomeScene);
         Scene scene = new Scene(root);
+        
+        //String css = this.getClass().getResource("Scenes/appWideCSS.css").toExternalForm();
+        //scene.getStylesheets().add(css);
+
         stage.setScene(scene);
         stage.setTitle("CompanyName Operations");
         stage.show();
