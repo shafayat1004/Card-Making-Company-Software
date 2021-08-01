@@ -1,13 +1,16 @@
 package application.User.Owner;
 
+import application.Database.dataRetrievable;
 import application.Privilages.CustomerService.CSPrivilages;
 import application.Privilages.Owner.OwnerPrivilages;
 import application.Privilages.Supervisor.SupervisorPrivilages;
 import application.User.User;
 
-public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages, CSPrivilages{
+public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages, CSPrivilages, dataRetrievable{
 
     public Owner(String userIDFromField) {
+        retreiveAndSetAllData(userIDFromField);
+        setId(userIDFromField); //temporary
     }
 
     @Override
@@ -134,6 +137,11 @@ public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages
     public void contactSupervisor() {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    public void retreiveAndSetAllData(String id) {
+        //TODO retrieve from database all info about user.        
     }
     
 }
