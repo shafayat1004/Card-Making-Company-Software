@@ -1,15 +1,30 @@
 package application.User;
 
-import application.Address.Address;
+import application.Database.Address.Address;
 
 public abstract class User {
-    private Address usrAddress;
-    private String name, mobileNum, id;
-    //Email empEmail;
+    protected Address usrAddress;
+    protected String name, mobileNum, id, email, password;
+    
     @Override
     public String toString() {
-        return "User [name= "+name+", id= " + id + ", mobileNum= " + mobileNum + ", usrAddress= " + usrAddress + "]";
+        return "User [email=" + email + ", id=" + id + ", mobileNum=" + mobileNum + ", name=" + name + ", password="
+                + password + ", usrAddress=" + usrAddress + "]";
     }
+    
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getName() {
         return name;
     }
