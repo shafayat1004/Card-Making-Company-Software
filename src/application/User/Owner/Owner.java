@@ -1,15 +1,17 @@
 package application.User.Owner;
 
-import application.Database.dataRetrievable;
+import java.io.Serializable;
+
+import application.Database.DataRetrievable;
 import application.Privilages.CustomerService.CSPrivilages;
 import application.Privilages.Owner.OwnerPrivilages;
 import application.Privilages.Supervisor.SupervisorPrivilages;
 import application.User.User;
 
-public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages, CSPrivilages, dataRetrievable{
+public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages, CSPrivilages, Serializable{
 
     public Owner(String userIDFromField) {
-        retreiveAndSetAllData(userIDFromField);
+
         setId(userIDFromField); //temporary
     }
 
@@ -137,11 +139,6 @@ public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages
     public void contactSupervisor() {
         // TODO Auto-generated method stub
         
-    }
-
-    @Override
-    public void retreiveAndSetAllData(String id) {
-        //TODO retrieve from database all info about user.        
     }
     
 }

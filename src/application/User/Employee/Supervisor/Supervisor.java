@@ -1,18 +1,19 @@
 package application.User.Employee.Supervisor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-import application.Database.dataRetrievable;
+import application.Database.DataRetrievable;
 import application.Privilages.CustomerService.CSPrivilages;
 import application.Privilages.Supervisor.SupervisorPrivilages;
 import application.User.Employee.Employee;
 import application.User.Employee.CustomerService.CustomerService;
 
-public class Supervisor extends Employee implements SupervisorPrivilages, CSPrivilages, dataRetrievable {
+public class Supervisor extends Employee implements SupervisorPrivilages, CSPrivilages, Serializable {
     private ArrayList<CustomerService> CSEmpUnderSup;
 
     public Supervisor(String userIDFromField){
-        retreiveAndSetAllData(userIDFromField);
+
         setId(userIDFromField); //temporary
     }
 
@@ -95,10 +96,5 @@ public class Supervisor extends Employee implements SupervisorPrivilages, CSPriv
     public void contactSupervisor() {
         // TODO Auto-generated method stub
         
-    }
-
-    @Override
-    public void retreiveAndSetAllData(String id) {
-        //TODO retrieve from database all info about user.        
     }
 }
