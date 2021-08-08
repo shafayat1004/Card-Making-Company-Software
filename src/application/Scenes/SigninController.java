@@ -9,6 +9,7 @@ import application.User.Employee.CustomerService.CustomerService;
 import application.User.Employee.Designer.Designer;
 import application.User.Employee.Supervisor.Supervisor;
 import application.User.Owner.Owner;
+import application.Database.DatabaseManipulator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -61,48 +62,45 @@ public class SigninController extends Controller{
         if (userType == userTypes[0]) { //customer
 
             if(verifiedLogin(userTypes[0])){
-                customer = new Customer(userIDFromField);
+                customer = (Customer)DatabaseManipulator.getUserDataFromDatabase(userIDFromField, "Customers.bin");
                 sceneChange(event, "DashboardCustomer.fxml", customer);
             }
 
-
-
-            // root = FXMLLoader.load(getClass().getResource("DashboardCustomer.fxml"));
-            // stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            // scene = new Scene(root);
-            // stage.setScene(scene);
-            // stage.show();
-
-        }else if(userType == userTypes[1]){ //customer service
+        }
+        else if(userType == userTypes[1]){ //customer service
             
             if(verifiedLogin(userTypes[1])){
-                customerService = new CustomerService(userIDFromField);
+                customerService = (CustomerService)DatabaseManipulator.getUserDataFromDatabase(userIDFromField, "CSEmployees.bin");
                 sceneChange(event, "DashboardCSEmp.fxml", customerService);
             }
             
-        }else if(userType == userTypes[2]){ //supervisor
+        }
+        else if(userType == userTypes[2]){ //supervisor
 
             if(verifiedLogin(userTypes[2])){
-                supervisor = new Supervisor(userIDFromField);
+                supervisor = (Supervisor)DatabaseManipulator.getUserDataFromDatabase(userIDFromField, "Supervisors.bin");
                 sceneChange(event, "DashboardSupervisor.fxml", supervisor);
             }
 
-        }else if(userType == userTypes[3]){ //designer
+        }
+        else if(userType == userTypes[3]){ //designer
             
             if(verifiedLogin(userTypes[3])){
-                designer = new Designer(userIDFromField);
+                designer = (Designer)DatabaseManipulator.getUserDataFromDatabase(userIDFromField, "Designer.bin");
                 sceneChange(event, "DashboardDesigner.fxml", designer);
             }
 
-        }else if(userType == userTypes[4]){ //owner
+        }
+        else if(userType == userTypes[4]){ //owner
             
             if(verifiedLogin(userTypes[4])){
-                owner = new Owner(userIDFromField);
+                owner = (Owner)DatabaseManipulator.getUserDataFromDatabase(userIDFromField, "Owners.bin");
                 sceneChange(event, "DashboardOwner.fxml", owner);
             }
 
-        }else{
-
+        }
+        else{
+            //placeholder
         }
     }
 
