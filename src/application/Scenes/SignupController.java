@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.Email.Email;
+import application.Database.DatabaseManipulator;
+import application.User.Customer.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 // import javafx.fxml.FXMLLoader;
@@ -26,25 +27,31 @@ public class SignupController extends Controller{
     @FXML private TextField idTextField;
     @FXML private TextField passwordTextField;
 
-    // private Parent root;
-    // private Scene scene;
-    // private Stage stage;
-    public void signup(String userType) {
-        if(emailExistsInDatabase(emailFromField, userType) == false){
-            if (passwordFromField == confirmedPasswordFromField){
-                if (idExistsInDatabase(userIDFromField, userType) == false){
-                    //TODO add email and id and password to database
+
+    public void signup() throws IOException {
+
+        if(!emailExistsInDatabase(emailFromField)){
+
+            if (passwordFromField.equals(confirmedPasswordFromField)){
+
+                if (!idExistsInDatabase(userIDFromField)){
+
+                    customer = new Customer(emailFromField, userIDFromField, passwordFromField);
+                    DatabaseManipulator.writeToDatabase("src/application/Database/Customers.bin", customer, true);
                 }
                 else{
                     //TODO Alert for new id.
+                    System.out.println("enter different id");
                 }
             }
             else{
                 //TODO passwords doesnt match alert.
+                System.out.println("password doesnt match");
             }
         }
         else{
             //TODO alert that email exists offer login
+            System.out.println("email exists");
         }
     }
 
@@ -62,10 +69,13 @@ public class SignupController extends Controller{
         // stage.show();
     }
     @FXML
-    void signupCheckButtonOnClick(ActionEvent event) {
-        String emailFromField = emailTextField.getText();
+    void signupCheckButtonOnClick(ActionEvent event) throws IOException {
+        emailFromField = emailTextField.getText();
         if(isValidEmail(emailFromField)){
-            signup(emailFromField);
+            passwordFromField = passwordTextField.getText();
+            confirmedPasswordFromField = confirmPassTextField.getText();
+            userIDFromField = idTextField.getText();
+            signup();
         }
     }
 
