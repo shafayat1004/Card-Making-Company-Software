@@ -40,16 +40,19 @@ public class SigninController extends Controller{
     // private Stage stage;    
     public boolean verifiedLogin(String userType) {
         if (idExistsInDatabase(userIDFromField, userType)){
-            if (passMatchesForID(userIDFromField, passwordFromField, userType)){
+
+            if (passMatchesForID(userIDFromField, passwordFromField)){
                 return true;
             }
             else{
                 //TODO alert that pass doesnt match
+                System.out.println("Incorrect Password");
                 return false;
             }
         }
         else{
             //TODO Alert that ID doesnt exist and offer signup
+            System.out.println("ID Doesn't Exist In "+userType+" Database");
             return false;
         }
     }
