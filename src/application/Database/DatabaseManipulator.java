@@ -11,6 +11,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 import application.User.User;
+import application.User.Customer.Customer;
 
 public class DatabaseManipulator {
     
@@ -89,7 +90,7 @@ public class DatabaseManipulator {
                 
                 while (true){
                     object = ois.readObject();
-                    if (((User)object).getId().equals(userID)){
+                    if (((Credentials)object).getId().equals(userID)){
                         break;
                     }
                 }
@@ -128,7 +129,7 @@ public class DatabaseManipulator {
                 if (dataType.equals("Email")) {
                     while (true){
                         object = ois.readObject();
-                        if (((User)object).getEmail().equals(input)){
+                        if (((Credentials)object).getEmail().equals(input)){
                             found = true;
                             break;
                         }
@@ -137,7 +138,7 @@ public class DatabaseManipulator {
                 else if (dataType.equals("ID")){
                     while (true){
                         object = ois.readObject();
-                        if (((User)object).getId().equals(input)){
+                        if (((Credentials)object).getId().equals(input)){
                             found = true;
                             break;
                         }
