@@ -1,9 +1,11 @@
 package application.Scenes;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.regex.*;
 
+import application.Database.Credentials;
 import application.Database.DatabaseManipulator;
 import application.User.Customer.Customer;
 import application.User.Employee.CustomerService.CustomerService;
@@ -30,67 +32,39 @@ public abstract class Controller{
     protected Owner owner;
     protected Supervisor supervisor;
     protected Designer designer;
-
-
+    protected Credentials credentials;
+    // protected File credentialsDatabase;
+    // protected File customerDatabase;
+    // protected File CSEmployeeDatabase;
+    // protected File SupervisorDatabase;
+    // protected File DesignerDatabase;
+    // protected File OwnerDatabase;
 
     public boolean isValidEmail(String inputEmail) {
         //TODO check for validity
         return true;
     }
-
+    public boolean idExistsInDatabase(String inputID, String databaseToLookAt) {
+        Credentials retrieved =(Credentials) DatabaseManipulator.getUserDataFromDatabase(inputID, "src/application/Database/Credentials.bin");
+        if(retrieved.getUserType().equals(databaseToLookAt)){
+            return true;
+        }
+        else return false;
+    }
     public boolean idExistsInDatabase(String inputID) {
-        if (
-            DatabaseManipulator.existsInDatabase("ID", inputID, "src/application/Database/Customers.bin") ||
-            DatabaseManipulator.existsInDatabase("ID", inputID, "src/application/Database/EmployeeList/CSEmployees.bin") ||
-            DatabaseManipulator.existsInDatabase("ID", inputID, "src/application/Database/EmployeeList/Supervisors.bin") ||
-            DatabaseManipulator.existsInDatabase("ID", inputID, "src/application/Database/EmployeeList/Designers.bin") ||
-            DatabaseManipulator.existsInDatabase("ID", inputID, "src/application/Database/Owners.bin")
-        ) 
-        {
-            return true;    
-        }
-        else{
-            return false;
-        }    
-        
-    }
-    public boolean idExistsInDatabase(String inputID, String userType) {
-
-        if (userType.equals("Customer")) {
-            return DatabaseManipulator.existsInDatabase("ID", inputID, "src/application/Database/Customers.bin");
-        }
-        else if (userType.equals("Customer Service Employee")){
-            return DatabaseManipulator.existsInDatabase("ID", inputID, "src/application/Database/EmployeeList/CSEmployees.bin");
-        }
-        else if (userType.equals("Supervisor")){
-            return DatabaseManipulator.existsInDatabase("ID", inputID, "src/application/Database/EmployeeList/Supervisors.bin");
-        }
-        else if (userType.equals("Designer")){
-            return DatabaseManipulator.existsInDatabase("ID", inputID, "src/application/Database/EmployeeList/Designers.bin");
-        }
-        else if (userType.equals("Owner")){
-            return DatabaseManipulator.existsInDatabase("ID", inputID, "src/application/Database/Owners.bin");
-        }
-        else {
-            System.out.println("Not valid userType in");
-            return false;
-        }
+        return DatabaseManipulator.existsInDatabase("ID", inputID, "src/application/Database/Credentials.bin");
     }
 
-    public boolean passMatchesForID(String id, String pass, String databaseToLookAt) {
-        //TODO Check ID from list and check if Password matches
-        return true;
+    public boolean passMatchesForID(String id, String pass) {
+        Credentials retrieved =(Credentials) DatabaseManipulator.getUserDataFromDatabase(id, "src/application/Database/Credentials.bin");
+        if(retrieved.getPassword().equals(pass)){
+            return true;
+        }
+        else return false;
     }
 
     public boolean emailExistsInDatabase(String inputEmail) {
-        if (
-            DatabaseManipulator.existsInDatabase("Email", inputEmail, "src/application/Database/Customers.bin") ||
-            DatabaseManipulator.existsInDatabase("Email", inputEmail, "src/application/Database/EmployeeList/CSEmployees.bin") ||
-            DatabaseManipulator.existsInDatabase("Email", inputEmail, "src/application/Database/EmployeeList/Supervisors.bin") ||
-            DatabaseManipulator.existsInDatabase("Email", inputEmail, "src/application/Database/EmployeeList/Designers.bin") ||
-            DatabaseManipulator.existsInDatabase("Email", inputEmail, "src/application/Database/Owners.bin")
-        ) 
-        {
+        if (DatabaseManipulator.existsInDatabase("Email", inputEmail, "src/application/Database/Credentials.bin")){
             return true;    
         }
         else{
