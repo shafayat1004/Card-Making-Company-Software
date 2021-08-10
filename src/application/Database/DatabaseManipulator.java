@@ -85,12 +85,14 @@ public class DatabaseManipulator {
         if (file.exists ()){
             ObjectInputStream ois = null;
             Object object = null;
+            boolean found = false;
             try{
                 ois = new ObjectInputStream (new FileInputStream (fileName));
                 
                 while (true){
                     object = ois.readObject();
                     if (((Credentials)object).getId().equals(userID)){
+                        found = true;
                         break;
                     }
                 }
@@ -105,6 +107,7 @@ public class DatabaseManipulator {
                 try{
                     if (ois != null) {
                         ois.close();
+                        if (found == false) return null;
                         return object;
                     }
                 }
