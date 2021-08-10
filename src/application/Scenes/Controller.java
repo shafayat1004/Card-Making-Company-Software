@@ -46,7 +46,7 @@ public abstract class Controller{
     }
     public boolean idExistsInDatabase(String inputID, String databaseToLookAt) {
         Credentials retrieved =(Credentials) DatabaseManipulator.getUserDataFromDatabase(inputID, "src/application/Database/Credentials.bin");
-        if(retrieved.getUserType().equals(databaseToLookAt)){
+        if (retrieved!=null && retrieved.getUserType().equals(databaseToLookAt)){
             return true;
         }
         else return false;
