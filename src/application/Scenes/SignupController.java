@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Database.Credentials;
 import application.Database.DatabaseManipulator;
 import application.User.Customer.Customer;
 import javafx.event.ActionEvent;
@@ -38,6 +39,8 @@ public class SignupController extends Controller{
 
                     customer = new Customer(emailFromField, userIDFromField, passwordFromField);
                     DatabaseManipulator.writeToDatabase("src/application/Database/Customers.bin", customer, true);
+                    credentials = new Credentials(emailFromField, userIDFromField, passwordFromField, "Customer");
+                    DatabaseManipulator.writeToDatabase("src/application/Database/Credentials.bin", credentials, true);
                 }
                 else{
                     //TODO Alert for new id.
