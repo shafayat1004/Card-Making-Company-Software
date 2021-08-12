@@ -1,11 +1,22 @@
 package application.User;
 
+import java.io.Serializable;
+
 import application.Database.Address.Address;
 
-public abstract class User {
+public abstract class User implements Serializable{
+    public User(String id) {
+        this.id = id;
+    }
     protected Address usrAddress;
     protected String name, mobileNum, id, email, password;
     
+    public User(String email, String id, String password) {
+        this.email = email;
+        this.id = id;
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User [email=" + email + ", id=" + id + ", mobileNum=" + mobileNum + ", name=" + name + ", password="
