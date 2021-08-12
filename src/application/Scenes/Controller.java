@@ -45,18 +45,18 @@ public abstract class Controller{
         return true;
     }
     public boolean idExistsInDatabase(String inputID, String databaseToLookAt) {
-        Credentials retrieved =(Credentials) DatabaseManipulator.getUserDataFromDatabase(inputID, "src/application/Database/Credentials.bin");
+        Credentials retrieved =DatabaseManipulator.getCredentialsDataFromDatabase(inputID);
         if (retrieved!=null && retrieved.getUserType().equals(databaseToLookAt)){
             return true;
         }
         else return false;
     }
     public boolean idExistsInDatabase(String inputID) {
-        return DatabaseManipulator.existsInDatabase("ID", inputID, "src/application/Database/Credentials.bin");
+        return DatabaseManipulator.existsInDatabase("ID", inputID);
     }
 
     public boolean passMatchesForID(String id, String pass) {
-        Credentials retrieved =(Credentials) DatabaseManipulator.getUserDataFromDatabase(id, "src/application/Database/Credentials.bin");
+        Credentials retrieved = DatabaseManipulator.getCredentialsDataFromDatabase(id);
         if(retrieved.getPassword().equals(pass)){
             return true;
         }
@@ -64,7 +64,7 @@ public abstract class Controller{
     }
 
     public boolean emailExistsInDatabase(String inputEmail) {
-        if (DatabaseManipulator.existsInDatabase("Email", inputEmail, "src/application/Database/Credentials.bin")){
+        if (DatabaseManipulator.existsInDatabase("Email", inputEmail)){
             return true;    
         }
         else{
