@@ -11,12 +11,12 @@ import application.User.Employee.Designer.Designer;
 public class Customer extends User implements Serializable {
 
     public Customer(String emailFromField, String userIDFromField, String passFromField) {
-        email = emailFromField;
-        id = userIDFromField;
-        password = passFromField;
+        super(emailFromField, userIDFromField, passFromField);
     }
+    
     public Customer(String userIDFromField) {
-        this.getClass().cast(DatabaseManipulator.getUserDataFromDatabase(id, "src/application/Database/Customers.bin"));
+        super(userIDFromField);
+        this.getClass().cast(DatabaseManipulator.getCustomerDataFromDatabase(id));
         
     }
     private Employee assignedEmp;
