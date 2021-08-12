@@ -65,7 +65,7 @@ public class SigninController extends Controller{
         if (userType == userTypes[0]) { //customer
 
             if(verifiedLogin(userTypes[0])){
-                customer = (Customer)DatabaseManipulator.getUserDataFromDatabase(userIDFromField, "Customers.bin");
+                customer = DatabaseManipulator.getCustomerDataFromDatabase(userIDFromField);
                 sceneChange(event, "DashboardCustomer.fxml", customer);
             }
 
@@ -73,7 +73,7 @@ public class SigninController extends Controller{
         else if(userType == userTypes[1]){ //customer service
             
             if(verifiedLogin(userTypes[1])){
-                customerService = (CustomerService)DatabaseManipulator.getUserDataFromDatabase(userIDFromField, "CSEmployees.bin");
+                customerService = DatabaseManipulator.getCSEmployeeDataFromDatabase(userIDFromField);
                 sceneChange(event, "DashboardCSEmp.fxml", customerService);
             }
             
@@ -81,7 +81,7 @@ public class SigninController extends Controller{
         else if(userType == userTypes[2]){ //supervisor
 
             if(verifiedLogin(userTypes[2])){
-                supervisor = (Supervisor)DatabaseManipulator.getUserDataFromDatabase(userIDFromField, "Supervisors.bin");
+                supervisor = DatabaseManipulator.getSupervisorDataFromDatabase(userIDFromField);
                 sceneChange(event, "DashboardSupervisor.fxml", supervisor);
             }
 
@@ -89,7 +89,7 @@ public class SigninController extends Controller{
         else if(userType == userTypes[3]){ //designer
             
             if(verifiedLogin(userTypes[3])){
-                designer = (Designer)DatabaseManipulator.getUserDataFromDatabase(userIDFromField, "Designer.bin");
+                designer = DatabaseManipulator.getDesignerDataFromDatabase(userIDFromField);
                 sceneChange(event, "DashboardDesigner.fxml", designer);
             }
 
@@ -97,7 +97,7 @@ public class SigninController extends Controller{
         else if(userType == userTypes[4]){ //owner
             
             if(verifiedLogin(userTypes[4])){
-                owner = (Owner)DatabaseManipulator.getUserDataFromDatabase(userIDFromField, "Owners.bin");
+                owner = DatabaseManipulator.getOwnerDataFromDatabase(userIDFromField);
                 sceneChange(event, "DashboardOwner.fxml", owner);
             }
 
