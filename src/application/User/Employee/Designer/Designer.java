@@ -10,7 +10,7 @@ import application.User.Employee.Employee;
 public class Designer extends Employee implements Serializable{
     public Designer(String userIDFromField) {
        
-        setId(userIDFromField); //temporary
+        super(userIDFromField); //temporary
     }
 
     private ArrayList<Customer> customersUnderEmp;

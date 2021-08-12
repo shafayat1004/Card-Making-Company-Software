@@ -13,7 +13,7 @@ public class CustomerService extends Employee implements CSPrivilages, Serializa
 
     public CustomerService(String userIDFromField) {
 
-        setId(userIDFromField); //temporary
+        super(userIDFromField); //temporary
     }
 
     @Override

@@ -12,8 +12,14 @@ public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages
 
     public Owner(String userIDFromField) {
 
-        setId(userIDFromField); //temporary
+        super(userIDFromField); //temporary
     }
+    
+
+    public Owner(String email, String id, String password) {
+        super(email, id, password);
+    }
+
 
     @Override
     public void hireSupervisor() {

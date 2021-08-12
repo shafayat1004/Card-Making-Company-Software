@@ -14,11 +14,9 @@ public class Supervisor extends Employee implements SupervisorPrivilages, CSPriv
 
     public Supervisor(String userIDFromField){
 
-        setId(userIDFromField); //temporary
+        super(userIDFromField); //temporary
     }
-
-    public Supervisor() {
-    }
+    
 
     @Override
     public void paySalaryToCSEmployees() {
