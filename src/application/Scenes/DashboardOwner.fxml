@@ -2,12 +2,18 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Scenes.DashboardOwnerController">
@@ -29,7 +35,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="signoutButton" mnemonicParsing="false" onAction="#signoutButtonOnClick" text="Signout" />
+            <Button fx:id="signoutButton" minWidth="70.0" mnemonicParsing="false" onAction="#signoutButtonOnClick" text="Signout" />
          </children>
          <BorderPane.margin>
             <Insets />
@@ -44,29 +50,52 @@
          <tabs>
             <Tab fx:id="financialsTab" text="Financials">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="584.0" layoutY="46.0" text="Label" />
-                     </children>
-                  </AnchorPane>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                     
+                     </center>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </BorderPane>
                </content>
             </Tab>
             <Tab fx:id="noticeTab" text="Notice">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="42.0" layoutY="49.0" text="NOtice" />
-                     </children>
-                  </AnchorPane>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                     
+                     </center>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </BorderPane>
                </content>
             </Tab>
             <Tab fx:id="empManagementTab" text="Employee Management">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="754.0" layoutY="51.0" text="Label" />
-                     </children>
-                  </AnchorPane>
+                <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                     
+                     </center>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <left>
+                        <VBox alignment="CENTER" prefHeight="575.0" prefWidth="202.0" spacing="20.0" BorderPane.alignment="CENTER" />
+                     </left>
+                     <top>
+                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1240.0" spacing="25.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ComboBox minWidth="130.0" prefHeight="24.0" promptText="Location" />
+                              <ComboBox minWidth="130.0" prefHeight="24.0" promptText="Designation" />
+                              <CheckBox mnemonicParsing="false" text="Add New Employee" />
+                              <ComboBox layoutX="643.0" layoutY="28.0" minWidth="150.0" prefHeight="24.0" promptText="Name" />
+                              <Button minWidth="50.0" mnemonicParsing="false" prefHeight="24.0" text="Load" />
+                           </children>
+                        </HBox>
+                     </top>
+                  </BorderPane>
                </content>
             </Tab>
             <Tab fx:id="personalInfoTab" text="Personal Information">
@@ -80,52 +109,172 @@
             </Tab>
             <Tab fx:id="companyDirTab" text="Company Directory">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="995.0" layoutY="39.0" text="Label" />
-                     </children>
-                  </AnchorPane>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <columns>
+                              <TableColumn minWidth="130.0" prefWidth="132.0" text="Location" />
+                              <TableColumn minWidth="130.0" prefWidth="132.0" text="Designation" />
+                              <TableColumn minWidth="30.0" prefWidth="57.0" text="ID" />
+                              <TableColumn minWidth="130.0" prefWidth="200.0" text="Name" />
+                              <TableColumn minWidth="130.0" prefWidth="200.0" text="Assigned Supervisor" />
+                              <TableColumn minWidth="130.0" prefWidth="140.0" text="Email" />
+                          </columns>
+                        </TableView>
+                     </center>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </BorderPane>
                </content>
             </Tab>
             <Tab fx:id="customerDirTab" text="Customer DIrectory">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <columns>
+                              <TableColumn minWidth="130.0" prefWidth="-1.0" text="Location" />
+                              <TableColumn minWidth="30.0" prefWidth="57.0" text="ID" />
+                              <TableColumn minWidth="130.0" prefWidth="200.0" text="Name" />
+                              <TableColumn minWidth="130.0" prefWidth="200.0" text="Assigned Designer" />
+                              <TableColumn minWidth="130.0" prefWidth="260.0" text="Assigned Customer Service Employee" />
+                              <TableColumn minWidth="130.0" prefWidth="140.0" text="Email" />
+                          </columns>
+                        </TableView>
+                     </center>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </BorderPane>
                </content>
             </Tab>
             <Tab fx:id="newOrdersTab" text="New Orders">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="369.0" prefWidth="668.0">
-                     <children>
-                        <Label layoutX="188.0" layoutY="49.0" text="Label" />
-                     </children>
-                  </AnchorPane>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                     
+                     </center>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <center>
+                        <TableView prefHeight="575.0" prefWidth="968.0" BorderPane.alignment="CENTER">
+                          <columns>
+                              <TableColumn minWidth="90.0" prefWidth="-1.0" text="Order ID" />
+                            <TableColumn minWidth="90.0" prefWidth="-1.0" text="Date" />
+                            <TableColumn minWidth="90.0" prefWidth="-1.0" text="Time" />
+                              <TableColumn minWidth="130.0" prefWidth="-1.0" text="Location" />
+                              <TableColumn minWidth="130.0" prefWidth="-1.0" text="Name" />
+                              <TableColumn minWidth="100.0" prefWidth="-1.0" text="Customer ID" />
+                              <TableColumn minWidth="90.0" prefWidth="-1.0" text="Order Type" />
+                              <TableColumn minWidth="120.0" prefWidth="-1.0" text="Order Quantity" />
+                              <TableColumn minWidth="90.0" prefWidth="-1.0" text="Deliver By" />
+                          </columns>
+                           <BorderPane.margin>
+                              <Insets right="20.0" />
+                           </BorderPane.margin>
+                        </TableView>
+                     </center>
+                     <right>
+                        <VBox alignment="TOP_CENTER" prefHeight="575.0" prefWidth="252.0" spacing="20.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="Order Details and Customer Note" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <TextArea prefHeight="103.0" prefWidth="252.0" />
+                              <Button mnemonicParsing="false" text="View Details" />
+                              <HBox alignment="CENTER" spacing="10.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" text="Reject" />
+                                    <CheckBox mnemonicParsing="false" text="Give Cause" />
+                                 </children>
+                              </HBox>
+                              <TextArea prefHeight="97.0" prefWidth="252.0" />
+                              <Button mnemonicParsing="false" text="Assign Customer Service" />
+                              <Button mnemonicParsing="false" text="Asign Designer" />
+                              <Button mnemonicParsing="false" text="Accept" />
+                           </children>
+                        </VBox>
+                     </right>
+                  </BorderPane>
                </content>
             </Tab>
             <Tab fx:id="ongoingOrdersTab" text="Ongoing Orders">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="299.0" layoutY="41.0" text="Label" />
-                     </children>
-                  </AnchorPane>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                     
+                     </center>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <center>
+                        <TableView prefHeight="575.0" prefWidth="968.0" BorderPane.alignment="CENTER">
+                          <columns>
+                              <TableColumn minWidth="90.0" prefWidth="-1.0" text="Order ID" />
+                            <TableColumn minWidth="90.0" prefWidth="-1.0" text="Date" />
+                            <TableColumn minWidth="90.0" prefWidth="-1.0" text="Time" />
+                              <TableColumn minWidth="130.0" prefWidth="-1.0" text="Location" />
+                              <TableColumn minWidth="130.0" prefWidth="-1.0" text="Name" />
+                              <TableColumn minWidth="100.0" prefWidth="-1.0" text="Customer ID" />
+                              <TableColumn minWidth="90.0" prefWidth="-1.0" text="Order Type" />
+                              <TableColumn minWidth="120.0" prefWidth="-1.0" text="Order Quantity" />
+                              <TableColumn minWidth="90.0" prefWidth="-1.0" text="Deliver By" />
+                          </columns>
+                           <BorderPane.margin>
+                              <Insets bottom="20.0" />
+                           </BorderPane.margin>
+                        </TableView>
+                     </center>
+                     <bottom>
+                        <HBox prefHeight="287.0" prefWidth="1240.0" BorderPane.alignment="CENTER" />
+                     </bottom>
+                  </BorderPane>
                </content>
             </Tab>
             <Tab fx:id="completedOrdersTab" text="Completed Orders">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="446.0" layoutY="49.0" text="Label" />
-                     </children>
-                  </AnchorPane>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                     
+                     </center>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <center>
+                        <TableView prefHeight="575.0" prefWidth="968.0" BorderPane.alignment="CENTER">
+                          <columns>
+                              <TableColumn minWidth="90.0" prefWidth="-1.0" text="Order ID" />
+                            <TableColumn minWidth="90.0" prefWidth="-1.0" text="Date" />
+                            <TableColumn minWidth="90.0" prefWidth="-1.0" text="Time" />
+                              <TableColumn minWidth="130.0" prefWidth="-1.0" text="Location" />
+                              <TableColumn minWidth="130.0" prefWidth="-1.0" text="Name" />
+                              <TableColumn minWidth="100.0" prefWidth="-1.0" text="Customer ID" />
+                              <TableColumn minWidth="90.0" prefWidth="-1.0" text="Order Type" />
+                              <TableColumn minWidth="120.0" prefWidth="-1.0" text="Order Quantity" />
+                              <TableColumn minWidth="90.0" prefWidth="-1.0" text="Deliver By" />
+                          </columns>
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                        </TableView>
+                     </center>
+                  </BorderPane>
                </content>
             </Tab>
             <Tab fx:id="complaintsTab" text="Complaints">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="446.0" layoutY="49.0" text="Label" />
-                     </children>
-                  </AnchorPane>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                     
+                     </center>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </BorderPane>
                </content>
             </Tab>
          </tabs>
