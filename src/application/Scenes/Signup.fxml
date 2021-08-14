@@ -3,26 +3,52 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Scenes.SignupController">
-   <children>
-      <Label layoutX="592.0" layoutY="145.0" text="Signup">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Label>
-      <TextField fx:id="emailTextField" layoutX="575.0" layoutY="216.0" />
-      <TextField fx:id="confirmPassTextField" layoutX="576.0" layoutY="319.0" />
-      <Button fx:id="signupCheckButton" layoutX="621.0" layoutY="364.0" mnemonicParsing="false" onAction="#signupCheckButtonOnClick" text="Signup" />
-      <Button fx:id="signinButton" layoutX="545.0" layoutY="397.0" mnemonicParsing="false" onAction="#signinButtonOnClick" text="Already have an account? Click here!" />
-      <Label layoutX="510.0" layoutY="220.0" text="Enter Email" />
-      <Label layoutX="472.0" layoutY="323.0" text="Confirm Password" />
-      <TextField fx:id="idTextField" layoutX="575.0" layoutY="248.0" />
-      <Label layoutX="503.0" layoutY="252.0" text="Enter UserID" />
-      <TextField fx:id="passwordTextField" layoutX="575.0" layoutY="283.0" />
-      <Label layoutX="486.0" layoutY="287.0" text="Enter Password" />
-      <Button fx:id="backToWelCome" layoutX="571.0" layoutY="429.0" mnemonicParsing="false" onAction="#backToWelComeOnClick" text="Go Back To Welcome Page" />
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Scenes.SignupController">
+   <center>
+      <VBox alignment="CENTER" fillWidth="false" spacing="15.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Signup">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER_RIGHT" fillWidth="false" prefHeight="200.0" prefWidth="310.0" spacing="15.0">
+               <children>
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" text="Enter Email" />
+                        <TextField fx:id="emailTextField" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="20.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" text="Enter UserID" />
+                        <TextField fx:id="idTextField" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" spacing="20.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" text="Enter Password" />
+                        <TextField fx:id="passwordTextField" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" spacing="20.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" text="Confirm Password" />
+                        <TextField fx:id="confirmPassTextField" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button fx:id="signupCheckButton" mnemonicParsing="false" onAction="#signupCheckButtonOnClick" text="Signup" />
+            <Button fx:id="signinButton" mnemonicParsing="false" onAction="#signinButtonOnClick" text="Already have an account? Click here!" />
+            <Button fx:id="backToWelCome" mnemonicParsing="false" onAction="#backToWelComeOnClick" text="Go Back To Welcome Page" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
