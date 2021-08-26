@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import application.Database.Credentials;
 import application.Database.DatabaseManipulator;
 import application.User.Customer.Customer;
+import application.User.Owner.Owner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 // import javafx.fxml.FXMLLoader;
@@ -27,6 +28,7 @@ public class SignupController extends Controller{
     @FXML private Button signinButton;
     @FXML private TextField idTextField;
     @FXML private TextField passwordTextField;
+    private String ownerAccessCode = "owner123456";
 
 
     public void signup() throws IOException {
@@ -37,10 +39,19 @@ public class SignupController extends Controller{
 
                 if (!idExistsInDatabase(userIDFromField)){
 
-                    customer = new Customer(emailFromField, userIDFromField, passwordFromField);
-                    DatabaseManipulator.writeToDatabase("src/application/Database/Customers.bin", customer, true);
-                    credentials = new Credentials(emailFromField, userIDFromField, passwordFromField, "Customer");
-                    DatabaseManipulator.writeToDatabase("src/application/Database/Credentials.bin", credentials, true);
+                    if (userIDFromField.equals(ownerAccessCode)) {
+                        owner = new Owner(emailFromField, userIDFromField, passwordFromField);
+                        DatabaseManipulator.writeToDatabase(ownersFilePath, owner, false);
+                        credentials = new Credentials(emailFromField, userIDFromField, passwordFromField, "Owner");
+                        DatabaseManipulator.writeToDatabase(credentialsFilePath, credentials, true);
+                        
+                    }
+                    else{
+                        customer = new Customer(emailFromField, userIDFromField, passwordFromField);
+                        DatabaseManipulator.writeToDatabase("src/application/Database/Customers.bin", customer, true);
+                        credentials = new Credentials(emailFromField, userIDFromField, passwordFromField, "Customer");
+                        DatabaseManipulator.writeToDatabase("src/application/Database/Credentials.bin", credentials, true);
+                    }
                 }
                 else{
                     //TODO Alert for new id.
