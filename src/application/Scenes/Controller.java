@@ -1,9 +1,5 @@
 package application.Scenes;
-
-import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.regex.*;
 
 import application.Database.Credentials;
 import application.Database.DatabaseManipulator;
@@ -13,7 +9,6 @@ import application.User.Employee.Designer.Designer;
 import application.User.Employee.Supervisor.Supervisor;
 import application.User.Owner.Owner;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -25,7 +20,7 @@ public abstract class Controller{
     private Parent root;
     private Scene scene;
     private Stage stage;
-    private String emailStructure; //TODO regex to be determined
+    //private String emailStructure; //TODO regex to be determined
     protected String emailFromField, passwordFromField, confirmedPasswordFromField, userIDFromField;
     protected Customer customer;
     protected CustomerService customerService;

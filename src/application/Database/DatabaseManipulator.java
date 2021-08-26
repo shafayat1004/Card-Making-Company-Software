@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-import application.User.User;
+
 import application.User.Customer.Customer;
 import application.User.Employee.CustomerService.CustomerService;
 import application.User.Employee.Designer.Designer;
