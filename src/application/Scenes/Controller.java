@@ -33,19 +33,19 @@ public abstract class Controller{
     protected Supervisor supervisor;
     protected Designer designer;
     protected Credentials credentials;
-    // protected File credentialsDatabase;
-    // protected File customerDatabase;
-    // protected File CSEmployeeDatabase;
-    // protected File SupervisorDatabase;
-    // protected File DesignerDatabase;
-    // protected File OwnerDatabase;
+    protected static String credentialsFilePath = "src/application/Database/Credentials.bin";
+    protected static String customersFilePath = "src/application/Database/Customers.bin";
+    protected static String cSEmployeesFilePath = "src/application/Database/EmployeeList/CSEmployees.bin";
+    protected static String supervisorFilePath = "src/application/Database/EmployeeList/Supervisors.bin";
+    protected static String designersFilePath = "src/application/Database/EmployeeList/Designers.bin";
+    protected static String ownersFilePath = "src/application/Database/Owners.bin";
 
     public boolean isValidEmail(String inputEmail) {
         //TODO check for validity
         return true;
     }
     public boolean idExistsInDatabase(String inputID, String databaseToLookAt) {
-        Credentials retrieved =DatabaseManipulator.getCredentialsDataFromDatabase(inputID);
+        Credentials retrieved = DatabaseManipulator.getCredentialsDataFromDatabase(inputID);
         if (retrieved!=null && retrieved.getUserType().equals(databaseToLookAt)){
             return true;
         }
