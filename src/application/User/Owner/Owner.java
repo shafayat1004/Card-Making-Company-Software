@@ -2,68 +2,63 @@ package application.User.Owner;
 
 import java.io.Serializable;
 
-import application.Database.DataRetrievable;
 import application.Privilages.CustomerService.CSPrivilages;
-import application.Privilages.Owner.OwnerPrivilages;
 import application.Privilages.Supervisor.SupervisorPrivilages;
 import application.User.User;
 
-public class Owner extends User implements OwnerPrivilages, SupervisorPrivilages, CSPrivilages, Serializable{
+public class Owner extends User implements SupervisorPrivilages, CSPrivilages, Serializable{
 
     public Owner(String userIDFromField) {
 
         super(userIDFromField); //temporary
     }
-    
 
     public Owner(String email, String id, String password) {
         super(email, id, password);
     }
 
 
-    @Override
+
     public void hireSupervisor() {
         // TODO Auto-generated method stub
         
     }
 
-    @Override
+
     public void fireSupervisor() {
         // TODO Auto-generated method stub
         
     }
 
-    @Override
+
     public void hireDesigner() {
         // TODO Auto-generated method stub
         
     }
 
-    @Override
+
     public void fireDesigner() {
         // TODO Auto-generated method stub
         
     }
 
-    @Override
+
     public void checkFinancials() {
         // TODO Auto-generated method stub
         
     }
 
-    @Override
+
     public void paySalaryToSupervisor() {
         // TODO Auto-generated method stub
         
     }
 
-    @Override
     public void paySalaryToSupervisorForCSEmployees() {
         // TODO Auto-generated method stub
         
     }
 
-    @Override
     public void modifySalary() {
         // TODO Auto-generated method stub
         
