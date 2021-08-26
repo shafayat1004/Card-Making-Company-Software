@@ -1,15 +1,14 @@
 package application.User.Employee.Supervisor;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 
-import application.Database.DataRetrievable;
 import application.Privilages.CustomerService.CSPrivilages;
 import application.Privilages.Supervisor.SupervisorPrivilages;
 import application.User.Employee.Employee;
 import application.User.Employee.CustomerService.CustomerService;
 
-public class Supervisor extends Employee implements SupervisorPrivilages, CSPrivilages, Serializable {
+public class Supervisor extends Employee implements SupervisorPrivilages, CSPrivilages{
     private ArrayList<CustomerService> CSEmpUnderSup;
 
     public Supervisor(String userIDFromField){

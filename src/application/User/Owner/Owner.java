@@ -1,12 +1,11 @@
 package application.User.Owner;
 
-import java.io.Serializable;
 
 import application.Privilages.CustomerService.CSPrivilages;
 import application.Privilages.Supervisor.SupervisorPrivilages;
 import application.User.User;
 
-public class Owner extends User implements SupervisorPrivilages, CSPrivilages, Serializable{
+public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
 
     public Owner(String userIDFromField) {
 

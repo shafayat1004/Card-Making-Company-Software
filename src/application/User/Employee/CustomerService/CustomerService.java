@@ -1,14 +1,13 @@
 package application.User.Employee.CustomerService;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-
-import application.Database.DataRetrievable;
 import application.Privilages.CustomerService.CSPrivilages;
 import application.User.Customer.Customer;
 import application.User.Employee.Employee;
 
-public class CustomerService extends Employee implements CSPrivilages, Serializable{
+
+
+public class CustomerService extends Employee implements CSPrivilages{
     private ArrayList<Customer> customersUnderEmp;
 
     public CustomerService(String userIDFromField) {
