@@ -4,11 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.User.Customer.Customer;
-import application.User.Employee.CustomerService.CustomerService;
-import application.User.Employee.Designer.Designer;
-import application.User.Employee.Supervisor.Supervisor;
-import application.User.Owner.Owner;
 import application.Database.DatabaseManipulator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
