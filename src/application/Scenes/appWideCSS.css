@@ -1,4 +1,4 @@
-Anchorpane {
-    font-family: fantasy;
-    
-  }
+.root{
+  -fx-font-family: "Times New Roman";
+  font-family: "Times New Roman";
+}
