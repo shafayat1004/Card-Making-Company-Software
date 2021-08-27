@@ -3,13 +3,12 @@ package application.Database.Address;
 public class Address {
     
     private String userID;
-    private String floorNo, houseDetails, streetDetails, blockAndArea, district, upazillaOrCCorp, division;
+    private String floorAndHouseDetails, streetDetails, blockAndArea, district, upazillaOrCCorp, division;
 
-    public Address(String userID, String floorNo, String houseDetails, String streetDetails, String blockAndArea,
+    public Address(String userID, String floorAndHouseDetails, String streetDetails, String blockAndArea,
             String district, String upazillaOrCCorp, String division) {
         this.userID = userID;
-        this.floorNo = floorNo;
-        this.houseDetails = houseDetails;
+        this.floorAndHouseDetails = floorAndHouseDetails;
         this.streetDetails = streetDetails;
         this.blockAndArea = blockAndArea;
         this.district = district;
@@ -23,17 +22,11 @@ public class Address {
     public void setUserID(String userID) {
         this.userID = userID;
     }
-    public String getFloorNo() {
-        return floorNo;
+    public String getFloorAndHouseDetails() {
+        return floorAndHouseDetails;
     }
-    public void setFloorNo(String floorNo) {
-        this.floorNo = floorNo;
-    }
-    public String getHouseDetails() {
-        return houseDetails;
-    }
-    public void setHouseDetails(String houseDetails) {
-        this.houseDetails = houseDetails;
+    public void setFloorAndHouseDetails(String floorAndHouseDetails) {
+        this.floorAndHouseDetails = floorAndHouseDetails;
     }
     public String getStreetDetails() {
         return streetDetails;
