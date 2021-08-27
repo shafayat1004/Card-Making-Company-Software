@@ -1,9 +1,13 @@
 package application.User.Owner;
 
-
+import application.Assets.Assets;
+import application.Database.Credentials;
+import application.Database.DatabaseManipulator;
 import application.Privilages.CustomerService.CSPrivilages;
 import application.Privilages.Supervisor.SupervisorPrivilages;
 import application.User.User;
+import application.User.Employee.Supervisor.Supervisor;
+import javafx.scene.image.Image;
 
 public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
 
@@ -18,8 +22,17 @@ public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
 
 
 
-    public void hireSupervisor() {
-        // TODO Auto-generated method stub
+    public String[] hireSupervisor(String name, String mobileNum, String nationalID, String email, Image dp) {
+        
+        String genPass = ((Integer)(int)Math.floor(Math.random()*(9999999-1000000+1)+1000000)).toString();
+        String genID = ((Integer)(DatabaseManipulator.getCount(Assets.getSupervisorFilePath()) + 1)).toString();
+
+        Supervisor newSupervisor = new Supervisor(name, mobileNum, genID, nationalID, email, genPass, dp);
+        DatabaseManipulator.writeToDatabase(Assets.getSupervisorFilePath(), newSupervisor, true);
+        Credentials credentials = new Credentials(email, genID, genPass, Assets.getUserTypes()[2]);
+        DatabaseManipulator.writeToDatabase(Assets.getCredentialsFilePath(), credentials, true);
+
+        return new String[]{genID, genPass};
         
     }
 
