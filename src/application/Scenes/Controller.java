@@ -1,6 +1,7 @@
 package application.Scenes;
 import java.io.IOException;
 
+import application.Assets.Assets;
 import application.Database.Credentials;
 import application.Database.DatabaseManipulator;
 import application.User.Customer.Customer;
@@ -34,7 +35,8 @@ public abstract class Controller{
         return true;
     }
     public boolean idExistsInDatabase(String inputID, String databaseToLookAt) {
-        Credentials retrieved = DatabaseManipulator.getCredentialsDataFromDatabase(inputID);
+        Credentials retrieved = (Credentials)DatabaseManipulator.getObjectFromDatabase(inputID, Assets.getCredentialsFilePath());
+
         if (retrieved!=null && retrieved.getUserType().equals(databaseToLookAt)){
             return true;
         }
@@ -45,7 +47,9 @@ public abstract class Controller{
     }
 
     public boolean passMatchesForID(String id, String pass) {
-        Credentials retrieved = DatabaseManipulator.getCredentialsDataFromDatabase(id);
+
+        Credentials retrieved = (Credentials)DatabaseManipulator.getObjectFromDatabase(id, Assets.getCredentialsFilePath());
+
         if(retrieved.getPassword().equals(pass)){
             return true;
         }

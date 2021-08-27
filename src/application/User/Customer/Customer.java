@@ -1,6 +1,7 @@
 package application.User.Customer;
 
 
+import application.Assets.Assets;
 import application.Database.DatabaseManipulator;
 import application.Order.Order;
 import application.User.User;
@@ -14,7 +15,7 @@ public class Customer extends User{
     
     public Customer(String userIDFromField) {
         super(userIDFromField);
-        this.getClass().cast(DatabaseManipulator.getCustomerDataFromDatabase(id));
+        this.getClass().cast(DatabaseManipulator.getObjectFromDatabase(id, Assets.getCustomersFilePath()));
         
     }
     

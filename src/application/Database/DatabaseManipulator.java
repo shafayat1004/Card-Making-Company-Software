@@ -11,11 +11,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 import application.Assets.Assets;
-import application.User.Customer.Customer;
-import application.User.Employee.CustomerService.CustomerService;
-import application.User.Employee.Designer.Designer;
-import application.User.Employee.Supervisor.Supervisor;
-import application.User.Owner.Owner;
+import application.User.User;
 
 
 public class DatabaseManipulator {
@@ -116,21 +112,31 @@ public class DatabaseManipulator {
         }
         return null;
     }
+    
+    public static Object getObjectFromDatabase(String userID, String filePath) {
+        File file = new File (filePath);
 
-    public static Credentials getCredentialsDataFromDatabase(String userID) {
-        File file = new File (Assets.getCredentialsFilePath());
         if (file.exists ()){
             ObjectInputStream ois = null;
             Object object = null;
             boolean found = false;
             try{
-                ois = new ObjectInputStream (new FileInputStream (Assets.getCredentialsFilePath()));
+                ois = new ObjectInputStream (new FileInputStream (filePath));
                 
                 while (true){
                     object = ois.readObject();
-                    if (((Credentials)object).getId().equals(userID)){
-                        found = true;
-                        break;
+
+                    if(object instanceof Credentials){
+                        if (((Credentials)object).getId().equals(userID)){
+                            found = true;
+                            break;
+                        }
+                    }
+                    else {
+                        if (((User)object).getId().equals(userID)){
+                            found = true;
+                            break;
+                        }
                     }
                 }
             }
@@ -145,7 +151,7 @@ public class DatabaseManipulator {
                     if (ois != null) {
                         ois.close();
                         if (found == false) return null;
-                        return (Credentials)object;
+                        return object;
                     }
                 }
                 catch (IOException e){
@@ -153,212 +159,6 @@ public class DatabaseManipulator {
                 }
             }
         }
-        
-        return null;
-    }
-    //CUSTOMER DATA RETRIEVE
-    public static Customer getCustomerDataFromDatabase(String userID) {
-
-        File file = new File (Assets.getCustomersFilePath());
-        if (file.exists ()){
-            ObjectInputStream ois = null;
-            Object object = null;
-            boolean found = false;
-            try{
-                ois = new ObjectInputStream (new FileInputStream (Assets.getCustomersFilePath()));
-                
-                while (true){
-                    object = ois.readObject();
-                    if (((Customer)object).getId().equals(userID)){
-                        found = true;
-                        break;
-                    }
-                }
-            }
-            catch (EOFException e){
-                
-            }
-            catch (Exception e){
-                e.printStackTrace ();
-            }
-            finally{
-                try{
-                    if (ois != null) {
-                        ois.close();
-                        if (found == false) return null;
-                        return (Customer)object;
-                    }
-                }
-                catch (IOException e){
-                    e.printStackTrace ();
-                }
-            }
-        }
-        
-        return null;
-    }
-    //CUSTOMER SERVICE DATA RETRIEVE
-    public static CustomerService getCSEmployeeDataFromDatabase(String userID) {
-
-        File file = new File (Assets.getcSEmployeesFilePath());
-        if (file.exists ()){
-            ObjectInputStream ois = null;
-            Object object = null;
-            boolean found = false;
-            try{
-                ois = new ObjectInputStream (new FileInputStream (Assets.getcSEmployeesFilePath()));
-                
-                while (true){
-                    object = ois.readObject();
-                    if (((CustomerService)object).getId().equals(userID)){
-                        found = true;
-                        break;
-                    }
-                }
-            }
-            catch (EOFException e){
-                
-            }
-            catch (Exception e){
-                e.printStackTrace ();
-            }
-            finally{
-                try{
-                    if (ois != null) {
-                        ois.close();
-                        if (found == false) return null;
-                        return (CustomerService)object;
-                    }
-                }
-                catch (IOException e){
-                    e.printStackTrace ();
-                }
-            }
-        }
-        
-        return null;
-    }
-    //SUPERVISOR DATA RETRIEVE
-    public static Supervisor getSupervisorDataFromDatabase(String userID) {
-
-        File file = new File (Assets.getSupervisorFilePath());
-        if (file.exists ()){
-            ObjectInputStream ois = null;
-            Object object = null;
-            boolean found = false;
-            try{
-                ois = new ObjectInputStream (new FileInputStream (Assets.getSupervisorFilePath()));
-                
-                while (true){
-                    object = ois.readObject();
-                    if (((Supervisor)object).getId().equals(userID)){
-                        found = true;
-                        break;
-                    }
-                }
-            }
-            catch (EOFException e){
-                
-            }
-            catch (Exception e){
-                e.printStackTrace ();
-            }
-            finally{
-                try{
-                    if (ois != null) {
-                        ois.close();
-                        if (found == false) return null;
-                        return (Supervisor)object;
-                    }
-                }
-                catch (IOException e){
-                    e.printStackTrace ();
-                }
-            }
-        }
-        
-        return null;
-    }
-    //DESIGNER DATA RETRIEVE
-    public static Designer getDesignerDataFromDatabase(String userID) {
-
-        File file = new File (Assets.getDesignersFilePath());
-        if (file.exists ()){
-            ObjectInputStream ois = null;
-            Object object = null;
-            boolean found = false;
-            try{
-                ois = new ObjectInputStream (new FileInputStream (Assets.getDesignersFilePath()));
-                
-                while (true){
-                    object = ois.readObject();
-                    if (((Designer)object).getId().equals(userID)){
-                        found = true;
-                        break;
-                    }
-                }
-            }
-            catch (EOFException e){
-                
-            }
-            catch (Exception e){
-                e.printStackTrace ();
-            }
-            finally{
-                try{
-                    if (ois != null) {
-                        ois.close();
-                        if (found == false) return null;
-                        return (Designer)object;
-                    }
-                }
-                catch (IOException e){
-                    e.printStackTrace ();
-                }
-            }
-        }
-        
-        return null;
-    }
-    //OWNER DATA RETRIEVE
-    public static Owner getOwnerDataFromDatabase(String userID) {
-
-        File file = new File (Assets.getOwnersFilePath());
-        if (file.exists ()){
-            ObjectInputStream ois = null;
-            Object object = null;
-            boolean found = false;
-            try{
-                ois = new ObjectInputStream (new FileInputStream (Assets.getOwnersFilePath()));
-                
-                while (true){
-                    object = ois.readObject();
-                    if (((Owner)object).getId().equals(userID)){
-                        found = true;
-                        break;
-                    }
-                }
-            }
-            catch (EOFException e){
-                
-            }
-            catch (Exception e){
-                e.printStackTrace ();
-            }
-            finally{
-                try{
-                    if (ois != null) {
-                        ois.close();
-                        if (found == false) return null;
-                        return (Owner)object;
-                    }
-                }
-                catch (IOException e){
-                    e.printStackTrace ();
-                }
-            }
-        }
-        
         return null;
     }
     

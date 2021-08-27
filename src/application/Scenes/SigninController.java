@@ -6,6 +6,11 @@ import java.util.ResourceBundle;
 
 import application.Assets.Assets;
 import application.Database.DatabaseManipulator;
+import application.User.Customer.Customer;
+import application.User.Employee.CustomerService.CustomerService;
+import application.User.Employee.Designer.Designer;
+import application.User.Employee.Supervisor.Supervisor;
+import application.User.Owner.Owner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -60,7 +65,7 @@ public class SigninController extends Controller{
         if (userType == Assets.getUserTypes()[0]) { //customer
 
             if(verifiedLogin(Assets.getUserTypes()[0])){
-                customer = DatabaseManipulator.getCustomerDataFromDatabase(userIDFromField);
+                customer = (Customer)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getCustomersFilePath());
                 sceneChange(event, "DashboardCustomer.fxml", customer);
             }
 
@@ -68,7 +73,7 @@ public class SigninController extends Controller{
         else if(userType == Assets.getUserTypes()[1]){ //customer service
             
             if(verifiedLogin(Assets.getUserTypes()[1])){
-                customerService = DatabaseManipulator.getCSEmployeeDataFromDatabase(userIDFromField);
+                customerService = (CustomerService)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getcSEmployeesFilePath());
                 sceneChange(event, "DashboardCSEmp.fxml", customerService);
             }
             
@@ -76,7 +81,7 @@ public class SigninController extends Controller{
         else if(userType == Assets.getUserTypes()[2]){ //supervisor
 
             if(verifiedLogin(Assets.getUserTypes()[2])){
-                supervisor = DatabaseManipulator.getSupervisorDataFromDatabase(userIDFromField);
+                supervisor = (Supervisor)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getSupervisorFilePath());
                 sceneChange(event, "DashboardSupervisor.fxml", supervisor);
             }
 
@@ -84,7 +89,7 @@ public class SigninController extends Controller{
         else if(userType == Assets.getUserTypes()[3]){ //designer
             
             if(verifiedLogin(Assets.getUserTypes()[3])){
-                designer = DatabaseManipulator.getDesignerDataFromDatabase(userIDFromField);
+                designer = (Designer)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getDesignersFilePath());
                 sceneChange(event, "DashboardDesigner.fxml", designer);
             }
 
@@ -92,7 +97,7 @@ public class SigninController extends Controller{
         else if(userType == Assets.getUserTypes()[4]){ //owner
             
             if(verifiedLogin(Assets.getUserTypes()[4])){
-                owner = DatabaseManipulator.getOwnerDataFromDatabase(userIDFromField);
+                owner = (Owner)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getOwnersFilePath());
                 sceneChange(event, "DashboardOwner.fxml", owner);
             }
 
