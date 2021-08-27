@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-
+import application.Assets.Assets;
 import application.User.Customer.Customer;
 import application.User.Employee.CustomerService.CustomerService;
 import application.User.Employee.Designer.Designer;
@@ -20,23 +20,49 @@ import application.User.Owner.Owner;
 
 public class DatabaseManipulator {
 
-    private static String credentialsFilePath = "src/application/Database/Credentials.bin";
-    private static String customersFilePath = "src/application/Database/Customers.bin";
-    private static String cSEmployeesFilePath = "src/application/Database/EmployeeList/CSEmployees.bin";
-    private static String supervisorFilePath = "src/application/Database/EmployeeList/Supervisors.bin";
-    private static String designersFilePath = "src/application/Database/EmployeeList/Designers.bin";
-    private static String ownersFilePath = "src/application/Database/Owners.bin";
+    public static int getCount(String fileName){
+        int count = 0;
+
+        File file = new File (fileName);
+        if (file.exists ()){
+            ObjectInputStream ois = null;
+            try{
+                ois = new ObjectInputStream (new FileInputStream (fileName));
+                while (true){
+                    ois.readObject ();
+                    count++;
+                }
+            }
+            catch (EOFException e){
+                
+            }
+            catch (Exception e){
+                e.printStackTrace ();
+            }
+            finally{
+                try{
+                    if (ois != null) {
+                        ois.close();
+                    }
+                }
+                catch (IOException e){
+                    e.printStackTrace ();
+                }
+            }
+        }
+        return count;
+    }
     
-    public static void writeToDatabase (String filename, Object obj, boolean append){
-        File file = new File (filename);
+    public static void writeToDatabase (String fileName, Object obj, boolean append){
+        File file = new File (fileName);
         ObjectOutputStream out = null;
         
         try{
             if (!file.exists () || !append){
-                out = new ObjectOutputStream (new FileOutputStream (filename));
+                out = new ObjectOutputStream (new FileOutputStream (fileName));
             }
             else {
-                out = new AppendableObjectOutputStream (new FileOutputStream (filename, append));
+                out = new AppendableObjectOutputStream (new FileOutputStream (fileName, append));
             }
             out.writeObject(obj);
             out.flush ();
@@ -92,13 +118,13 @@ public class DatabaseManipulator {
     }
 
     public static Credentials getCredentialsDataFromDatabase(String userID) {
-        File file = new File (credentialsFilePath);
+        File file = new File (Assets.getCredentialsFilePath());
         if (file.exists ()){
             ObjectInputStream ois = null;
             Object object = null;
             boolean found = false;
             try{
-                ois = new ObjectInputStream (new FileInputStream (credentialsFilePath));
+                ois = new ObjectInputStream (new FileInputStream (Assets.getCredentialsFilePath()));
                 
                 while (true){
                     object = ois.readObject();
@@ -133,13 +159,13 @@ public class DatabaseManipulator {
     //CUSTOMER DATA RETRIEVE
     public static Customer getCustomerDataFromDatabase(String userID) {
 
-        File file = new File (customersFilePath);
+        File file = new File (Assets.getCustomersFilePath());
         if (file.exists ()){
             ObjectInputStream ois = null;
             Object object = null;
             boolean found = false;
             try{
-                ois = new ObjectInputStream (new FileInputStream (customersFilePath));
+                ois = new ObjectInputStream (new FileInputStream (Assets.getCustomersFilePath()));
                 
                 while (true){
                     object = ois.readObject();
@@ -174,13 +200,13 @@ public class DatabaseManipulator {
     //CUSTOMER SERVICE DATA RETRIEVE
     public static CustomerService getCSEmployeeDataFromDatabase(String userID) {
 
-        File file = new File (cSEmployeesFilePath);
+        File file = new File (Assets.getcSEmployeesFilePath());
         if (file.exists ()){
             ObjectInputStream ois = null;
             Object object = null;
             boolean found = false;
             try{
-                ois = new ObjectInputStream (new FileInputStream (cSEmployeesFilePath));
+                ois = new ObjectInputStream (new FileInputStream (Assets.getcSEmployeesFilePath()));
                 
                 while (true){
                     object = ois.readObject();
@@ -215,13 +241,13 @@ public class DatabaseManipulator {
     //SUPERVISOR DATA RETRIEVE
     public static Supervisor getSupervisorDataFromDatabase(String userID) {
 
-        File file = new File (supervisorFilePath);
+        File file = new File (Assets.getSupervisorFilePath());
         if (file.exists ()){
             ObjectInputStream ois = null;
             Object object = null;
             boolean found = false;
             try{
-                ois = new ObjectInputStream (new FileInputStream (supervisorFilePath));
+                ois = new ObjectInputStream (new FileInputStream (Assets.getSupervisorFilePath()));
                 
                 while (true){
                     object = ois.readObject();
@@ -256,13 +282,13 @@ public class DatabaseManipulator {
     //DESIGNER DATA RETRIEVE
     public static Designer getDesignerDataFromDatabase(String userID) {
 
-        File file = new File (designersFilePath);
+        File file = new File (Assets.getDesignersFilePath());
         if (file.exists ()){
             ObjectInputStream ois = null;
             Object object = null;
             boolean found = false;
             try{
-                ois = new ObjectInputStream (new FileInputStream (designersFilePath));
+                ois = new ObjectInputStream (new FileInputStream (Assets.getDesignersFilePath()));
                 
                 while (true){
                     object = ois.readObject();
@@ -297,13 +323,13 @@ public class DatabaseManipulator {
     //OWNER DATA RETRIEVE
     public static Owner getOwnerDataFromDatabase(String userID) {
 
-        File file = new File (ownersFilePath);
+        File file = new File (Assets.getOwnersFilePath());
         if (file.exists ()){
             ObjectInputStream ois = null;
             Object object = null;
             boolean found = false;
             try{
-                ois = new ObjectInputStream (new FileInputStream (ownersFilePath));
+                ois = new ObjectInputStream (new FileInputStream (Assets.getOwnersFilePath()));
                 
                 while (true){
                     object = ois.readObject();
@@ -340,12 +366,12 @@ public class DatabaseManipulator {
     public static boolean existsInDatabase(String dataType, String input) {
 
         boolean found = false;
-        File file = new File (credentialsFilePath);
+        File file = new File (Assets.getCredentialsFilePath());
         if (file.exists ()){
             ObjectInputStream ois = null;
             Object object = null;
             try{
-                ois = new ObjectInputStream (new FileInputStream (credentialsFilePath));
+                ois = new ObjectInputStream (new FileInputStream (Assets.getCredentialsFilePath()));
                 
                 if (dataType.equals("Email")) {
                     while (true){
