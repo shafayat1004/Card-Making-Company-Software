@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Assets.Assets;
 import application.Database.Credentials;
 import application.Database.DatabaseManipulator;
 import application.User.Customer.Customer;
@@ -41,16 +42,16 @@ public class SignupController extends Controller{
 
                     if (userIDFromField.equals(ownerAccessCode)) {
                         owner = new Owner(emailFromField, userIDFromField, passwordFromField);
-                        DatabaseManipulator.writeToDatabase(ownersFilePath, owner, false);
+                        DatabaseManipulator.writeToDatabase(Assets.getOwnersFilePath(), owner, false);
                         credentials = new Credentials(emailFromField, userIDFromField, passwordFromField, "Owner");
-                        DatabaseManipulator.writeToDatabase(credentialsFilePath, credentials, true);
+                        DatabaseManipulator.writeToDatabase(Assets.getCredentialsFilePath(), credentials, true);
                         
                     }
                     else{
                         customer = new Customer(emailFromField, userIDFromField, passwordFromField);
-                        DatabaseManipulator.writeToDatabase("src/application/Database/Customers.bin", customer, true);
+                        DatabaseManipulator.writeToDatabase(Assets.getCustomersFilePath(), customer, true);
                         credentials = new Credentials(emailFromField, userIDFromField, passwordFromField, "Customer");
-                        DatabaseManipulator.writeToDatabase("src/application/Database/Credentials.bin", credentials, true);
+                        DatabaseManipulator.writeToDatabase(Assets.getCredentialsFilePath(), credentials, true);
                     }
                 }
                 else{
