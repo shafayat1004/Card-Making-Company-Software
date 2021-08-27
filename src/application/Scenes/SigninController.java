@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Assets.Assets;
 import application.Database.DatabaseManipulator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +29,6 @@ public class SigninController extends Controller{
     @FXML private Button signupButton;
     @FXML private Button backToWelCome;
     @FXML private ComboBox<String> userTypeSelectionCombobx;
-    private String[] userTypes = {"Customer", "Customer Service Employee", "Supervisor", "Designer", "Owner"};
 
     // private Parent root;
     // private Scene scene;
@@ -57,41 +57,41 @@ public class SigninController extends Controller{
         userIDFromField = idTextField.getText();
         passwordFromField = passwordTextField.getText();
 
-        if (userType == userTypes[0]) { //customer
+        if (userType == Assets.getUserTypes()[0]) { //customer
 
-            if(verifiedLogin(userTypes[0])){
+            if(verifiedLogin(Assets.getUserTypes()[0])){
                 customer = DatabaseManipulator.getCustomerDataFromDatabase(userIDFromField);
                 sceneChange(event, "DashboardCustomer.fxml", customer);
             }
 
         }
-        else if(userType == userTypes[1]){ //customer service
+        else if(userType == Assets.getUserTypes()[1]){ //customer service
             
-            if(verifiedLogin(userTypes[1])){
+            if(verifiedLogin(Assets.getUserTypes()[1])){
                 customerService = DatabaseManipulator.getCSEmployeeDataFromDatabase(userIDFromField);
                 sceneChange(event, "DashboardCSEmp.fxml", customerService);
             }
             
         }
-        else if(userType == userTypes[2]){ //supervisor
+        else if(userType == Assets.getUserTypes()[2]){ //supervisor
 
-            if(verifiedLogin(userTypes[2])){
+            if(verifiedLogin(Assets.getUserTypes()[2])){
                 supervisor = DatabaseManipulator.getSupervisorDataFromDatabase(userIDFromField);
                 sceneChange(event, "DashboardSupervisor.fxml", supervisor);
             }
 
         }
-        else if(userType == userTypes[3]){ //designer
+        else if(userType == Assets.getUserTypes()[3]){ //designer
             
-            if(verifiedLogin(userTypes[3])){
+            if(verifiedLogin(Assets.getUserTypes()[3])){
                 designer = DatabaseManipulator.getDesignerDataFromDatabase(userIDFromField);
                 sceneChange(event, "DashboardDesigner.fxml", designer);
             }
 
         }
-        else if(userType == userTypes[4]){ //owner
+        else if(userType == Assets.getUserTypes()[4]){ //owner
             
-            if(verifiedLogin(userTypes[4])){
+            if(verifiedLogin(Assets.getUserTypes()[4])){
                 owner = DatabaseManipulator.getOwnerDataFromDatabase(userIDFromField);
                 sceneChange(event, "DashboardOwner.fxml", owner);
             }
@@ -112,7 +112,7 @@ public class SigninController extends Controller{
     }
     @FXML
     void initialize() {
-        userTypeSelectionCombobx.getItems().addAll(userTypes);
+        userTypeSelectionCombobx.getItems().addAll(Assets.getUserTypes());
 
         assert idTextField != null : "fx:id=\"idTextField\" was not injected: check your FXML file 'Signin.fxml'.";
         assert passwordTextField != null : "fx:id=\"passwordTextField\" was not injected: check your FXML file 'Signin.fxml'.";
