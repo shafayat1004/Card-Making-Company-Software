@@ -28,12 +28,6 @@ public abstract class Controller{
     protected Supervisor supervisor;
     protected Designer designer;
     protected Credentials credentials;
-    protected static String credentialsFilePath = "src/application/Database/Credentials.bin";
-    protected static String customersFilePath = "src/application/Database/Customers.bin";
-    protected static String cSEmployeesFilePath = "src/application/Database/EmployeeList/CSEmployees.bin";
-    protected static String supervisorFilePath = "src/application/Database/EmployeeList/Supervisors.bin";
-    protected static String designersFilePath = "src/application/Database/EmployeeList/Designers.bin";
-    protected static String ownersFilePath = "src/application/Database/Owners.bin";
 
     public boolean isValidEmail(String inputEmail) {
         //TODO check for validity
