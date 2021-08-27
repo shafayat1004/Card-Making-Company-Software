@@ -27,3 +27,19 @@ Next Plan:
 2. optimise the methods in DatabaseManipulator class to make them more general and not specific. (reduce lines of repetitive code)
 3. Create Alerts for incorrect pass/ existing id etc (Note: adding employees doesnt yet check for previous existence of email in database)
 
+### 2021-08-28 2:40AM Update:
+Hiring goals for Owner (supervisor, CService, Designer) method implemented. (not tested yet due to the following problem)
+Resolved the issue of adding employees by creating a temporary currentUser binary that any method can access.
+a variant of SceneChanger therefore is no longer required for login.
+But Image class is not Serializable, so have to find a workaround for that.
+
+Simplified the userdata and credentials retrieval methods.
+
+Next Plan:
+1. fix Image not serializable issue.
+2. Create Alerts for incorrect pass/ existing id etc (Note: adding employees doesnt yet check for previous existence of email in database)
+3. Employee salary management implementation
+4. Ability to create orders (Customer).
+
+
+
