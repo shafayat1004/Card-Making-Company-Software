@@ -17,4 +17,13 @@ All the Login and Signin verifications are now (hopefully) handled.
 Next plan: 
 1. Retrieve user instance from the respective user database and show it on Dashboard.
 2. Start working on individual tabs UIs.
-3. Fill in some user privelage methods. [priority to: adding Employees]
+3. Fill in some user privilege methods. [priority to: adding Employees]
+
+### 2021-08-27 7:12AM Update:
+Trying to allow owner to add new employees. Failed. nullPointer exception occurs as it seems currentUser is not inherited by AddEmployee.
+
+Next Plan:
+1. fix the problem of adding employees.
+2. optimise the methods in DatabaseManipulator class to make them more general and not specific. (reduce lines of repetitive code)
+3. Create Alerts for incorrect pass/ existing id etc (Note: adding employees doesnt yet check for previous existence of email in database)
+
