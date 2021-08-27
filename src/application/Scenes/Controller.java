@@ -73,43 +73,4 @@ public abstract class Controller{
         stage.setScene(scene);
         stage.show();
     }
-
-    public void sceneChange(ActionEvent event, String sceneString, Object object) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneString));
-        root = loader.load();
-        if (object instanceof Customer) {
-            
-            DashboardCustomerController dashboardCustomerController = loader.getController();
-            dashboardCustomerController.setCurrentUser(customer);
-        } 
-        else if (object instanceof CustomerService){
-            
-            DashboardCSEmpController dashboardCSEmpController = loader.getController();
-            dashboardCSEmpController.setCurrentUser(customerService);
-        }
-        else if (object instanceof Supervisor){
-            
-            DashboardSupervisorController dashboardSupervisorController = loader.getController();
-            dashboardSupervisorController.setCurrentUser(supervisor);
-        }
-        else if (object instanceof Designer){
-
-            DashboardDesignerController dashboardDesignerController = loader.getController();
-            dashboardDesignerController.setCurrentUser(designer);
-        }
-        else if (object instanceof Owner){
-            
-            DashboardOwnerController dashboardOwnerController = loader.getController();
-            dashboardOwnerController.setCurrentUser(owner);
-        }
-        else {
-            //placeholder
-        }
-
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 }

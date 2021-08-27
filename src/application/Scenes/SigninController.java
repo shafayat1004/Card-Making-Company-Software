@@ -66,7 +66,8 @@ public class SigninController extends Controller{
 
             if(verifiedLogin(Assets.getUserTypes()[0])){
                 customer = (Customer)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getCustomersFilePath());
-                sceneChange(event, "DashboardCustomer.fxml", customer);
+                DatabaseManipulator.setCurrentUser(customer);
+                sceneChange(event, "DashboardCustomer.fxml");
             }
 
         }
@@ -74,7 +75,8 @@ public class SigninController extends Controller{
             
             if(verifiedLogin(Assets.getUserTypes()[1])){
                 customerService = (CustomerService)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getcSEmployeesFilePath());
-                sceneChange(event, "DashboardCSEmp.fxml", customerService);
+                DatabaseManipulator.setCurrentUser(customerService);
+                sceneChange(event, "DashboardCSEmp.fxml");
             }
             
         }
@@ -82,7 +84,8 @@ public class SigninController extends Controller{
 
             if(verifiedLogin(Assets.getUserTypes()[2])){
                 supervisor = (Supervisor)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getSupervisorFilePath());
-                sceneChange(event, "DashboardSupervisor.fxml", supervisor);
+                DatabaseManipulator.setCurrentUser(supervisor);
+                sceneChange(event, "DashboardSupervisor.fxml");
             }
 
         }
@@ -90,7 +93,8 @@ public class SigninController extends Controller{
             
             if(verifiedLogin(Assets.getUserTypes()[3])){
                 designer = (Designer)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getDesignersFilePath());
-                sceneChange(event, "DashboardDesigner.fxml", designer);
+                DatabaseManipulator.setCurrentUser(designer);
+                sceneChange(event, "DashboardDesigner.fxml");
             }
 
         }
@@ -98,7 +102,9 @@ public class SigninController extends Controller{
             
             if(verifiedLogin(Assets.getUserTypes()[4])){
                 owner = (Owner)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getOwnersFilePath());
-                sceneChange(event, "DashboardOwner.fxml", owner);
+                DatabaseManipulator.setCurrentUser(owner);
+                sceneChange(event, "DashboardOwner.fxml");
+
             }
 
         }
