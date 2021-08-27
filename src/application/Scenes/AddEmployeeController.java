@@ -4,7 +4,9 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Database.DatabaseManipulator;
 import application.Database.Address.Address;
+import application.User.Owner.Owner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,7 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class AddEmployeeController extends DashboardOwnerController{
+public class AddEmployeeController{
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -48,7 +50,7 @@ public class AddEmployeeController extends DashboardOwnerController{
     void addEmployeeButtonOnClick(ActionEvent event) {
         //if(allTxtFieldsFilled()) {
 
-            String[] idPass = currentUser.hireSupervisor(nameField.getText(), mobileNoField.getText(), nidField.getText()
+            String[] idPass = ((Owner)DatabaseManipulator.getCurrentUser()).hireSupervisor(nameField.getText(), mobileNoField.getText(), nidField.getText()
             , emailField.getText(), imageArea.getImage());
 
             Address empAddress = new Address(idPass[0], houseDetailsField.getText(), streetDetailsField.getText()
