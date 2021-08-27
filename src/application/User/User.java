@@ -2,14 +2,28 @@ package application.User;
 
 import java.io.Serializable;
 
+import application.Assets.Assets;
+import application.Database.DatabaseManipulator;
 import application.Database.Address.Address;
+import javafx.scene.image.Image;
 
 public abstract class User implements Serializable{
+    protected String name, mobileNum, id, nationalID, email, password;
+    protected Image dp;
+
+    public User(String name, String mobileNum, String id, String nationalID, String email, String password, Image dp) {
+        this.name = name;
+        this.mobileNum = mobileNum;
+        this.id = id;
+        this.nationalID = nationalID;
+        this.email = email;
+        this.password = password;
+        this.dp = dp;
+    }
+
     public User(String id) {
         this.id = id;
     }
-    protected Address usrAddress;
-    protected String name, mobileNum, id, email, password;
     
     public User(String email, String id, String password) {
         this.email = email;
@@ -20,7 +34,7 @@ public abstract class User implements Serializable{
     @Override
     public String toString() {
         return "User [email=" + email + ", id=" + id + ", mobileNum=" + mobileNum + ", name=" + name + ", password="
-                + password + ", usrAddress=" + usrAddress + "]";
+                + password + "]";
     }
     
     public String getEmail() {
@@ -54,10 +68,10 @@ public abstract class User implements Serializable{
     public void setId(String id) {
         this.id = id;
     }
-    public Address getUsrAddress() {
-        return usrAddress;
-    }
+    // public Address getUsrAddress() {
+    //     return DatabaseManipulator.get;
+    // }
     public void setUsrAddress(Address usrAddress) {
-        this.usrAddress = usrAddress;
+        DatabaseManipulator.writeToDatabase(Assets.getAddressesFilePath(), usrAddress, true);
     }
 }
