@@ -84,14 +84,17 @@
                      <top>
                         <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1240.0" spacing="25.0" BorderPane.alignment="CENTER">
                            <children>
-                              <ComboBox minWidth="130.0" prefHeight="24.0" promptText="Location" />
-                              <ComboBox minWidth="130.0" prefHeight="24.0" promptText="Designation" />
-                              <CheckBox mnemonicParsing="false" text="Add New Employee" />
-                              <ComboBox layoutX="643.0" layoutY="28.0" minWidth="150.0" prefHeight="24.0" promptText="Name" />
-                              <Button minWidth="50.0" mnemonicParsing="false" prefHeight="24.0" text="Load" />
+                              <ComboBox fx:id="locationComboBox" minWidth="130.0" prefHeight="24.0" promptText="Location" />
+                              <ComboBox fx:id="designationComboBox" minWidth="130.0" prefHeight="24.0" promptText="Designation" />
+                              <CheckBox fx:id="addNewEmpChkBox" mnemonicParsing="false" text="Add New Employee" />
+                              <ComboBox fx:id="nameComboBox" layoutX="643.0" layoutY="28.0" minWidth="150.0" prefHeight="24.0" promptText="Name" />
+                              <Button fx:id="loadEmpMangrButton" minWidth="50.0" mnemonicParsing="false" onAction="#loadEmpMangrButtonOnClick" prefHeight="24.0" text="Load" />
                            </children>
                         </HBox>
                      </top>
+                     <center>
+                        <BorderPane fx:id="empMangrBorderPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                     </center>
                   </BorderPane>
                </content>
             </Tab>
