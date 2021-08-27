@@ -10,7 +10,11 @@ public abstract class Assets {
     private static String[] userTypes = {"Customer", "Customer Service Employee", "Supervisor", "Designer", "Owner"};
     private static String[] districts = {"Dhaka", "Chittagong", "Khulna", "Rajshahi", "Sylhet"}; //TODO not all districts added
     private static String addressesFilePath = "src/application/Database/Addresses.bin";
+    private static String currentUserFilePath = "src/application/Database/CurrentUser.bin";
     
+    public static String getCurrentUserFilePath() {
+        return currentUserFilePath;
+    }
     public static String getCredentialsFilePath() {
         return credentialsFilePath;
     }

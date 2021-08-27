@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Database.DatabaseManipulator;
 import application.User.Employee.Designer.Designer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,15 +29,6 @@ public class DashboardDesignerController extends Controller{
     @FXML private Tab personalInfoTab;
 
     private Designer currentUser;
-
-
-    public Designer getCurrentUser() {
-        return currentUser;
-    }
-    public void setCurrentUser(Designer currentUser) {
-        this.currentUser = currentUser;
-        idLabel.setText("ID: " + currentUser.getId());
-    }
     
     @FXML
     void signoutButtonOnClick(ActionEvent event) throws IOException {
@@ -44,6 +36,10 @@ public class DashboardDesignerController extends Controller{
     }
     @FXML
     void initialize() {
+
+        currentUser = (Designer)DatabaseManipulator.getCurrentUser();
+        idLabel.setText("ID: " + currentUser.getId());
+        nameLabel.setText("Name: " + currentUser.getName());
 
         assert signoutButton != null : "fx:id=\"signoutButton\" was not injected: check your FXML file 'DashboardDesigner.fxml'.";
         assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file 'DashboardDesigner.fxml'.";

@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import application.Assets.Assets;
+import application.Database.DatabaseManipulator;
 import application.User.Owner.Owner;
 import javafx.event.ActionEvent;
 
@@ -47,16 +48,7 @@ public class DashboardOwnerController extends Controller{
     @FXML private Tab completedOrdersTab;
     @FXML private Tab complaintsTab;
 
-    protected Owner currentUser;
-
-    public Owner getCurrentUser() {
-        return currentUser;
-    }
-
-    public void setCurrentUser(Owner currentUser) {
-        this.currentUser = currentUser;
-        idLabel.setText("ID: " + currentUser.getId());
-    }
+    private Owner currentUser;
     
     public void loadUI(String fxmlfile) {
         Parent root;
@@ -86,6 +78,10 @@ public class DashboardOwnerController extends Controller{
 
     @FXML
     void initialize() {
+        currentUser = (Owner)DatabaseManipulator.getCurrentUser();
+        idLabel.setText("ID: " + currentUser.getId());
+        nameLabel.setText("Name: " + currentUser.getName());
+
         designationComboBox.getItems().addAll(Assets.getUserTypes());
         locationComboBox.getItems().addAll(Assets.getDistricts());
 

@@ -48,7 +48,46 @@ public class DatabaseManipulator {
         }
         return count;
     }
-    
+
+    public static void setCurrentUser(Object user){
+        writeToDatabase(Assets.getCurrentUserFilePath(), user, false);
+    }
+
+    public static User getCurrentUser(){
+        String filePath= Assets.getCurrentUserFilePath();
+        File file = new File (filePath);
+
+        if (file.exists ()){
+            ObjectInputStream ois = null;
+            Object object = null;
+
+            try{
+                ois = new ObjectInputStream (new FileInputStream (filePath));
+                
+                object = ois.readObject();
+            }
+            catch (EOFException e){
+                
+            }
+            catch (Exception e){
+                e.printStackTrace ();
+            }
+            finally{
+                try{
+                    if (ois != null) {
+                        ois.close();
+
+                        return (User)object;
+                    }
+                }
+                catch (IOException e){
+                    e.printStackTrace ();
+                }
+            }
+        }
+        return null;
+    }
+
     public static void writeToDatabase (String fileName, Object obj, boolean append){
         File file = new File (fileName);
         ObjectOutputStream out = null;

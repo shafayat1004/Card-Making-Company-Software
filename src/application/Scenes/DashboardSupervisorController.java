@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Database.DatabaseManipulator;
 import application.User.Employee.Supervisor.Supervisor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,14 +32,6 @@ public class DashboardSupervisorController extends Controller{
 
     private Supervisor currentUser;
 
-    public Supervisor getCurrentUser() {
-        return currentUser;
-    }
-    public void setCurrentUser(Supervisor currentUser) {
-        this.currentUser = currentUser;
-        idLabel.setText("ID: " + currentUser.getId());
-    }
-
     @FXML
     void signoutButtonOnClick(ActionEvent event) throws IOException {
         sceneChange(event, "WelcomeScene.fxml");
@@ -46,6 +39,10 @@ public class DashboardSupervisorController extends Controller{
 
     @FXML
     void initialize() {
+
+        currentUser = (Supervisor)DatabaseManipulator.getCurrentUser();
+        idLabel.setText("ID: " + currentUser.getId());
+        nameLabel.setText("Name: " + currentUser.getName());
 
         assert signoutButton != null : "fx:id=\"signoutButton\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
         assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file 'DashboardSupervisor.fxml'.";
