@@ -1,5 +1,6 @@
 package application.User;
 
+import java.io.File;
 import java.io.Serializable;
 
 import application.Assets.Assets;
@@ -9,16 +10,16 @@ import javafx.scene.image.Image;
 
 public abstract class User implements Serializable{
     protected String name, mobileNum, id, nationalID, email, password;
-    protected Image dp;
+    protected String imagePath;
 
-    public User(String name, String mobileNum, String id, String nationalID, String email, String password, Image dp) {
+    public User(String name, String mobileNum, String id, String nationalID, String email, String password, String imagePath) {
         this.name = name;
         this.mobileNum = mobileNum;
         this.id = id;
         this.nationalID = nationalID;
         this.email = email;
         this.password = password;
-        this.dp = dp;
+        this.imagePath = imagePath;
     }
 
     public User(String id) {
@@ -74,4 +75,12 @@ public abstract class User implements Serializable{
     public void setUsrAddress(Address usrAddress) {
         DatabaseManipulator.writeToDatabase(Assets.getAddressesFilePath(), usrAddress, true);
     }
+    public Image getImage(String imagePath){
+        File imageFile = new File (imagePath);
+ 
+        if (!imageFile.exists()) {
+            imageFile = new File(Assets.getDefaultProfilePicture());
+        }
+        return new Image(imageFile.toURI().toString());
+     }
 }
