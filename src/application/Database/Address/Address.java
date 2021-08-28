@@ -1,6 +1,8 @@
 package application.Database.Address;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable{
     
     private String userID;
     private String floorAndHouseDetails, streetDetails, blockAndArea, district, upazillaOrCCorp, division;
