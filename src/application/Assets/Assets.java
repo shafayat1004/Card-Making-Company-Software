@@ -11,7 +11,12 @@ public abstract class Assets {
     private static String[] districts = {"Dhaka", "Chittagong", "Khulna", "Rajshahi", "Sylhet"}; //TODO not all districts added
     private static String addressesFilePath = "src/application/Database/Addresses.bin";
     private static String currentUserFilePath = "src/application/Database/CurrentUser.bin";
+    private static String defaultProfilePicture = "src/application/Assets/EmptyPicture.png";
     
+    
+    public static String getDefaultProfilePicture() {
+        return defaultProfilePicture;
+    }
     public static String getCurrentUserFilePath() {
         return currentUserFilePath;
     }
