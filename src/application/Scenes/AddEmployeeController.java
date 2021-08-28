@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Assets.Assets;
 import application.Database.DatabaseManipulator;
 import application.Database.Address.Address;
 import application.User.Owner.Owner;
@@ -17,7 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class AddEmployeeController{
+public class AddEmployeeController extends DashboardOwnerController{
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -48,17 +49,18 @@ public class AddEmployeeController{
 
     @FXML
     void addEmployeeButtonOnClick(ActionEvent event) {
-        //if(allTxtFieldsFilled()) {
+        String selectedDesignation = designationComboBox.getValue();
 
-            String[] idPass = ((Owner)DatabaseManipulator.getCurrentUser()).hireSupervisor(nameField.getText(), mobileNoField.getText(), nidField.getText()
-            , emailField.getText(), imageArea.getImage());
+        String[] idAndPass = ((Owner)DatabaseManipulator.getCurrentUser()).hire(selectedDesignation, nameField.getText(), mobileNoField.getText(), nidField.getText()
+            , emailField.getText(), imageArea.getImage().getUrl().toString());
 
-            Address empAddress = new Address(idPass[0], houseDetailsField.getText(), streetDetailsField.getText()
+        Address empAddress = new Address(idAndPass[0], houseDetailsField.getText(), streetDetailsField.getText()
             , blockAndAreaField.getText(), districtField.getText(), upazillaCCorpField.getText(), divisionField.getText());
+
+            DatabaseManipulator.writeToDatabase(Assets.getAddressesFilePath(), empAddress, true);
             
-            genIDLabel.setText(idPass[0]);
-            genPassLabel.setText(idPass[1]);
-        //}
+            genIDLabel.setText(idAndPass[0]);
+            genPassLabel.setText(idAndPass[1]);
         
     }
 

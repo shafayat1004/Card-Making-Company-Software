@@ -31,9 +31,9 @@ public class DashboardOwnerController extends Controller{
     @FXML private Tab financialsTab;
     @FXML private Tab noticeTab;
     @FXML private Tab empManagementTab;
-    @FXML private ComboBox<String> locationComboBox;
-    @FXML private ComboBox<String> designationComboBox;
-    @FXML private ComboBox<String> nameComboBox;
+    @FXML protected ComboBox<String> locationComboBox;
+    @FXML protected ComboBox<String> designationComboBox;
+    @FXML protected ComboBox<String> nameComboBox;
     @FXML private CheckBox addNewEmpChkBox;
     @FXML private Button loadEmpMangrButton;
 
