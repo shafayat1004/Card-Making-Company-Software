@@ -7,7 +7,6 @@ import application.Privilages.CustomerService.CSPrivilages;
 import application.Privilages.Supervisor.SupervisorPrivilages;
 import application.User.Employee.Employee;
 import application.User.Employee.CustomerService.CustomerService;
-import javafx.scene.image.Image;
 
 public class Supervisor extends Employee implements SupervisorPrivilages, CSPrivilages{
     private ArrayList<CustomerService> CSEmpUnderSup;
@@ -16,8 +15,8 @@ public class Supervisor extends Employee implements SupervisorPrivilages, CSPriv
 
         super(userIDFromField); //temporary
     }
-    public Supervisor(String name, String mobileNum, String id, String nationalID, String email, String password, Image dp){
-        super(name, mobileNum, id, nationalID, email, password, dp);
+    public Supervisor(String name, String mobileNum, String id, String nationalID, String email, String password, String imagePath){
+        super(name, mobileNum, id, nationalID, email, password, imagePath);
     }
     
 

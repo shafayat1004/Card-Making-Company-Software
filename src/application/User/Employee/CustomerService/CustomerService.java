@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import application.Privilages.CustomerService.CSPrivilages;
 import application.User.Customer.Customer;
 import application.User.Employee.Employee;
-import javafx.scene.image.Image;
 
 
 
@@ -16,9 +15,9 @@ public class CustomerService extends Employee implements CSPrivilages{
         super(userIDFromField); //temporary
     }
 
-    public CustomerService(String name, String mobileNum, String id, String nationalID, String email, String password, Image dp) {
+    public CustomerService(String name, String mobileNum, String id, String nationalID, String email, String password, String imagePath) {
 
-        super(name, mobileNum, id, nationalID, email, password, dp);
+        super(name, mobileNum, id, nationalID, email, password, imagePath);
     }
 
     @Override
