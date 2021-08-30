@@ -73,13 +73,13 @@ public abstract class User implements Serializable{
     //     return DatabaseManipulator.get;
     // }
     public void setUsrAddress(Address usrAddress) {
-        DatabaseManipulator.writeToDatabase(Assets.getAddressesFilePath(), usrAddress, true);
+        DatabaseManipulator.writeToDatabase(Assets.addressesFilePath, usrAddress, true);
     }
     public Image getImage(String imagePath){
         File imageFile = new File (imagePath);
  
         if (!imageFile.exists()) {
-            imageFile = new File(Assets.getDefaultProfilePicture());
+            imageFile = new File(Assets.defaultProfilePicture);
         }
         return new Image(imageFile.toURI().toString());
      }
