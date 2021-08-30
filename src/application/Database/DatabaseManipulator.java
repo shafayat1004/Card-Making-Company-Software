@@ -50,11 +50,11 @@ public class DatabaseManipulator {
     }
 
     public static void setCurrentUser(Object user){
-        writeToDatabase(Assets.getCurrentUserFilePath(), user, false);
+        writeToDatabase(Assets.currentUserFilePath, user, false);
     }
 
     public static User getCurrentUser(){
-        String filePath= Assets.getCurrentUserFilePath();
+        String filePath= Assets.currentUserFilePath;
         File file = new File (filePath);
 
         if (file.exists ()){
@@ -205,12 +205,12 @@ public class DatabaseManipulator {
     public static boolean existsInDatabase(String dataType, String input) {
 
         boolean found = false;
-        File file = new File (Assets.getCredentialsFilePath());
+        File file = new File (Assets.credentialsFilePath);
         if (file.exists ()){
             ObjectInputStream ois = null;
             Object object = null;
             try{
-                ois = new ObjectInputStream (new FileInputStream (Assets.getCredentialsFilePath()));
+                ois = new ObjectInputStream (new FileInputStream (Assets.credentialsFilePath));
                 
                 if (dataType.equals("Email")) {
                     while (true){
