@@ -9,17 +9,24 @@ import application.User.Employee.Employee;
 import application.User.Employee.CustomerService.CustomerService;
 
 public class Supervisor extends Employee implements SupervisorPrivilages, CSPrivilages{
-    private ArrayList<CustomerService> CSEmpUnderSup;
-
+    
+    private ArrayList<CustomerService> cSEmpUnderSup;
+    
     public Supervisor(String userIDFromField){
-
+        
         super(userIDFromField); //temporary
     }
     public Supervisor(String name, String mobileNum, String id, String nationalID, String email, String password, String imagePath){
         super(name, mobileNum, id, nationalID, email, password, imagePath);
     }
     
-
+    public ArrayList<CustomerService> getCSEmpUnderSup() {
+        return cSEmpUnderSup;
+    }
+    public void addCSEmpUnderSup(CustomerService cSEmpToAdd) {
+        cSEmpUnderSup.add(cSEmpToAdd);
+    }
+    
     @Override
     public void paySalaryToCSEmployees() {
         // TODO Auto-generated method stub
