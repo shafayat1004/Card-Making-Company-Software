@@ -2,6 +2,7 @@ package application.Scenes;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.Assets.Assets;
@@ -11,11 +12,13 @@ import application.User.Customer.Customer;
 import application.User.Owner.Owner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 // import javafx.fxml.FXMLLoader;
 // import javafx.scene.Node;
 // import javafx.scene.Parent;
 // import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 // import javafx.stage.Stage;
 
@@ -32,7 +35,7 @@ public class SignupController extends Controller{
     private String ownerAccessCode = "owner123456";
 
 
-    public void signup() throws IOException {
+    public void signup(ActionEvent event) throws IOException {
 
         if(!emailExistsInDatabase(emailFromField)){
 
@@ -42,31 +45,49 @@ public class SignupController extends Controller{
 
                     if (userIDFromField.equals(ownerAccessCode)) {
                         owner = new Owner(emailFromField, userIDFromField, passwordFromField);
-                        DatabaseManipulator.writeToDatabase(Assets.getOwnersFilePath(), owner, false);
+                        DatabaseManipulator.writeToDatabase(Assets.ownersFilePath, owner, false);
                         credentials = new Credentials(emailFromField, userIDFromField, passwordFromField, "Owner");
-                        DatabaseManipulator.writeToDatabase(Assets.getCredentialsFilePath(), credentials, true);
+                        DatabaseManipulator.writeToDatabase(Assets.credentialsFilePath, credentials, true);
                         
                     }
                     else{
                         customer = new Customer(emailFromField, userIDFromField, passwordFromField);
-                        DatabaseManipulator.writeToDatabase(Assets.getCustomersFilePath(), customer, true);
+                        DatabaseManipulator.writeToDatabase(Assets.customersFilePath, customer, true);
                         credentials = new Credentials(emailFromField, userIDFromField, passwordFromField, "Customer");
-                        DatabaseManipulator.writeToDatabase(Assets.getCredentialsFilePath(), credentials, true);
+                        DatabaseManipulator.writeToDatabase(Assets.credentialsFilePath, credentials, true);
                     }
                 }
                 else{
-                    //TODO Alert for new id.
-                    System.out.println("enter different id");
+                    showWarningAlert("ID Exists", "Please enter a different ID");
                 }
             }
             else{
-                //TODO passwords doesnt match alert.
-                System.out.println("password doesnt match");
+                showWarningAlert("Password mismatch", "Paswords do not match, try again");
             }
         }
         else{
-            //TODO alert that email exists offer login
-            System.out.println("email exists");
+
+            Alert emailExists = new Alert(Alert.AlertType.CONFIRMATION);
+            emailExists.setTitle("Email Exists Already");
+            emailExists.setContentText("This email already exists.\nWould you like to signin?");
+            emailExists.setHeaderText(null);
+
+            ButtonType yes = new ButtonType("Yes Please!");
+            ButtonType no = new ButtonType("No Thanks :)");
+            ButtonType tryAgain = new ButtonType("Try Again");
+        
+            emailExists.getButtonTypes().setAll(yes, no, tryAgain);
+
+            Optional<ButtonType> result = emailExists.showAndWait();
+            if(result.get() == yes){
+                sceneChange(event, "Signin.fxml");
+            }
+            else if(result.get() == no){
+                sceneChange(event, "WelcomeScene.fxml");
+            }
+            else if (result.get() == tryAgain){
+                emailExists.close();
+            }
         }
     }
 
@@ -86,11 +107,17 @@ public class SignupController extends Controller{
     @FXML
     void signupCheckButtonOnClick(ActionEvent event) throws IOException {
         emailFromField = emailTextField.getText();
+        passwordFromField = passwordTextField.getText();
+        confirmedPasswordFromField = confirmPassTextField.getText();
+        userIDFromField = idTextField.getText();
+
+        if (emailFromField.isBlank() || passwordFromField.isBlank() || confirmedPasswordFromField.isBlank() || userIDFromField.isBlank()){
+            showWarningAlert("Incomplete Fields", "Please fill out all fields");
+            return;
+        }
+
         if(isValidEmail(emailFromField)){
-            passwordFromField = passwordTextField.getText();
-            confirmedPasswordFromField = confirmPassTextField.getText();
-            userIDFromField = idTextField.getText();
-            signup();
+            signup(event);
         }
     }
 

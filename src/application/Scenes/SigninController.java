@@ -2,6 +2,7 @@ package application.Scenes;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.Assets.Assets;
@@ -13,7 +14,9 @@ import application.User.Employee.Supervisor.Supervisor;
 import application.User.Owner.Owner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -38,21 +41,40 @@ public class SigninController extends Controller{
     // private Parent root;
     // private Scene scene;
     // private Stage stage;    
-    public boolean verifiedLogin(String userType) {
+    public boolean verifiedLogin(String userType, ActionEvent event ) throws IOException {
         if (idExistsInDatabase(userIDFromField, userType)){
 
             if (passMatchesForID(userIDFromField, passwordFromField)){
                 return true;
             }
             else{
-                //TODO alert that pass doesnt match
-                System.out.println("Incorrect Password");
+                showWarningAlert("Wrong Password", "Incorrect Password Input");
                 return false;
             }
         }
         else{
-            //TODO Alert that ID doesnt exist and offer signup
-            System.out.println("ID Doesn't Exist In "+userType+" Database");
+            Alert noID = new Alert(Alert.AlertType.CONFIRMATION);
+            noID.setTitle("ID Not Found");
+            noID.setContentText("ID Doesn't Exist In "+userType+" Database.\nIf you're a customer, Would you like to signup?");
+            noID.setHeaderText(null);
+
+            ButtonType yes = new ButtonType("Yes Please!");
+            ButtonType no = new ButtonType("No Thanks :)");
+            ButtonType tryAgain = new ButtonType("Try Again");
+        
+            noID.getButtonTypes().setAll(yes, no, tryAgain);
+
+            Optional<ButtonType> result = noID.showAndWait();
+            if(result.get() == yes){
+                //you need to write the code to perform the actual task 
+                sceneChange(event, "Signup.fxml");
+            }
+            else if(result.get() == no){
+                sceneChange(event, "WelcomeScene.fxml");
+            }
+            else if (result.get() == tryAgain){
+                noID.close();
+            }
             return false;
         }
     }
@@ -62,46 +84,55 @@ public class SigninController extends Controller{
         userIDFromField = idTextField.getText();
         passwordFromField = passwordTextField.getText();
 
-        if (userType == Assets.getUserTypes()[0]) { //customer
+        if (userType == null| userIDFromField.isBlank() || passwordFromField.isBlank()) {
+            Alert incomplete = new Alert(Alert.AlertType.WARNING);
+            incomplete.setTitle("Incomplete Fields");
+            incomplete.setContentText("Please fill out all fields");
+            incomplete.setHeaderText(null);
+            incomplete.showAndWait();
+            return;
+        }
 
-            if(verifiedLogin(Assets.getUserTypes()[0])){
-                customer = (Customer)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getCustomersFilePath());
+        if (userType == Assets.userTypes[0]) { //customer
+
+            if(verifiedLogin(Assets.userTypes[0], event)){
+                customer = (Customer)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.customersFilePath);
                 DatabaseManipulator.setCurrentUser(customer);
                 sceneChange(event, "DashboardCustomer.fxml");
             }
 
         }
-        else if(userType == Assets.getUserTypes()[1]){ //customer service
+        else if(userType == Assets.userTypes[1]){ //customer service
             
-            if(verifiedLogin(Assets.getUserTypes()[1])){
-                customerService = (CustomerService)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getcSEmployeesFilePath());
+            if(verifiedLogin(Assets.userTypes[1], event)){
+                customerService = (CustomerService)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.cSEmployeesFilePath);
                 DatabaseManipulator.setCurrentUser(customerService);
                 sceneChange(event, "DashboardCSEmp.fxml");
             }
             
         }
-        else if(userType == Assets.getUserTypes()[2]){ //supervisor
+        else if(userType == Assets.userTypes[2]){ //supervisor
 
-            if(verifiedLogin(Assets.getUserTypes()[2])){
-                supervisor = (Supervisor)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getSupervisorFilePath());
+            if(verifiedLogin(Assets.userTypes[2], event)){
+                supervisor = (Supervisor)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.supervisorFilePath);
                 DatabaseManipulator.setCurrentUser(supervisor);
                 sceneChange(event, "DashboardSupervisor.fxml");
             }
 
         }
-        else if(userType == Assets.getUserTypes()[3]){ //designer
+        else if(userType == Assets.userTypes[3]){ //designer
             
-            if(verifiedLogin(Assets.getUserTypes()[3])){
-                designer = (Designer)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getDesignersFilePath());
+            if(verifiedLogin(Assets.userTypes[3], event)){
+                designer = (Designer)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.designersFilePath);
                 DatabaseManipulator.setCurrentUser(designer);
                 sceneChange(event, "DashboardDesigner.fxml");
             }
 
         }
-        else if(userType == Assets.getUserTypes()[4]){ //owner
+        else if(userType == Assets.userTypes[4]){ //owner
             
-            if(verifiedLogin(Assets.getUserTypes()[4])){
-                owner = (Owner)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.getOwnersFilePath());
+            if(verifiedLogin(Assets.userTypes[4], event)){
+                owner = (Owner)DatabaseManipulator.getObjectFromDatabase(userIDFromField, Assets.ownersFilePath);
                 DatabaseManipulator.setCurrentUser(owner);
                 sceneChange(event, "DashboardOwner.fxml");
 
@@ -123,7 +154,7 @@ public class SigninController extends Controller{
     }
     @FXML
     void initialize() {
-        userTypeSelectionCombobx.getItems().addAll(Assets.getUserTypes());
+        userTypeSelectionCombobx.getItems().addAll(Assets.userTypes);
 
         assert idTextField != null : "fx:id=\"idTextField\" was not injected: check your FXML file 'Signin.fxml'.";
         assert passwordTextField != null : "fx:id=\"passwordTextField\" was not injected: check your FXML file 'Signin.fxml'.";
