@@ -15,7 +15,7 @@ public class Customer extends User{
     
     public Customer(String userIDFromField) {
         super(userIDFromField);
-        this.getClass().cast(DatabaseManipulator.getObjectFromDatabase(id, Assets.getCustomersFilePath()));
+        this.getClass().cast(DatabaseManipulator.getObjectFromDatabase(id, Assets.customersFilePath));
         
     }
     
