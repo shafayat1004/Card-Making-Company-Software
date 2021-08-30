@@ -12,6 +12,17 @@ public class ManageEmployeeController {
     @FXML
     private URL location;
 
+    private String selectedDesignation;
+    private String selectedLocation;
+
+    public void setSelectedDesignation(String selectedDesignation) {
+        this.selectedDesignation = selectedDesignation;
+    }
+
+    public void setSelectedLocation(String selectedLocation) {
+        this.selectedLocation = selectedLocation;
+    }
+
     @FXML
     void initialize() {
 
