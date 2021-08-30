@@ -12,6 +12,7 @@ import application.User.Owner.Owner;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -35,7 +36,7 @@ public abstract class Controller{
         return true;
     }
     public boolean idExistsInDatabase(String inputID, String databaseToLookAt) {
-        Credentials retrieved = (Credentials)DatabaseManipulator.getObjectFromDatabase(inputID, Assets.getCredentialsFilePath());
+        Credentials retrieved = (Credentials)DatabaseManipulator.getObjectFromDatabase(inputID, Assets.credentialsFilePath);
 
         if (retrieved!=null && retrieved.getUserType().equals(databaseToLookAt)){
             return true;
@@ -48,7 +49,7 @@ public abstract class Controller{
 
     public boolean passMatchesForID(String id, String pass) {
 
-        Credentials retrieved = (Credentials)DatabaseManipulator.getObjectFromDatabase(id, Assets.getCredentialsFilePath());
+        Credentials retrieved = (Credentials)DatabaseManipulator.getObjectFromDatabase(id, Assets.credentialsFilePath);
 
         if(retrieved.getPassword().equals(pass)){
             return true;
@@ -73,4 +74,19 @@ public abstract class Controller{
         stage.setScene(scene);
         stage.show();
     }
+    public void showWarningAlert(String title, String content) {
+        Alert incomplete = new Alert(Alert.AlertType.WARNING);
+        incomplete.setTitle(title);
+        incomplete.setContentText(content);
+        incomplete.setHeaderText(null);
+        incomplete.showAndWait();
+    }
+    public void showInformationAlert(String title, String content) {
+        Alert incomplete = new Alert(Alert.AlertType.INFORMATION);
+        incomplete.setTitle(title);
+        incomplete.setContentText(content);
+        incomplete.setHeaderText(null);
+        incomplete.showAndWait();
+    }
+
 }
