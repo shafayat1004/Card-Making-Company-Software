@@ -23,14 +23,14 @@ public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
 
 
     public String[] hire (String designation, String name, String mobileNum, String nationalID, String email, String imagePath){
-        if(designation == Assets.getUserTypes()[1]){ //customer service
+        if(designation == Assets.userTypes[1]){ //customer service
             return hireCustomerService(name, mobileNum, nationalID, email, imagePath);
         }
-        else if(designation == Assets.getUserTypes()[2]){ //supervisor
+        else if(designation == Assets.userTypes[2]){ //supervisor
             return hireSupervisor(name, mobileNum, nationalID, email, imagePath);
 
         }
-        else if(designation == Assets.getUserTypes()[3]){ //designer
+        else if(designation == Assets.userTypes[3]){ //designer
             return hireDesigner(name, mobileNum, nationalID, email, imagePath);
         }
         else{
@@ -41,12 +41,12 @@ public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
     private String[] hireCustomerService(String name, String mobileNum, String nationalID, String email, String imagePath) {
 
         String genPass = ((Integer)(int)Math.floor(Math.random()*(9999999-1000000+1)+1000000)).toString();
-        String genID = "CSE" + ((Integer)(DatabaseManipulator.getCount(Assets.getcSEmployeesFilePath()) + 1)).toString();
+        String genID = "CSE" + ((Integer)(DatabaseManipulator.getCount(Assets.cSEmployeesFilePath) + 1)).toString();
 
         CustomerService newCustomerService = new CustomerService(name, mobileNum, genID, nationalID, email, genPass, imagePath);
-        DatabaseManipulator.writeToDatabase(Assets.getSupervisorFilePath(), newCustomerService, true);
-        Credentials credentials = new Credentials(email, genID, genPass, Assets.getUserTypes()[1]);
-        DatabaseManipulator.writeToDatabase(Assets.getCredentialsFilePath(), credentials, true);
+        DatabaseManipulator.writeToDatabase(Assets.cSEmployeesFilePath, newCustomerService, true);
+        Credentials credentials = new Credentials(email, genID, genPass, Assets.userTypes[1]);
+        DatabaseManipulator.writeToDatabase(Assets.credentialsFilePath, credentials, true);
 
         return new String[]{genID, genPass};
     }
@@ -54,12 +54,12 @@ public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
     public String[] hireSupervisor(String name, String mobileNum, String nationalID, String email, String imagePath) {
         
         String genPass = ((Integer)(int)Math.floor(Math.random()*(9999999-1000000+1)+1000000)).toString();
-        String genID = "SUP" + ((Integer)(DatabaseManipulator.getCount(Assets.getSupervisorFilePath()) + 1)).toString();
+        String genID = "SUP" + ((Integer)(DatabaseManipulator.getCount(Assets.supervisorFilePath) + 1)).toString();
 
         Supervisor newSupervisor = new Supervisor(name, mobileNum, genID, nationalID, email, genPass, imagePath);
-        DatabaseManipulator.writeToDatabase(Assets.getSupervisorFilePath(), newSupervisor, true);
-        Credentials credentials = new Credentials(email, genID, genPass, Assets.getUserTypes()[2]);
-        DatabaseManipulator.writeToDatabase(Assets.getCredentialsFilePath(), credentials, true);
+        DatabaseManipulator.writeToDatabase(Assets.supervisorFilePath, newSupervisor, true);
+        Credentials credentials = new Credentials(email, genID, genPass, Assets.userTypes[2]);
+        DatabaseManipulator.writeToDatabase(Assets.credentialsFilePath, credentials, true);
 
         return new String[]{genID, genPass};
         
@@ -67,12 +67,12 @@ public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
 
     public String[] hireDesigner(String name, String mobileNum, String nationalID, String email, String imagePath) {
         String genPass = ((Integer)(int)Math.floor(Math.random()*(9999999-1000000+1)+1000000)).toString();
-        String genID = "DES" + ((Integer)(DatabaseManipulator.getCount(Assets.getDesignersFilePath()) + 1)).toString();
+        String genID = "DES" + ((Integer)(DatabaseManipulator.getCount(Assets.designersFilePath) + 1)).toString();
 
         Designer newDesigner = new Designer(name, mobileNum, genID, nationalID, email, genPass, imagePath);
-        DatabaseManipulator.writeToDatabase(Assets.getSupervisorFilePath(), newDesigner, true);
-        Credentials credentials = new Credentials(email, genID, genPass, Assets.getUserTypes()[3]);
-        DatabaseManipulator.writeToDatabase(Assets.getCredentialsFilePath(), credentials, true);
+        DatabaseManipulator.writeToDatabase(Assets.designersFilePath, newDesigner, true);
+        Credentials credentials = new Credentials(email, genID, genPass, Assets.userTypes[3]);
+        DatabaseManipulator.writeToDatabase(Assets.credentialsFilePath, credentials, true);
 
         return new String[]{genID, genPass};
     }
