@@ -48,12 +48,29 @@ public class DashboardOwnerController extends Controller{
     @FXML private Tab completedOrdersTab;
     @FXML private Tab complaintsTab;
 
-    private Owner currentUser;
+    protected Owner currentUser;
     
-    public void loadUI(String fxmlfile) {
+    public void loadUI(String fxmlfile, String designation, String location) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource(fxmlfile));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlfile));
+            root = loader.load();
+            
+            if(fxmlfile.equals("AddEmployee.fxml")){
+                AddEmployeeController addEmployeeController = loader.getController();
+                addEmployeeController.setSelectedDesignation(designation);
+                if(designation!= Assets.userTypes[3]){ //[3] is designer
+                    addEmployeeController.setSelectedLocation(location);
+                }
+            }
+            else if (fxmlfile.equals("ManageEmployee.fxml")){
+                ManageEmployeeController manageEmployeeController = loader.getController();
+                manageEmployeeController.setSelectedDesignation(designation);
+                if(designation!= Assets.userTypes[3]){ //[3] is designer
+                    manageEmployeeController.setSelectedLocation(location);
+                }
+            }
+
             empMangrBorderPane.setCenter(root);
         }
         catch (IOException ex) {
@@ -69,10 +86,24 @@ public class DashboardOwnerController extends Controller{
 
     @FXML
     void loadEmpMangrButtonOnClick(ActionEvent event) {
+        String selectedDesignation = designationComboBox.getValue();
+        String selectedLocation = locationComboBox.getValue();
         if (addNewEmpChkBox.isSelected()){
-            loadUI("AddEmployee.fxml");
+            if (selectedDesignation == null) {
+                showWarningAlert("No Designation", "Please select Designation");
+            }
+            else if(selectedLocation == "Not Applicable" && selectedDesignation == Assets.userTypes[3]){ //[3] is designer
+                loadUI("AddEmployee.fxml", selectedDesignation, selectedLocation);
+            }
+            else if(selectedLocation == "Not Applicable" && selectedDesignation == Assets.userTypes[3]){ //[3] is designer
+                showInformationAlert("Just In Case", "Designer is not bound by location.\nLocation selection ignored");
+                loadUI("AddEmployee.fxml", selectedDesignation, selectedLocation);
+            }
+            else{
+                loadUI("AddEmployee.fxml", selectedDesignation, selectedLocation);
+            }
         } else {
-            loadUI("ManageEmployee.fxml");
+                loadUI("ManageEmployee.fxml", selectedDesignation, selectedLocation);
         }
     }
 
@@ -82,8 +113,9 @@ public class DashboardOwnerController extends Controller{
         idLabel.setText("ID: " + currentUser.getId());
         nameLabel.setText("Name: " + currentUser.getName());
 
-        designationComboBox.getItems().addAll(Assets.getUserTypes());
-        locationComboBox.getItems().addAll(Assets.getDistricts());
+        designationComboBox.getItems().addAll(Assets.userTypes);
+        locationComboBox.getItems().add("Not Applicable");
+        locationComboBox.getItems().addAll(Assets.districts);
 
 
 
