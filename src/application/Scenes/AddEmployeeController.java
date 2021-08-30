@@ -1,7 +1,11 @@
 package application.Scenes;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 
 import application.Assets.Assets;
@@ -38,6 +42,17 @@ public class AddEmployeeController extends DashboardOwnerController{
 
     @FXML private Label genIDLabel;
     @FXML private Label genPassLabel;
+    private String selectedDesignation;
+    private String selectedLocation;
+    private File imageFile;
+
+    public void setSelectedDesignation(String selectedDesignation) {
+        this.selectedDesignation = selectedDesignation;
+    }
+
+    public void setSelectedLocation(String selectedLocation) {
+        this.selectedLocation = selectedLocation;
+    }
 
     private static String[] imgExtensions = {"*.png", "*.PNG", "*.jpg", "*.JPG", "*.jpeg"};
     
@@ -49,26 +64,44 @@ public class AddEmployeeController extends DashboardOwnerController{
 
     @FXML
     void addEmployeeButtonOnClick(ActionEvent event) {
-        String selectedDesignation = designationComboBox.getValue();
+        System.out.println(selectedDesignation);
 
-        String[] idAndPass = ((Owner)DatabaseManipulator.getCurrentUser()).hire(selectedDesignation, nameField.getText(), mobileNoField.getText(), nidField.getText()
-            , emailField.getText(), imageArea.getImage().getUrl().toString());
-
-        Address empAddress = new Address(idAndPass[0], houseDetailsField.getText(), streetDetailsField.getText()
-            , blockAndAreaField.getText(), districtField.getText(), upazillaCCorpField.getText(), divisionField.getText());
-
-            DatabaseManipulator.writeToDatabase(Assets.getAddressesFilePath(), empAddress, true);
-            
-            genIDLabel.setText(idAndPass[0]);
-            genPassLabel.setText(idAndPass[1]);
+        if(nameField.getText().isBlank() || mobileNoField.getText().isBlank() || nidField.getText().isBlank() || emailField.getText().isBlank() 
+            || blockAndAreaField.getText().isBlank() || districtField.getText().isBlank() || upazillaCCorpField.getText().isBlank() 
+            || divisionField.getText().isBlank() || imageArea.getImage() == null
+        )
+        {
+            showWarningAlert("Incomplete Fields", "Some Important Fields Are Empty");
+            return;
+        }
         
+        String[] idAndPass = ((Owner)DatabaseManipulator.getCurrentUser()).hire(selectedDesignation, nameField.getText(), mobileNoField.getText(), nidField.getText()
+        , emailField.getText(), imageArea.getImage().getUrl().toString());
+        
+        Address empAddress = new Address(idAndPass[0], houseDetailsField.getText(), streetDetailsField.getText()
+        , blockAndAreaField.getText(), districtField.getText(), upazillaCCorpField.getText(), divisionField.getText());
+        
+        DatabaseManipulator.writeToDatabase(Assets.addressesFilePath, empAddress, true);
+        
+        genIDLabel.setText(idAndPass[0]);
+        genPassLabel.setText(idAndPass[1]);
+        
+
+        File imageSavePath = new File(Assets.imageSavePath + idAndPass[0]);
+        try {
+            Files.copy(imageFile.toPath(), imageSavePath.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void addPictureButtonOnClick(ActionEvent event) {
         FileChooser imgChooser = new FileChooser();
         imgChooser.getExtensionFilters().add(new ExtensionFilter("Image Files", imgExtensions));
-        File imageFile = imgChooser.showOpenDialog(null);
+        imageFile = imgChooser.showOpenDialog(null);
+
         if (imageFile!=null) {
             imageArea.setDisable(false);
             imageArea.setImage(new Image(imageFile.toURI().toString()));
