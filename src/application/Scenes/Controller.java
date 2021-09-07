@@ -36,7 +36,7 @@ public abstract class Controller{
         return true;
     }
     public boolean idExistsInDatabase(String inputID, String databaseToLookAt) {
-        Credentials retrieved = (Credentials)DatabaseManipulator.getObjectFromDatabase(inputID, Assets.credentialsFilePath);
+        Credentials retrieved = (Credentials)DatabaseManipulator.getObjectFromDatabase(inputID, null, Assets.credentialsFilePath);
 
         if (retrieved!=null && retrieved.getUserType().equals(databaseToLookAt)){
             return true;
@@ -49,7 +49,7 @@ public abstract class Controller{
 
     public boolean passMatchesForID(String id, String pass) {
 
-        Credentials retrieved = (Credentials)DatabaseManipulator.getObjectFromDatabase(id, Assets.credentialsFilePath);
+        Credentials retrieved = (Credentials)DatabaseManipulator.getObjectFromDatabase(id, null, Assets.credentialsFilePath);
 
         if(retrieved.getPassword().equals(pass)){
             return true;

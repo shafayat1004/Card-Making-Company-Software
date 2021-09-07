@@ -157,7 +157,7 @@ public class DatabaseManipulator {
         return null;
     }
     
-    public static Object getObjectFromDatabase(String userID, String filePath) {
+    public static Object getObjectFromDatabase(String lookFor, String throughUserType, String filePath) {
         File file = new File (filePath);
 
         if (file.exists ()){
@@ -171,13 +171,43 @@ public class DatabaseManipulator {
                     object = ois.readObject();
 
                     if(object instanceof Credentials){
-                        if (((Credentials)object).getId().equals(userID)){
+                        if (((Credentials)object).getId().equals(lookFor)){
                             found = true;
                             break;
                         }
                     }
+                    else if (object instanceof Order){
+                        if (throughUserType.equals(Assets.userTypes[0])){ //as customer
+                            
+                            if (((Order)object).getCustomerID().equals(lookFor)){
+                                found = true;
+                                break;
+                            }
+                        } 
+                        else if (throughUserType.equals(Assets.userTypes[1])){ //as Customer Service Employee
+                            
+                            if (((Order)object).getCsEmployeeID().equals(lookFor)){
+                                found = true;
+                                break;
+                            }
+                        }
+                        else if (throughUserType.equals(Assets.userTypes[3])){ //as Designer
+                            
+                            if (((Order)object).getDesignerID().equals(lookFor)){
+
+                                found = true;
+                                break;
+                            }
+                        }
+                        else{
+                            if (((Order)object).getDeliverTo().equals(lookFor)){
+                                found = true;
+                                break;
+                            }
+                        }
+                    }
                     else {
-                        if (((User)object).getId().equals(userID)){
+                        if (((User)object).getId().equals(lookFor)){
                             found = true;
                             break;
                         }
