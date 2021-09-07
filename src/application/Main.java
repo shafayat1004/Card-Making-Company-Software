@@ -23,6 +23,7 @@ public class Main extends Application{
 
         stage.setScene(scene);
         stage.setTitle("CompanyName Operations");
+        stage.setMaximized(true);
         stage.show();
     }
 }
