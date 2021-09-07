@@ -21,6 +21,8 @@ public abstract class Assets {
     public static String imageSavePath = "src/application/Database/Images/";
     public static String branchesFilePath = "src/application/Database/Branches.bin";
     public static String ordersFilePath = "src/application/Database/Orders.bin";
+    public static String customCardDir = "src/application/Database/CustomCards/";
+    public static String sampleSaveDir = "src/application/Database/SampleCards/";
 
 
     /*
