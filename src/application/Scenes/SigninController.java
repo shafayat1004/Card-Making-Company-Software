@@ -85,11 +85,7 @@ public class SigninController extends Controller{
         passwordFromField = passwordTextField.getText();
 
         if (userType == null| userIDFromField.isBlank() || passwordFromField.isBlank()) {
-            Alert incomplete = new Alert(Alert.AlertType.WARNING);
-            incomplete.setTitle("Incomplete Fields");
-            incomplete.setContentText("Please fill out all fields");
-            incomplete.setHeaderText(null);
-            incomplete.showAndWait();
+            showWarningAlert("Incomplete Fields", "Please fill out all fields");
             return;
         }
 
