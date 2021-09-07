@@ -50,14 +50,14 @@
       <TableView fx:id="newOrderTableView" prefHeight="575.0" prefWidth="968.0" BorderPane.alignment="CENTER">
         <columns>
             <TableColumn fx:id="orderIDCol" minWidth="90.0" prefWidth="-1.0" text="Order ID" />
-            <TableColumn fx:id="dateCol" minWidth="90.0" prefWidth="-1.0" text="Date" />
-            <TableColumn fx:id="timeCol" minWidth="90.0" prefWidth="-1.0" text="Time" />
-            <TableColumn fx:id="locationCol" minWidth="130.0" prefWidth="-1.0" text="Location" />
-            <TableColumn fx:id="nameCol" minWidth="130.0" prefWidth="-1.0" text="Name" />
+            <TableColumn fx:id="orderedOnCol" minWidth="90.0" prefWidth="-1.0" text="Ordered On" />
+            <TableColumn fx:id="branchCol" minWidth="130.0" prefWidth="-1.0" text="Branch" />
+            <TableColumn fx:id="customerNameCol" minWidth="130.0" prefWidth="-1.0" text="Customer Name" />
             <TableColumn fx:id="customerIDCol" minWidth="100.0" prefWidth="-1.0" text="Customer ID" />
             <TableColumn fx:id="orderTypeCol" minWidth="90.0" prefWidth="-1.0" text="Order Type" />
             <TableColumn fx:id="orderQuantityCol" minWidth="120.0" prefWidth="-1.0" text="Order Quantity" />
-            <TableColumn fx:id="deliverByCol" minWidth="100.0" prefWidth="-1.0" text="Deliver By" />
+            <TableColumn fx:id="fileNameCol" minWidth="85.0" prefWidth="85.0" text="FileName" />
+            <TableColumn fx:id="deliverByCol" minWidth="100.0" prefWidth="135.0" text="Deliver By" />
         </columns>
          <BorderPane.margin>
             <Insets right="20.0" />
