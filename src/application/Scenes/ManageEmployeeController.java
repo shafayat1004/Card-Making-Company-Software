@@ -14,7 +14,10 @@ public class ManageEmployeeController {
 
     private String selectedDesignation;
     private String selectedLocation;
+    
+    public void loadEmployee(String name) {
 
+    }
     public void setSelectedDesignation(String selectedDesignation) {
         this.selectedDesignation = selectedDesignation;
     }
