@@ -10,15 +10,16 @@ import application.Assets.Assets;
 public class Order implements Serializable{
     private String orderID;
     
-    private String customerID, designerID, csEmployeeID, cardType, paperType, color, orderQuantity, deliverTo, orderType, orderNote, orderStatus;
+    private String customerID, designerID, csEmployeeID, cardType, paperType, color, orderQuantity, deliverTo, orderType, fileName, orderNote, orderStatus;
     private LocalDateTime orderedOn, deliveredOn;
     private LocalDate deliverBy;
-
     private String draftFilePath;
     private String rejectionCause;
     
+    
+    
     public Order(String orderID, String customerID, String cardType, String paperType, String color,
-    String orderQuantity, String deliverTo, String orderType, String orderNote, LocalDate deliverBy) {
+    String orderQuantity, String deliverTo, String orderType, String fileName, String orderNote, LocalDate deliverBy) {
 
         this.orderID = orderID;
         this.customerID = customerID;
@@ -28,11 +29,19 @@ public class Order implements Serializable{
         this.orderQuantity = orderQuantity;
         this.deliverTo = deliverTo;
         this.orderType = orderType;
+        this.fileName = fileName;
         this.orderNote = orderNote;
         this.deliverBy = deliverBy;
         
         this.orderedOn = LocalDateTime.now();
         this.orderStatus = Assets.orderStatus[0];
+    }
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
     
     public String getDraftFilePath() {
