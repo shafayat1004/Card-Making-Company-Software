@@ -3,7 +3,9 @@ package application.Scenes;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -72,12 +74,14 @@ public class DashboardCustomerController extends Controller{
     @FXML private Label paperTypeLabel;
     @FXML private Label orderQuantityLabel;
     @FXML private Label deliverByLabel;
-    @FXML private Label sampleTypeLabel;
+    @FXML private Label orderTypeLabel;
     @FXML private Label colorLabel;
     @FXML private Label deliverToLabel;
+    @FXML private Label fileNameLabel;
     @FXML private TextArea orderNoteArea;
     @FXML private Button placeOrderButton;
     @FXML private DatePicker deliveryByDate;
+    private File imageFile;
 
     @FXML
     void cardTypeCBoxOnSelected(ActionEvent event) {
@@ -161,21 +165,24 @@ public class DashboardCustomerController extends Controller{
         FileChooser imgChooser = new FileChooser();
         imgChooser.getExtensionFilters().add(new ExtensionFilter("Image Files", Assets.imgExtensions));
 
-        File imageFile = imgChooser.showOpenDialog(null);
+        imageFile = imgChooser.showOpenDialog(null);
 
         if (imageFile!=null) {
             ImageView imageView = new ImageView(new Image(imageFile.toURI().toString()));
             imageView.setPreserveRatio(true);
             imageView.setFitWidth(createOrderFlowPane.getWidth());
-            sampleTypeLabel.setText("Custom " + Paths.get(imageView.getImage().getUrl()).getFileName());
+            orderTypeLabel.setText("Custom");
+            fileNameLabel.setText(Paths.get(imageView.getImage().getUrl()).getFileName().toString());
             createOrderFlowPane.getChildren().clear();
             createOrderFlowPane.getChildren().add(imageView);
+            orderNoteArea.setDisable(false);
+            placeOrderButton.setDisable(false);
         }
     }
     @FXML
     void seeSamplesButtonOnClick(ActionEvent event) {
         createOrderFlowPane.getChildren().clear();
-        File sampleDir = new File("src/application/Database/SampleCards/");
+        File sampleDir = new File(Assets.sampleSaveDir);
         File[] allSamplesFiles = sampleDir.listFiles();
         ArrayList<ImageView> allImages = new ArrayList<ImageView>();
         for (File file : allSamplesFiles) {
@@ -186,7 +193,8 @@ public class DashboardCustomerController extends Controller{
             imageView.setFitWidth(createOrderFlowPane.getWidth()/5);
             imageView.setOnMouseClicked(
                 e -> {
-                    sampleTypeLabel.setText("Premade " + Paths.get(imageView.getImage().getUrl()).getFileName());
+                    fileNameLabel.setText(Paths.get(imageView.getImage().getUrl()).getFileName().toString());
+                    orderTypeLabel.setText("Premade");
                     orderNoteArea.setDisable(false);
                     placeOrderButton.setDisable(false);
                 }
@@ -198,8 +206,7 @@ public class DashboardCustomerController extends Controller{
         // ImageView newImage = new ImageView(new Image(imageFile.toURI().toString()));
         // newImage.setPreserveRatio(true);
         // newImage.setFitWidth(createOrderFlowPane.getWidth()/4);
-        // createOrderFlowPane.getChildren().add(newImage);
-        System.out.println(currentUser.getMobileNum());
+        // createOrderFlowPane.getChildren().add(newImage);;
 
 
     }
@@ -234,8 +241,16 @@ public class DashboardCustomerController extends Controller{
                         DatabaseManipulator.editUser(currentUser.getId(), currentUser, Assets.customersFilePath);
                         currentUser = (Customer)DatabaseManipulator.getObjectFromDatabase(currentUser.getId(), null, Assets.customersFilePath);
 
-                        System.out.println(currentUser.getMobileNum());
-
+                        if(orderTypeLabel.getText().equals("Custom")){
+                            File customFileSavePath = new File(Assets.customCardDir + fileNameLabel.getText());
+                            try {
+                                Files.copy(imageFile.toPath(), customFileSavePath.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                            } catch (IOException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
+                        }
+                        
                     }
                     else{
                         showWarningAlert("Important", "Your mobile number is essential for a safe order. Please enter again");
@@ -244,7 +259,7 @@ public class DashboardCustomerController extends Controller{
                     
                 } 
                 
-                Order newOrder = currentUser.createOrder(cardTypeLabel.getText(), paperTypeLabel.getText(), colorLabel.getText(), orderQuantityLabel.getText(), deliverToLabel.getText(), sampleTypeLabel.getText(), orderNoteArea.getText(), deliveryByDate.getValue());
+                Order newOrder = currentUser.createOrder(cardTypeLabel.getText(), paperTypeLabel.getText(), colorLabel.getText(), orderQuantityLabel.getText(), fileNameLabel.getText(), deliverToLabel.getText(), orderTypeLabel.getText(), orderNoteArea.getText(), deliveryByDate.getValue());
                 
                 System.out.println(newOrder.getOrderID());
 
@@ -398,7 +413,7 @@ public class DashboardCustomerController extends Controller{
         assert orderQuantityLabel != null : "fx:id=\"orderQuantityLabel\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert deliverToLabel != null : "fx:id=\"deliverToLabel\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert deliverByLabel != null : "fx:id=\"deliverByLabel\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
-        assert sampleTypeLabel != null : "fx:id=\"sampleTypeLabel\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert orderTypeLabel != null : "fx:id=\"sampleTypeLabel\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert orderNoteArea != null : "fx:id=\"orderNoteArea\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert placeOrderButton != null : "fx:id=\"placeOrderButton\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert createOrderFlowPane != null : "fx:id=\"createOrderFlowPane\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
