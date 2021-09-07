@@ -17,7 +17,7 @@ public class Customer extends User{
     
     public Customer(String userIDFromField) {
         super(userIDFromField);
-        this.getClass().cast(DatabaseManipulator.getObjectFromDatabase(id, Assets.customersFilePath));
+        this.getClass().cast(DatabaseManipulator.getObjectFromDatabase(id, Assets.userTypes[0], Assets.customersFilePath));
         
     }
     public Order createOrder(String cardType, String paperType, String color,
@@ -31,8 +31,7 @@ public class Customer extends User{
 
     }
     public Order getOrder(){
-        //TODO return order details from details
-        return null;
+        return (Order)DatabaseManipulator.getObjectFromDatabase(id, Assets.userTypes[0], Assets.ordersFilePath);
     }
 
 
