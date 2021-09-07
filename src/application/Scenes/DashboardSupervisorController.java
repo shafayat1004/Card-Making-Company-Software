@@ -3,14 +3,19 @@ package application.Scenes;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import application.Database.DatabaseManipulator;
 import application.User.Employee.Supervisor.Supervisor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.BorderPane;
 
 public class DashboardSupervisorController extends Controller{
 
@@ -29,12 +34,28 @@ public class DashboardSupervisorController extends Controller{
     @FXML private Tab designerListTab;
     @FXML private Tab personalInfoTab;
     @FXML private Tab complaintsTab;
-
+    @FXML private BorderPane newOrdersBorderPane;
     private Supervisor currentUser;
 
     @FXML
     void signoutButtonOnClick(ActionEvent event) throws IOException {
         sceneChange(event, "WelcomeScene.fxml");
+    }
+    public void loadNewOrderUI(String fxmlfile) {
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlfile));
+            root = loader.load();
+            newOrdersBorderPane.setCenter(root);
+        }
+        catch (IOException ex) {
+            Logger.getLogger(DashboardOwnerController.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }
+    
+    @FXML
+    void newOrdersTabOnClick(ActionEvent event) {
+        loadNewOrderUI("NewOrders.fxml");
     }
 
     @FXML
