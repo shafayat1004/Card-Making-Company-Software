@@ -1,24 +1,115 @@
 package application.Order;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-public class Order {
-    private String customerID, designerID, csEmployeeID, orderType, orderNote, orderStatus;
-    private Date deliverBy, orderedOn, deliveredOn;
+import application.Assets.Assets;
+
+
+public class Order implements Serializable{
+    private String orderID;
     
-    public Order(String customerID, String designerID, String csEmployeeID, String orderType, String orderNote,
-            String orderStatus, Date deliverBy, Date orderedOn, Date deliveredOn) {
+    private String customerID, designerID, csEmployeeID, cardType, paperType, color, orderQuantity, deliverTo, orderType, orderNote, orderStatus;
+    private LocalDateTime orderedOn, deliveredOn;
+    private LocalDate deliverBy;
+
+    private String draftFilePath;
+    private String rejectionCause;
+    
+    public Order(String orderID, String customerID, String cardType, String paperType, String color,
+    String orderQuantity, String deliverTo, String orderType, String orderNote, LocalDate deliverBy) {
+
+        this.orderID = orderID;
         this.customerID = customerID;
-        this.designerID = designerID;
-        this.csEmployeeID = csEmployeeID;
+        this.cardType = cardType;
+        this.paperType = paperType;
+        this.color = color;
+        this.orderQuantity = orderQuantity;
+        this.deliverTo = deliverTo;
         this.orderType = orderType;
         this.orderNote = orderNote;
-        this.orderStatus = orderStatus;
         this.deliverBy = deliverBy;
-        this.orderedOn = orderedOn;
-        this.deliveredOn = deliveredOn;
+        
+        this.orderedOn = LocalDateTime.now();
+        this.orderStatus = Assets.orderStatus[0];
+    }
+    
+    public String getDraftFilePath() {
+        return draftFilePath;
     }
 
+
+    public void setDraftFilePath(String draftFilePath) {
+        this.draftFilePath = draftFilePath;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
+
+    public String getPaperType() {
+        return paperType;
+    }
+
+
+    public void setPaperType(String paperType) {
+        this.paperType = paperType;
+    }
+
+
+    public String getColor() {
+        return color;
+    }
+
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+
+    public String getOrderQuantity() {
+        return orderQuantity;
+    }
+
+
+    public void setOrderQuantity(String orderQuantity) {
+        this.orderQuantity = orderQuantity;
+    }
+
+
+    public String getDeliverTo() {
+        return deliverTo;
+    }
+
+
+    public void setDeliverTo(String deliverTo) {
+        this.deliverTo = deliverTo;
+    }
+
+
+    public String getRejectionCause() {
+        return rejectionCause;
+    }
+    
+    public void setRejectionCause(String rejectionCause) {
+        this.rejectionCause = rejectionCause;
+    }
+    
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
+    }
+    
     public String getCustomerID() {
         return customerID;
     }
@@ -67,27 +158,27 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public Date getDeliverBy() {
+    public LocalDate getDeliverBy() {
         return deliverBy;
     }
 
-    public void setDeliverBy(Date deliverBy) {
+    public void setDeliverBy(LocalDate deliverBy) {
         this.deliverBy = deliverBy;
     }
 
-    public Date getOrderedOn() {
+    public LocalDateTime getOrderedOn() {
         return orderedOn;
     }
 
-    public void setOrderedOn(Date orderedOn) {
+    public void setOrderedOn(LocalDateTime orderedOn) {
         this.orderedOn = orderedOn;
     }
 
-    public Date getDeliveredOn() {
+    public LocalDateTime getDeliveredOn() {
         return deliveredOn;
     }
 
-    public void setDeliveredOn(Date deliveredOn) {
+    public void setDeliveredOn(LocalDateTime deliveredOn) {
         this.deliveredOn = deliveredOn;
     }
  
