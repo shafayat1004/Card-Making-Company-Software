@@ -21,11 +21,11 @@ public class Customer extends User{
         
     }
     public Order createOrder(String cardType, String paperType, String color,
-    String orderQuantity, String deliverTo, String orderType, String orderNote, LocalDate deliverBy){
+    String orderQuantity, String deliverTo, String orderType, String fileName, String orderNote, LocalDate deliverBy){
 
         int orderNum = DatabaseManipulator.getCount(Assets.ordersFilePath) + 1;
         String orderID = "" + orderNum;
-        Order newOrder = new Order(orderID, id, cardType, paperType, color, orderQuantity, deliverTo, orderType, orderNote, deliverBy);
+        Order newOrder = new Order(orderID, id, cardType, paperType, color, orderQuantity, deliverTo, orderType, fileName, orderNote, deliverBy);
 
         return newOrder;
 
