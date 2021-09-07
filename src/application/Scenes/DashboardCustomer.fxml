@@ -54,196 +54,267 @@
             </Tab>
             <Tab fx:id="createNewOrderTab" text="Create New Order">
                <content>
-                  <BorderPane>
-                     <left>
-                        <VBox alignment="CENTER" minWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <VBox fillWidth="false" spacing="20.0">
+                  <ScrollPane fitToHeight="true" fitToWidth="true">
+                     <content>
+                        <BorderPane>
+                           <left>
+                              <VBox alignment="CENTER" minWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <ComboBox fx:id="cardTypeCBox" minWidth="100.0" onAction="#cardTypeCBoxOnSelected" prefWidth="160.0" promptText="Card Type" />
-                                    <ComboBox fx:id="paperTypeCBox" disable="true" minWidth="100.0" onAction="#paperTypeCBoxOnSelected" prefWidth="160.0" promptText="Paper Type" />
-                                    <ComboBox fx:id="colorCBox" disable="true" minWidth="100.0" onAction="#colorCBoxOnSelected" prefWidth="160.0" promptText="Color" />
-                                    <HBox alignment="CENTER" fillHeight="false" minWidth="100.0" prefWidth="160.0" spacing="10.0">
+                                    <VBox fillWidth="false" spacing="20.0">
                                        <children>
-                                          <Label text="Order Quantity" />
-                                          <TextField fx:id="orderQuantityTextField" disable="true" maxWidth="53.0" onAction="#quantityOnSelected" />
+                                          <ComboBox fx:id="cardTypeCBox" minWidth="100.0" onAction="#cardTypeCBoxOnSelected" prefWidth="160.0" promptText="Card Type" />
+                                          <ComboBox fx:id="paperTypeCBox" disable="true" minWidth="100.0" onAction="#paperTypeCBoxOnSelected" prefWidth="160.0" promptText="Paper Type" />
+                                          <ComboBox fx:id="colorCBox" disable="true" minWidth="100.0" onAction="#colorCBoxOnSelected" prefWidth="160.0" promptText="Color" />
+                                          <HBox alignment="CENTER" fillHeight="false" minWidth="100.0" prefWidth="160.0" spacing="10.0">
+                                             <children>
+                                                <Label text="Order Quantity" />
+                                                <TextField fx:id="orderQuantityTextField" disable="true" maxWidth="53.0" onAction="#quantityOnSelected" />
+                                             </children>
+                                          </HBox>
+                                          <ComboBox fx:id="branchCBox" disable="true" layoutX="10.0" layoutY="142.0" minWidth="160.0" onAction="#branchCBoxOnSelected" prefWidth="160.0" promptText="To What Branch?" />
+                                          <Label text="Delivery Date" />
+                                          <DatePicker fx:id="deliveryByDate" disable="true" minWidth="100.0" onAction="#deliveryByDateOnSelected" prefWidth="160.0" promptText="Deliver By" />
+                                       </children>
+                                    </VBox>
+                                    <Button fx:id="seeSamplesButton" disable="true" minWidth="100.0" mnemonicParsing="false" onAction="#seeSamplesButtonOnClick" prefHeight="40.0" prefWidth="160.0" text="See Our Samples" />
+                                    <Label text="Or Maybe," />
+                                    <Button fx:id="createCustomButton" disable="true" minWidth="100.0" mnemonicParsing="false" onAction="#createCustomButtonOnClick" prefWidth="160.0" text="Add Your Own Custom Image!" textAlignment="CENTER" wrapText="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets right="20.0" top="20.0" />
+                                 </padding>
+                                 <BorderPane.margin>
+                                    <Insets />
+                                 </BorderPane.margin>
+                              </VBox>
+                           </left>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <right>
+                              <VBox alignment="TOP_CENTER" minWidth="300.0" prefHeight="575.0" prefWidth="400.0" spacing="15.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Order Summary" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <HBox alignment="CENTER" fillHeight="false" prefWidth="160.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Card Type :" />
+                                          <Label fx:id="cardTypeLabel" text="Not Selected" />
                                        </children>
                                     </HBox>
-                                    <ComboBox fx:id="branchCBox" disable="true" layoutX="10.0" layoutY="142.0" minWidth="160.0" onAction="#branchCBoxOnSelected" prefWidth="160.0" promptText="To What Branch?" />
-                                    <Label text="Delivery Date" />
-                                    <DatePicker fx:id="deliveryByDate" disable="true" minWidth="100.0" onAction="#deliveryByDateOnSelected" prefWidth="160.0" promptText="Deliver By" />
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="30.0" layoutY="49.0" prefWidth="160.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Paper Type" />
+                                          <Label fx:id="paperTypeLabel" text="Not Selected" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="30.0" layoutY="111.0" prefWidth="160.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Color" />
+                                          <Label fx:id="colorLabel" text="Not Selected" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="30.0" layoutY="80.0" prefWidth="160.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Order Quantity :" />
+                                          <Label fx:id="orderQuantityLabel" text="Not Selected" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="30.0" layoutY="173.0" prefWidth="160.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Deliver To :" />
+                                          <Label fx:id="deliverToLabel" text="Not Selected" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="30.0" layoutY="111.0" prefWidth="160.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Deliver By :" />
+                                          <Label fx:id="deliverByLabel" text="Not Selected" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="30.0" layoutY="142.0" prefWidth="160.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Sample Type :" />
+                                          <Label fx:id="sampleTypeLabel" text="Not Selected" />
+                                       </children>
+                                    </HBox>
+                                    <Label maxWidth="250.0" text="Please Tell Us All The Details You Want Us To Work On Below!" textAlignment="CENTER" wrapText="true" />
+                                    <TextArea fx:id="orderNoteArea" disable="true" prefHeight="200.0" prefWidth="280.0" wrapText="true" />
+                                    <Button fx:id="placeOrderButton" disable="true" mnemonicParsing="false" onAction="#placeOrderButtonOnClick" text="Place Order" />
+                                    <Label layoutX="95.0" layoutY="144.0" maxWidth="250.0" text="Your Customer Service Employee and Designer will be assigned  to you after our branch Supervisor reviews this order! :)" textAlignment="CENTER" wrapText="true" />
                                  </children>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
                               </VBox>
-                              <Button fx:id="seeSamplesButton" disable="true" minWidth="100.0" mnemonicParsing="false" onAction="#seeSamplesButtonOnClick" prefHeight="40.0" prefWidth="160.0" text="See Our Samples" />
-                              <Label text="Or Maybe," />
-                              <Button fx:id="createCustomButton" disable="true" minWidth="100.0" mnemonicParsing="false" onAction="#createCustomButtonOnClick" prefWidth="160.0" text="Add Your Own Custom Image!" textAlignment="CENTER" wrapText="true" />
-                           </children>
-                           <padding>
-                              <Insets right="20.0" top="20.0" />
-                           </padding>
-                           <BorderPane.margin>
-                              <Insets />
-                           </BorderPane.margin>
-                        </VBox>
-                     </left>
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </padding>
-                     <right>
-                        <VBox alignment="TOP_CENTER" minWidth="300.0" prefHeight="575.0" prefWidth="400.0" spacing="15.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Order Summary" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Text>
-                              <HBox alignment="CENTER" fillHeight="false" prefWidth="160.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Card Type :" />
-                                    <Label fx:id="cardTypeLabel" text="Not Selected" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" fillHeight="false" layoutX="30.0" layoutY="49.0" prefWidth="160.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Paper Type" />
-                                    <Label fx:id="paperTypeLabel" text="Not Selected" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" fillHeight="false" layoutX="30.0" layoutY="111.0" prefWidth="160.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Color" />
-                                    <Label fx:id="colorLabel" text="Not Selected" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" fillHeight="false" layoutX="30.0" layoutY="80.0" prefWidth="160.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Order Quantity :" />
-                                    <Label fx:id="orderQuantityLabel" text="Not Selected" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" fillHeight="false" layoutX="30.0" layoutY="173.0" prefWidth="160.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Deliver To :" />
-                                    <Label fx:id="deliverToLabel" text="Not Selected" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" fillHeight="false" layoutX="30.0" layoutY="111.0" prefWidth="160.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Deliver By :" />
-                                    <Label fx:id="deliverByLabel" text="Not Selected" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" fillHeight="false" layoutX="30.0" layoutY="142.0" prefWidth="160.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Sample Type :" />
-                                    <Label fx:id="sampleTypeLabel" text="Not Selected" />
-                                 </children>
-                              </HBox>
-                              <Label maxWidth="250.0" text="Please Tell Us All The Details You Want Us To Work On Below!" textAlignment="CENTER" wrapText="true" />
-                              <TextArea fx:id="orderNoteArea" disable="true" prefHeight="200.0" prefWidth="280.0" wrapText="true" />
-                              <Button fx:id="placeOrderButton" disable="true" mnemonicParsing="false" onAction="#placeOrderButtonOnClick" text="Place Order" />
-                              <Label layoutX="95.0" layoutY="144.0" maxWidth="250.0" text="Your Customer Service Employee and Designer will be assigned  to you after our branch Supervisor reviews this order! :)" textAlignment="CENTER" wrapText="true" />
-                           </children>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </VBox>
-                     </right>
-                     <center>
-                        <ScrollPane fitToWidth="true" BorderPane.alignment="CENTER">
-                           <content>
-                              <FlowPane fx:id="createOrderFlowPane" alignment="CENTER" columnHalignment="CENTER" hgap="20.0" prefWidth="658.0" prefWrapLength="720.0" vgap="20.0" />
-                           </content>
-                        </ScrollPane>
-                     </center>
-                  </BorderPane>
+                           </right>
+                           <center>
+                              <ScrollPane fitToWidth="true" BorderPane.alignment="CENTER">
+                                 <content>
+                                    <FlowPane fx:id="createOrderFlowPane" alignment="CENTER" columnHalignment="CENTER" hgap="20.0" prefWidth="658.0" prefWrapLength="720.0" vgap="20.0" />
+                                 </content>
+                              </ScrollPane>
+                           </center>
+                        </BorderPane>
+                     </content>
+                  </ScrollPane>
                </content>
             </Tab>
             <Tab fx:id="myOrderStatusTab" text="My Order Status">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </padding>
-                     <center>
-                        <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <HBox alignment="CENTER" fillHeight="false" spacing="10.0">
-                                 <children>
-                                    <Label text="Order ID : ">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="statusOrderID" text="N/A">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" fillHeight="false" layoutX="549.0" layoutY="263.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Order Status :">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="statusOrderStatus" text="N/A">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" fillHeight="false" layoutX="537.0" layoutY="283.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Assigned Customer Service Agent :">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="statusAssignedCSEmp" text="Not Assigned">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" fillHeight="false" layoutX="537.0" layoutY="303.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Assigned Designer :">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="statusAssignedDes" text="Not Assigned">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <Button fx:id="statusContactAgent" mnemonicParsing="false" onAction="#statusContactAgentOnClick" text="Contact Your Agent" />
-                              <Button fx:id="statusContactSupervisor" layoutX="558.0" layoutY="339.0" mnemonicParsing="false" onAction="#statusContactSupervisorOnClick" text="If Urgent or if you have any complaint, Contact Supervisor" />
-                           </children>
-                        </VBox>
-                     </center>
-                     <top>
-                        <HBox alignment="CENTER" BorderPane.alignment="CENTER">
-                           <children>
-                              <Button fx:id="statusRefresh" mnemonicParsing="false" prefHeight="24.0" prefWidth="167.0" text="Refresh">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Button>
-                           </children>
+                  <ScrollPane fitToHeight="true" fitToWidth="true">
+                     <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <padding>
-                              <Insets bottom="20.0" />
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
-                        </HBox>
-                     </top>
-                  </BorderPane>
+                           <center>
+                              <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox alignment="CENTER" fillHeight="false" spacing="10.0">
+                                       <children>
+                                          <Label text="Order ID : ">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="statusOrderID" text="N/A">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="549.0" layoutY="263.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Order Status :">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="statusOrderStatus" text="N/A">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="537.0" layoutY="165.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Ordered On :">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="statusOrderedOn" text="N/A">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="542.0" layoutY="145.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Ordered Quantity :">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="statusOrderQuantity" text="N/A">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="542.0" layoutY="185.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Deliver to Branch :">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="statusDeliveryTo" text="N/A">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="542.0" layoutY="205.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Delivery On :">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="statusDeliveryOn" text="N/A">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Button fx:id="statusViewDraft" disable="true" mnemonicParsing="false" onAction="#statusViewDraftOnClick" text="View Latest Draft" />
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="537.0" layoutY="283.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Assigned Customer Service Agent :">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="statusAssignedCSEmp" text="Not Assigned">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="537.0" layoutY="303.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Assigned Designer :">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="statusAssignedDes" text="Not Assigned">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Button fx:id="statusContactAgent" disable="true" mnemonicParsing="false" onAction="#statusContactAgentOnClick" text="Contact Your Agent" />
+                                    <Label text="If Urgent or if you have any complaint, Contact Supervisor" />
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="459.0" layoutY="264.0" spacing="10.0">
+                                       <children>
+                                        <Button fx:id="statusComplaint" disable="true" mnemonicParsing="false" onAction="#statusComplaintOnClick" text="File Formal Complaint" />
+                                          <Button fx:id="statusContactSupervisor" disable="true" mnemonicParsing="false" onAction="#statusContactSupervisorOnClick" text="Contact Supervisor" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </center>
+                           <top>
+                              <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="statusRefresh" mnemonicParsing="false" onAction="#statusRefreshOnClick" prefHeight="24.0" prefWidth="167.0" text="Refresh">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" />
+                                 </padding>
+                              </HBox>
+                           </top>
+                        </BorderPane>
+                     </content>
+                  </ScrollPane>
                </content>
             </Tab>
             <Tab fx:id="fileComplaintTab" text="File A Complaint">

@@ -47,7 +47,20 @@ public class DashboardCustomerController extends Controller{
     @FXML private Tab myOrderStatusTab;
     @FXML private Tab fileComplaintTab;
     @FXML private Tab personalInfoTab;
+
+    private Customer currentUser;
     
+    @FXML
+    void signoutButtonOnClick(ActionEvent event) throws IOException {
+        sceneChange(event, "WelcomeScene.fxml");
+    }
+    
+/*
+================================================================================================================================
+                            vvvvvvvvvvvv< Create New Order Tab >vvvvvvvvvvvvvvvv
+================================================================================================================================
+*/
+    @FXML private FlowPane createOrderFlowPane;
     @FXML private ComboBox<String> cardTypeCBox;
     @FXML private ComboBox<String> paperTypeCBox;
     @FXML private ComboBox<String> colorCBox;
@@ -65,24 +78,7 @@ public class DashboardCustomerController extends Controller{
     @FXML private TextArea orderNoteArea;
     @FXML private Button placeOrderButton;
     @FXML private DatePicker deliveryByDate;
-    
-    @FXML private FlowPane createOrderFlowPane;
 
-    private Customer currentUser;
-
-    @FXML
-    void signoutButtonOnClick(ActionEvent event) throws IOException {
-        sceneChange(event, "WelcomeScene.fxml");
-    }
-    
-
-
-/*
-================================================================================================================================
-                                        vvvvvvvvvvvv< Create New Order Tab >vvvvvvvvvvvvvvvv
-================================================================================================================================
-*/
-    
     @FXML
     void cardTypeCBoxOnSelected(ActionEvent event) {
         if (cardTypeCBox.getValue() != null) {
@@ -236,7 +232,7 @@ public class DashboardCustomerController extends Controller{
 
                         currentUser.setMobileNum(input.get());
                         DatabaseManipulator.editUser(currentUser.getId(), currentUser, Assets.customersFilePath);
-                        currentUser = (Customer)DatabaseManipulator.getObjectFromDatabase(currentUser.getId(), Assets.customersFilePath);
+                        currentUser = (Customer)DatabaseManipulator.getObjectFromDatabase(currentUser.getId(), null, Assets.customersFilePath);
 
                         System.out.println(currentUser.getMobileNum());
 
@@ -286,6 +282,82 @@ public class DashboardCustomerController extends Controller{
 ================================================================================================================================
 */
 
+/*
+================================================================================================================================
+                                        vvvvvvvvvvvv< Order Status Tab >vvvvvvvvvvvvvvvv
+================================================================================================================================
+*/
+
+    @FXML private Label statusOrderID;
+    @FXML private Label statusOrderStatus;
+    @FXML private Label statusOrderedOn;
+    @FXML private Label statusOrderQuantity;
+    @FXML private Label statusDeliveryTo;
+    @FXML private Label statusDeliveryOn;
+    @FXML private Label statusAssignedCSEmp;
+    @FXML private Label statusAssignedDes;
+
+    @FXML private Button statusViewDraft;
+    @FXML private Button statusContactAgent;
+    @FXML private Button statusComplaint;
+    @FXML private Button statusContactSupervisor;
+    @FXML private Button statusRefresh;
+
+    @FXML
+    void statusRefreshOnClick(ActionEvent event) {
+
+        Order order = currentUser.getOrder();
+        if(order != null){
+            statusOrderID.setText(order.getOrderID());
+            statusOrderStatus.setText(order.getOrderStatus());
+            statusOrderedOn.setText(order.getOrderedOn().toString());
+            statusOrderQuantity.setText(order.getOrderQuantity());
+            statusDeliveryTo.setText(order.getDeliverTo());
+            statusDeliveryOn.setText(order.getDeliverBy().toString());
+
+            if (order.getDraftFilePath() != null) statusViewDraft.setDisable(false);
+
+            if (order.getCsEmployeeID() != null) {
+                statusAssignedCSEmp.setText(order.getCsEmployeeID());
+                statusContactAgent.setDisable(false);
+            }
+            if (order.getDesignerID() != null) {
+                statusAssignedDes.setText(order.getDesignerID());
+            }
+
+            statusContactSupervisor.setDisable(false);
+            statusComplaint.setDisable(false);
+        }
+        else{
+            showInformationAlert("No Order In Progress", "You have no active orders currently :(");
+        }
+    }
+    @FXML
+    void statusComplaintOnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void statusContactAgentOnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void statusContactSupervisorOnClick(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void statusViewDraftOnClick(ActionEvent event) {
+
+    }
+
+/*
+================================================================================================================================
+                                        ^^^^^^^^^^^</ Order Status Tab >^^^^^^^^^^^
+================================================================================================================================
+*/
 
     
     @FXML
@@ -318,19 +390,29 @@ public class DashboardCustomerController extends Controller{
         assert orderQuantityTextField != null : "fx:id=\"orderQuantityTextField\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert branchCBox != null : "fx:id=\"branchCBox\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert deliveryByDate != null : "fx:id=\"deliveryByDate\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert seeSamplesButton != null : "fx:id=\"seeSamplesButton\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert createCustomButton != null : "fx:id=\"createCustomButton\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert cardTypeLabel != null : "fx:id=\"cardTypeLabel\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert paperTypeLabel != null : "fx:id=\"paperTypeLabel\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert colorLabel != null : "fx:id=\"colorLabel\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert orderQuantityLabel != null : "fx:id=\"orderQuantityLabel\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert deliverToLabel != null : "fx:id=\"deliverToLabel\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert deliverByLabel != null : "fx:id=\"deliverByLabel\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert sampleTypeLabel != null : "fx:id=\"sampleTypeLabel\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert orderNoteArea != null : "fx:id=\"orderNoteArea\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert placeOrderButton != null : "fx:id=\"placeOrderButton\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert createOrderFlowPane != null : "fx:id=\"createOrderFlowPane\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
-        assert seeSamplesButton != null : "fx:id=\"seeSamplesButton\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
-        assert createCustomButton != null : "fx:id=\"createCustomButton\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert myOrderStatusTab != null : "fx:id=\"myOrderStatusTab\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert statusOrderID != null : "fx:id=\"statusOrderID\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert statusOrderStatus != null : "fx:id=\"statusOrderStatus\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert statusViewDraft != null : "fx:id=\"statusViewDraft\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert statusAssignedCSEmp != null : "fx:id=\"statusAssignedCSEmp\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert statusAssignedDes != null : "fx:id=\"statusAssignedDes\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert statusContactAgent != null : "fx:id=\"statusContactAgent\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert statusComplaint != null : "fx:id=\"statusComplaint\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert statusContactSupervisor != null : "fx:id=\"statusContactSupervisor\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
+        assert statusRefresh != null : "fx:id=\"statusRefresh\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert fileComplaintTab != null : "fx:id=\"fileComplaintTab\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
         assert personalInfoTab != null : "fx:id=\"personalInfoTab\" was not injected: check your FXML file 'DashboardCustomer.fxml'.";
-
     }
 }
