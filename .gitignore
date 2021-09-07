@@ -30,3 +30,5 @@ src/application/Database/SampleCards/WC4.jpg
 src/application/Database/SampleCards/WC5.jpg
 src/application/Database/SampleCards/WC6.jpg
 src/application/Database/SampleCards/WC7.jpg
+.vscode/launch.json
+.vscode/settings.json
