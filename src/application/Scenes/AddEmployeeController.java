@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 
@@ -54,7 +53,6 @@ public class AddEmployeeController extends DashboardOwnerController{
         this.selectedLocation = selectedLocation;
     }
 
-    private static String[] imgExtensions = {"*.png", "*.PNG", "*.jpg", "*.JPG", "*.jpeg"};
     
     public boolean allTxtFieldsFilled(){
         return (nameField.getText()==null || emailField.getText()==null || mobileNoField.getText()==null || nidField.getText()==null 
@@ -64,17 +62,25 @@ public class AddEmployeeController extends DashboardOwnerController{
 
     @FXML
     void addEmployeeButtonOnClick(ActionEvent event) {
-        System.out.println(selectedDesignation);
 
         if(nameField.getText().isBlank() || mobileNoField.getText().isBlank() || nidField.getText().isBlank() || emailField.getText().isBlank() 
             || blockAndAreaField.getText().isBlank() || districtField.getText().isBlank() || upazillaCCorpField.getText().isBlank() 
-            || divisionField.getText().isBlank() || imageArea.getImage() == null
-        )
-        {
-            showWarningAlert("Incomplete Fields", "Some Important Fields Are Empty");
+            || divisionField.getText().isBlank() || imageArea.getImage() == null){
+            
+                showWarningAlert("Incomplete Fields", "Some Important Fields Are Empty");
+                return;
+        }
+
+        if (emailExistsInDatabase(emailField.getText())) {
+            showWarningAlert("Email Exists", "Email already exists in Database");
             return;
         }
-        
+
+        if (nIDExistsInDatabase(nidField.getText())) {
+            showWarningAlert("NID Exists", "NID already exists in Database");
+            return;
+        }
+
         String[] idAndPass = ((Owner)DatabaseManipulator.getCurrentUser()).hire(selectedDesignation, nameField.getText(), mobileNoField.getText(), nidField.getText()
         , emailField.getText(), imageArea.getImage().getUrl().toString());
         
@@ -83,10 +89,12 @@ public class AddEmployeeController extends DashboardOwnerController{
         
         DatabaseManipulator.writeToDatabase(Assets.addressesFilePath, empAddress, true);
         
+
+        
         genIDLabel.setText(idAndPass[0]);
         genPassLabel.setText(idAndPass[1]);
         
-
+        //Copy image to database
         File imageSavePath = new File(Assets.imageSavePath + idAndPass[0]);
         try {
             Files.copy(imageFile.toPath(), imageSavePath.toPath(), StandardCopyOption.REPLACE_EXISTING);
@@ -99,7 +107,7 @@ public class AddEmployeeController extends DashboardOwnerController{
     @FXML
     void addPictureButtonOnClick(ActionEvent event) {
         FileChooser imgChooser = new FileChooser();
-        imgChooser.getExtensionFilters().add(new ExtensionFilter("Image Files", imgExtensions));
+        imgChooser.getExtensionFilters().add(new ExtensionFilter("Image Files", Assets.imgExtensions));
         imageFile = imgChooser.showOpenDialog(null);
 
         if (imageFile!=null) {
