@@ -32,3 +32,14 @@ src/application/Database/SampleCards/WC6.jpg
 src/application/Database/SampleCards/WC7.jpg
 .vscode/launch.json
 .vscode/settings.json
+src/application/Database/Credentials.bin
+src/application/Database/CurrentUser.bin
+src/application/Database/Customers.bin
+src/application/Database/Orders.bin
+src/application/Database/Owners.bin
+src/application/Database/EmployeeList/CSEmployees.bin
+src/application/Database/EmployeeList/Designers.bin
+src/application/Database/EmployeeList/Supervisors.bin
+src/application/Database/Images/DES1
+src/application/Database/Images/SUP1
+src/application/User/Customer/goals
