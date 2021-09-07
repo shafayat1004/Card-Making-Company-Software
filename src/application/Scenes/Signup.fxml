@@ -19,6 +19,12 @@
             </Label>
             <VBox alignment="CENTER_RIGHT" fillWidth="false" prefHeight="200.0" prefWidth="310.0" spacing="15.0">
                <children>
+                  <HBox alignment="CENTER" layoutX="53.0" layoutY="40.0" spacing="20.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" text="Enter Name" />
+                        <TextField fx:id="nameTextField" />
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER" spacing="20.0">
                      <children>
                         <Label alignment="CENTER_RIGHT" text="Enter Email" />
