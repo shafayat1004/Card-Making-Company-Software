@@ -23,7 +23,7 @@ public abstract class Controller{
     private Scene scene;
     private Stage stage;
     //private String emailStructure; //TODO regex to be determined
-    protected String emailFromField, passwordFromField, confirmedPasswordFromField, userIDFromField;
+    protected String nameFromField, emailFromField, passwordFromField, confirmedPasswordFromField, userIDFromField;
     protected Customer customer;
     protected CustomerService customerService;
     protected Owner owner;
@@ -64,6 +64,15 @@ public abstract class Controller{
         else{
             return false;
         }   
+    }
+
+    public boolean nIDExistsInDatabase(String inputNID) {
+        if (DatabaseManipulator.existsInDatabase("nationalID", inputNID)){
+            return true;    
+        }
+        else{
+            return false;
+        }  
     }
 
     public void sceneChange(ActionEvent event, String sceneString) throws IOException{
