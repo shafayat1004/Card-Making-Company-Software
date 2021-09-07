@@ -2,12 +2,14 @@ package application.Scenes;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import application.Assets.Assets;
 import application.Database.DatabaseManipulator;
+import application.User.User;
 import application.User.Owner.Owner;
 import javafx.event.ActionEvent;
 
@@ -18,6 +20,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.Parent;
 
@@ -38,6 +41,7 @@ public class DashboardOwnerController extends Controller{
     @FXML private Button loadEmpMangrButton;
 
     @FXML private BorderPane empMangrBorderPane;
+    @FXML private BorderPane newOrdersBorderPane;
 
 
     @FXML private Tab personalInfoTab;
@@ -50,7 +54,82 @@ public class DashboardOwnerController extends Controller{
 
     protected Owner currentUser;
     
-    public void loadUI(String fxmlfile, String designation, String location) {
+    @FXML
+    void signoutButtonOnClick(ActionEvent event) throws IOException {
+        sceneChange(event, "WelcomeScene.fxml");
+    }
+
+
+/*
+================================================================================================================================
+                                    vvvvvvvvvvvv< Employee Management Tab >vvvvvvvvvvvvv
+================================================================================================================================
+*/
+    @FXML
+    void nameIsSelected() {
+
+    }
+    @FXML
+    void locationIsSelected() {
+
+    }
+    @FXML
+    void designationIsSelected() {
+
+    
+    }
+    @FXML
+    void addNewEmpChkBoxOnClick(ActionEvent event) {
+        if(addNewEmpChkBox.isSelected()){
+            nameComboBox.setDisable(true);
+        }
+        else{
+            nameComboBox.setDisable(false);
+        }
+    }
+    @FXML
+    void nameComboBoxOnClick(MouseEvent event) {
+        String selectedDesignation = designationComboBox.getValue();
+        String selectedLocation = locationComboBox.getValue();
+
+        if (addNewEmpChkBox.isSelected()) addNewEmpChkBox.setSelected(false);
+
+        if(selectedLocation != null && selectedDesignation != null){
+            if (selectedLocation.equals("Not Applicable")){
+                if (selectedDesignation.equals(Assets.userTypes[3])) { //if it is Designer
+                    
+                    ArrayList<Object> designerList = DatabaseManipulator.getUserListFromDatabase(Assets.designersFilePath);
+                    for (Object object : designerList) {
+                        nameComboBox.getItems().add(((User)object).toString());
+                    }
+                } 
+                else {
+                    showWarningAlert("Select a location", "Location must be specified for Non-Designer Employees");
+                }   
+            }
+            else{
+                if(selectedDesignation != Assets.userTypes[3]){ //if not Designer
+                    nameComboBox.getItems().addAll(DatabaseManipulator.getListOfEmployeesInBranch(selectedLocation, selectedDesignation));
+                }
+                else{
+                    locationComboBox.valueProperty().set(null);
+                    if (selectedDesignation.equals(Assets.userTypes[3])) { //if it is Designer
+                    
+                        ArrayList<Object> designerList = DatabaseManipulator.getUserListFromDatabase(Assets.designersFilePath);
+                        for (Object object : designerList) {
+                            nameComboBox.getItems().add(((User)object).toString());
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            showWarningAlert("Not Enough Information", "Please fill location and designation");
+        }
+    }
+
+    
+    public void loadEmpManagementUI(String fxmlfile, String designation, String location, String name) {
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlfile));
@@ -65,57 +144,97 @@ public class DashboardOwnerController extends Controller{
             }
             else if (fxmlfile.equals("ManageEmployee.fxml")){
                 ManageEmployeeController manageEmployeeController = loader.getController();
-                manageEmployeeController.setSelectedDesignation(designation);
-                if(designation!= Assets.userTypes[3]){ //[3] is designer
-                    manageEmployeeController.setSelectedLocation(location);
-                }
+                manageEmployeeController.loadEmployee(name);
             }
 
             empMangrBorderPane.setCenter(root);
         }
         catch (IOException ex) {
             Logger.getLogger(DashboardOwnerController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-
-    @FXML
-    void signoutButtonOnClick(ActionEvent event) throws IOException {
-        sceneChange(event, "WelcomeScene.fxml");
+        }  
     }
 
     @FXML
     void loadEmpMangrButtonOnClick(ActionEvent event) {
         String selectedDesignation = designationComboBox.getValue();
         String selectedLocation = locationComboBox.getValue();
+        String selectedName = nameComboBox.getValue();
         if (addNewEmpChkBox.isSelected()){
+
             if (selectedDesignation == null) {
                 showWarningAlert("No Designation", "Please select Designation");
             }
+            else if(selectedDesignation != Assets.userTypes[3] && selectedLocation == null){
+                showWarningAlert("No Location", "Please select Location to add employee to");
+            }
             else if(selectedLocation == "Not Applicable" && selectedDesignation == Assets.userTypes[3]){ //[3] is designer
-                loadUI("AddEmployee.fxml", selectedDesignation, selectedLocation);
+                loadEmpManagementUI("AddEmployee.fxml", selectedDesignation, selectedLocation, selectedName);
             }
             else if(selectedLocation == "Not Applicable" && selectedDesignation == Assets.userTypes[3]){ //[3] is designer
                 showInformationAlert("Just In Case", "Designer is not bound by location.\nLocation selection ignored");
-                loadUI("AddEmployee.fxml", selectedDesignation, selectedLocation);
+                loadEmpManagementUI("AddEmployee.fxml", selectedDesignation, selectedLocation, selectedName);
             }
             else{
-                loadUI("AddEmployee.fxml", selectedDesignation, selectedLocation);
+                loadEmpManagementUI("AddEmployee.fxml", selectedDesignation, selectedLocation, selectedName);
             }
-        } else {
-                loadUI("ManageEmployee.fxml", selectedDesignation, selectedLocation);
+        } 
+        else {
+            if(selectedDesignation != null && selectedLocation !=null && nameComboBox != null){
+                loadEmpManagementUI("ManageEmployee.fxml", selectedDesignation, selectedLocation, selectedName);
+            }
+            else{
+                showWarningAlert("Not Enough Information", "Please fill all comboboxes");
+            }
         }
     }
 
+/*
+================================================================================================================================
+                                            ^^^^^^^</Employee Management Tab > ^^^^^^^
+================================================================================================================================
+*/
+
+/*
+================================================================================================================================
+                                        vvvvvvvvvvvv< New Orders Tab >vvvvvvvvvvvvvvvv
+================================================================================================================================
+*/
+    public void loadNewOrderUI(String fxmlfile) {
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlfile));
+            root = loader.load();
+            newOrdersBorderPane.setCenter(root);
+        }
+        catch (IOException ex) {
+            Logger.getLogger(DashboardOwnerController.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }
+
+    @FXML
+    void newOrdersTabOnClick() {
+        loadNewOrderUI("NewOrders.fxml");
+    }
+/*
+================================================================================================================================
+                                        ^^^^^^^^^< /New Orders Tab >^^^^^^^^^^
+================================================================================================================================
+*/
     @FXML
     void initialize() {
         currentUser = (Owner)DatabaseManipulator.getCurrentUser();
         idLabel.setText("ID: " + currentUser.getId());
         nameLabel.setText("Name: " + currentUser.getName());
 
+
         designationComboBox.getItems().addAll(Assets.userTypes);
+        designationComboBox.setValue(designationComboBox.getItems().get(3));
         locationComboBox.getItems().add("Not Applicable");
         locationComboBox.getItems().addAll(Assets.districts);
+        locationComboBox.setValue(locationComboBox.getItems().get(0));
+        
+
+
 
 
 
@@ -125,19 +244,20 @@ public class DashboardOwnerController extends Controller{
         assert financialsTab != null : "fx:id=\"financialsTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert noticeTab != null : "fx:id=\"noticeTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert empManagementTab != null : "fx:id=\"empManagementTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert empMangrBorderPane != null : "fx:id=\"empMangrBorderPane\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert locationComboBox != null : "fx:id=\"locationComboBox\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert designationComboBox != null : "fx:id=\"designationComboBox\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
-        assert nameComboBox != null : "fx:id=\"nameComboBox\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert addNewEmpChkBox != null : "fx:id=\"addNewEmpChkBox\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert nameComboBox != null : "fx:id=\"nameComboBox\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert loadEmpMangrButton != null : "fx:id=\"loadEmpMangrButton\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert personalInfoTab != null : "fx:id=\"personalInfoTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert companyDirTab != null : "fx:id=\"companyDirTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert customerDirTab != null : "fx:id=\"customerDirTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert newOrdersTab != null : "fx:id=\"newOrdersTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+        assert newOrdersBorderPane != null : "fx:id=\"newOrdersBorderPane\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert ongoingOrdersTab != null : "fx:id=\"ongoingOrdersTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert completedOrdersTab != null : "fx:id=\"completedOrdersTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
         assert complaintsTab != null : "fx:id=\"complaintsTab\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
-
-        assert empMangrBorderPane != null : "fx:id=\"empMangBorderPane\" was not injected: check your FXML file 'DashboardOwner.fxml'.";
+    
     }
 }
