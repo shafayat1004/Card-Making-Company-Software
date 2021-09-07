@@ -24,6 +24,8 @@ public class Main extends Application{
         stage.setScene(scene);
         stage.setTitle("CompanyName Operations");
         stage.setMaximized(true);
+        stage.setMinHeight(600);
+        stage.setMinWidth(800);
         stage.show();
     }
 }
