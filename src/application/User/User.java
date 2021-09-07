@@ -26,18 +26,25 @@ public abstract class User implements Serializable{
         this.id = id;
     }
     
-    public User(String email, String id, String password) {
+    // public User(String email, String id, String password) {
+    //     this.email = email;
+    //     this.id = id;
+    //     this.password = password;
+    // }
+    
+    public User(String name, String email, String id, String password) {
+        this.name = name;
         this.email = email;
         this.id = id;
         this.password = password;
     }
-
+    
+    
     @Override
     public String toString() {
-        return "User [email=" + email + ", id=" + id + ", mobileNum=" + mobileNum + ", name=" + name + ", password="
-                + password + "]";
+        return ("Name: " + name + ", ID: " + id);
     }
-    
+
     public String getEmail() {
         return email;
     }
