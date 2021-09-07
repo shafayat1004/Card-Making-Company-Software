@@ -9,11 +9,9 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Scenes.DashboardOwnerController">
@@ -84,10 +82,10 @@
                      <top>
                         <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1240.0" spacing="25.0" BorderPane.alignment="CENTER">
                            <children>
-                              <ComboBox fx:id="locationComboBox" minWidth="130.0" prefHeight="24.0" promptText="Location" />
-                              <ComboBox fx:id="designationComboBox" minWidth="130.0" prefHeight="24.0" promptText="Designation" />
-                              <CheckBox fx:id="addNewEmpChkBox" mnemonicParsing="false" text="Add New Employee" />
-                              <ComboBox fx:id="nameComboBox" layoutX="643.0" layoutY="28.0" minWidth="150.0" prefHeight="24.0" promptText="Name" />
+                              <ComboBox fx:id="locationComboBox" minWidth="130.0" onAction="#locationIsSelected" prefHeight="24.0" promptText="Location" />
+                              <ComboBox fx:id="designationComboBox" minWidth="130.0" onAction="#designationIsSelected" prefHeight="24.0" promptText="Designation" />
+                              <CheckBox fx:id="addNewEmpChkBox" mnemonicParsing="false" onAction="#addNewEmpChkBoxOnClick" text="Add New Employee" />
+                              <ComboBox fx:id="nameComboBox" layoutX="643.0" layoutY="28.0" minWidth="150.0" onAction="#nameIsSelected" onMouseClicked="#nameComboBoxOnClick" prefHeight="24.0" promptText="Name" />
                               <Button fx:id="loadEmpMangrButton" minWidth="50.0" mnemonicParsing="false" onAction="#loadEmpMangrButtonOnClick" prefHeight="24.0" text="Load" />
                            </children>
                         </HBox>
@@ -149,66 +147,15 @@
                   </BorderPane>
                </content>
             </Tab>
-            <Tab fx:id="newOrdersTab" text="New Orders">
+            <Tab fx:id="newOrdersTab" onSelectionChanged="#newOrdersTabOnClick" text="New Orders">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="newOrdersBorderPane" prefHeight="200.0" prefWidth="200.0">
                      <center>
                      
                      </center>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
-                     <center>
-                        <TableView prefHeight="575.0" prefWidth="968.0" BorderPane.alignment="CENTER">
-                          <columns>
-                              <TableColumn minWidth="90.0" prefWidth="-1.0" text="Order ID" />
-                            <TableColumn minWidth="90.0" prefWidth="-1.0" text="Date" />
-                            <TableColumn minWidth="90.0" prefWidth="-1.0" text="Time" />
-                              <TableColumn minWidth="130.0" prefWidth="-1.0" text="Location" />
-                              <TableColumn minWidth="130.0" prefWidth="-1.0" text="Name" />
-                              <TableColumn minWidth="100.0" prefWidth="-1.0" text="Customer ID" />
-                              <TableColumn minWidth="90.0" prefWidth="-1.0" text="Order Type" />
-                              <TableColumn minWidth="120.0" prefWidth="-1.0" text="Order Quantity" />
-                              <TableColumn minWidth="90.0" prefWidth="-1.0" text="Deliver By" />
-                          </columns>
-                           <BorderPane.margin>
-                              <Insets right="20.0" />
-                           </BorderPane.margin>
-                        </TableView>
-                     </center>
-                     <right>
-                        <VBox alignment="TOP_CENTER" prefHeight="575.0" prefWidth="252.0" spacing="20.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label text="Customer Note" textAlignment="CENTER" wrapText="true">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Label>
-                              <TextArea prefHeight="103.0" prefWidth="252.0" />
-                              <Button mnemonicParsing="false" text="View Details" />
-                              <HBox alignment="CENTER" spacing="10.0">
-                                 <children>
-                                    <Button mnemonicParsing="false" text="Reject" />
-                                    <CheckBox mnemonicParsing="false" text="Give Cause" />
-                                 </children>
-                              </HBox>
-                              <TextArea prefHeight="97.0" prefWidth="252.0" />
-                              <HBox alignment="CENTER" spacing="10.0">
-                                 <children>
-                                    <Button mnemonicParsing="false" text="Assign Customer Service" />
-                                    <CheckBox disable="true" mnemonicParsing="false" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" layoutX="10.0" layoutY="379.0" spacing="10.0">
-                                 <children>
-                                    <Button mnemonicParsing="false" text="Assign Designer" />
-                                    <CheckBox disable="true" mnemonicParsing="false" />
-                                 </children>
-                              </HBox>
-                              <Button mnemonicParsing="false" text="Accept" />
-                           </children>
-                        </VBox>
-                     </right>
                   </BorderPane>
                </content>
             </Tab>
