@@ -3,14 +3,19 @@ package application.Database;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import application.Assets.Assets;
+import application.Database.Address.Address;
+import application.Order.Order;
 import application.User.User;
 
 
@@ -200,7 +205,334 @@ public class DatabaseManipulator {
         }
         return null;
     }
+
+    public static void deleteACredential(String id){
+        File file = new File(Assets.credentialsFilePath);
+        if (file.exists ()){
+            ObjectInputStream ois = null;
+            Object object = null;
+            ArrayList<Credentials> newObjects = new ArrayList<Credentials>();
+            try{
+                ois = new ObjectInputStream (new FileInputStream (Assets.credentialsFilePath));
+                while (true){
+                    
+                    object = ois.readObject();
+                    
+                    if (((Credentials)object).getId().equals(id)) continue;
+                        
+                    newObjects.add((Credentials)object);
+                }
+            }
+            catch (EOFException e){
+                //TODO exceptionhandling
+            }
+            catch (Exception e){
+                e.printStackTrace ();
+            }
+            finally{
+                try{
+                    if (ois != null) {
+                        ois.close();
+                        
+                        boolean ranOnce = false;
+
+                        if(newObjects.isEmpty()){
+                            Files.deleteIfExists(Paths.get(Assets.credentialsFilePath));
+                        }
+
+                        for (Credentials credentials : newObjects) {
+                            if (ranOnce) {
+                                writeToDatabase(Assets.credentialsFilePath, credentials, true);    
+                            } 
+                            else {
+                                writeToDatabase(Assets.credentialsFilePath, credentials, false);
+                                ranOnce = true;    
+                            }
+                        }
+                    }
+                }
+                catch (IOException e){
+                    e.printStackTrace ();
+                }
+            }
+        }
+    }
+    public static void deleteAnAddress(String id){
+        File file = new File(Assets.addressesFilePath);
+
+        if (file.exists ()){
+            ObjectInputStream ois = null;
+            Object object = null;
+            ArrayList<Address> newObjects = new ArrayList<Address>();
+            try{
+                ois = new ObjectInputStream (new FileInputStream (Assets.addressesFilePath));
+                while (true){
+                    
+                    object = ois.readObject();
+                    
+                    if (((Address)object).getUserID().equals(id)) continue;
+                        
+                    newObjects.add((Address)object);
+                }
+            }
+            catch (EOFException e){
+                //TODO exceptionhandling
+            }
+            catch (Exception e){
+                e.printStackTrace ();
+            }
+            finally{
+                try{
+                    if (ois != null) {
+                        ois.close();
+                        
+                        boolean ranOnce = false;
+
+                        if(newObjects.isEmpty()){
+                            Files.deleteIfExists(Paths.get(Assets.addressesFilePath));
+                        }
+
+                        for (Address address : newObjects) {
+                            if (ranOnce) {
+                                writeToDatabase(Assets.addressesFilePath, address, true);    
+                            } 
+                            else {
+                                writeToDatabase(Assets.addressesFilePath, address, false);
+                                ranOnce = true;    
+                            }
+                        }
+                    }
+                }
+                catch (IOException e){
+                    e.printStackTrace ();
+                }
+            }
+        }
+    }
+
+    // public static void deleteAUser(String id){
+    //     File file = new File(Assets.credentialsFilePath);
+
+    // }
+    public static void deleteUser(String id, String filepath) {
+        File file = new File(filepath);
+        
+        if (file.exists ()){
+            ObjectInputStream ois = null;
+            Object object = null;
+            ArrayList<User> newObjects = new ArrayList<User>();
+            try{
+                ois = new ObjectInputStream (new FileInputStream (filepath));
+                while (true){
+                    
+                    object = ois.readObject();
+                    
+                    if (((User)object).getId().equals(id)) continue;
+                        
+                    newObjects.add((User)object);
+                }
+            }
+            catch (EOFException e){
+                //TODO exceptionhandling
+            }
+            catch (Exception e){
+                e.printStackTrace ();
+            }
+            finally{
+                try{
+                    if (ois != null) {
+                        ois.close();
+                        
+                        boolean ranOnce = false;
+                        
+                        if(newObjects.isEmpty()){
+                            Files.deleteIfExists(Paths.get(filepath));
+                        }
+
+                        for (User user : newObjects) {
+                            
+                            if (ranOnce) {
+                                writeToDatabase(filepath, user, true);    
+                            } 
+                            else {
+                                writeToDatabase(filepath, user, false);
+                                ranOnce = true;    
+                            }
+                        }
+                    }
+                }
+                catch (IOException e){
+                    e.printStackTrace ();
+                }
+            }
+        }
+    }
     
+    public static void editUser(String id, User editedInstance, String filepath){
+        deleteUser(id, filepath);
+        writeToDatabase(filepath, editedInstance, true);
+    }
+    
+
+    public static void deleteABranch(String upazillaOrCCorp){
+        File file = new File(Assets.branchesFilePath);
+        
+        if (file.exists ()){
+            ObjectInputStream ois = null;
+            Object object = null;
+            ArrayList<Branch> newObjects = new ArrayList<Branch>();
+            try{
+                ois = new ObjectInputStream (new FileInputStream (Assets.branchesFilePath));
+                while (true){
+                    
+                    object = ois.readObject();
+                    
+                    if (((Branch)object).getUpazillaOrCCorp().equals(upazillaOrCCorp)) continue;
+                        
+                    newObjects.add((Branch)object);
+                }
+            }
+            catch (EOFException e){
+                //TODO exceptionhandling
+            }
+            catch (Exception e){
+                e.printStackTrace ();
+            }
+            finally{
+                try{
+                    if (ois != null) {
+                        ois.close();
+                        
+                        boolean ranOnce = false;
+
+                        if(newObjects.isEmpty()){
+                            Files.deleteIfExists(Paths.get(Assets.branchesFilePath));
+                        }
+
+                        for (Branch branch : newObjects) {
+                            
+                            if (ranOnce) {
+                                writeToDatabase(Assets.branchesFilePath, branch, true);    
+                            } 
+                            else {
+                                writeToDatabase(Assets.branchesFilePath, branch, false);
+                                ranOnce = true;    
+                            }
+                        }
+                    }
+                }
+                catch (IOException e){
+                    e.printStackTrace ();
+                }
+            }
+        }
+    }
+
+    public static void deleteAnOrder(String orderID){
+        File file = new File(Assets.ordersFilePath);
+
+        if (file.exists ()){
+            ObjectInputStream ois = null;
+            Object object = null;
+            ArrayList<Order> newObjects = new ArrayList<Order>();
+            try{
+                ois = new ObjectInputStream (new FileInputStream (Assets.ordersFilePath));
+                while (true){
+                    
+                    object = ois.readObject();
+                    
+                    if (((Order)object).getOrderID().equals(orderID)) continue;
+                        
+                    newObjects.add((Order)object);
+                }
+            }
+            catch (EOFException e){
+                //TODO exceptionhandling
+            }
+            catch (Exception e){
+                e.printStackTrace ();
+            }
+            finally{
+                try{
+                    if (ois != null) {
+                        ois.close();
+                        
+                        boolean ranOnce = false;
+
+                        if(newObjects.isEmpty()){
+                            Files.deleteIfExists(Paths.get(Assets.ordersFilePath));
+                        }
+
+                        for (Order order : newObjects) {
+                            
+                            if (ranOnce) {
+                                writeToDatabase(Assets.ordersFilePath, order, true);    
+                            } 
+                            else {
+                                writeToDatabase(Assets.ordersFilePath, order, false);
+                                ranOnce = true;    
+                            }
+                        }
+                    }
+                }
+                catch (IOException e){
+                    e.printStackTrace ();
+                }
+            }
+        }
+
+    }
+
+    public static ArrayList<String> getListOfEmployeesInBranch(String upazillaOrCCorp, String designation){
+        File file = new File(Assets.branchesFilePath);
+        if (file.exists()) {
+
+            Object object = null;
+            ObjectInputStream ois = null;
+            ArrayList<String> list = new ArrayList<String>();  
+
+            try {
+                ois = new ObjectInputStream (new FileInputStream (Assets.branchesFilePath));
+
+                while (true) {
+                    object = ois.readObject();
+                    if (((Branch)object).getUpazillaOrCCorp().equals(upazillaOrCCorp)){
+
+                        if (designation.equals(Assets.userTypes[1])) { //Customer Service 
+                            list = ((Branch)object).getCustomerServiceIDs();
+                        }
+                        else{
+                            list.add(((Branch)object).getSupervisorID());
+                        }
+                        break;
+                    }
+                }
+
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            finally{
+                try {
+                    if (ois != null) {
+                        ois.close();
+                        return list;
+                    }
+                    
+                } catch (IOException e) {
+                    //TODO: handle exception
+                }
+        
+            }
+        }
+        return null;   
+    }
 
     public static boolean existsInDatabase(String dataType, String input) {
 
@@ -225,6 +557,15 @@ public class DatabaseManipulator {
                     while (true){
                         object = ois.readObject();
                         if (((Credentials)object).getId().equals(input)){
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                else if (dataType.equals("nationalID")){
+                    while (true){
+                        object = ois.readObject();
+                        if (((Credentials)object).getNationalID().equals(input)){
                             found = true;
                             break;
                         }
