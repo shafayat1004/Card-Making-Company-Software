@@ -8,17 +8,28 @@ public class Credentials implements Serializable{
     private String id;
     private String password;
     private String userType;
+    private String nationalID;
 
-    public Credentials(String email, String id, String password, String userType) {
+    public Credentials(String email, String id, String password, String userType, String nationalID) {
         this.email = email;
         this.id = id;
         this.password = password;
         this.userType = userType;
+        this.nationalID = nationalID;
     }
     
+    public String getNationalID() {
+        return nationalID;
+    }
+
+    public void setNationalID(String nationalID) {
+        this.nationalID = nationalID;
+    }
+
     @Override
     public String toString() {
-        return "Credentials [email=" + email + ", id=" + id + ", password=" + password + ", userType=" + userType + "]";
+        return "Credentials [email=" + email + ", id=" + id + ", nationalID=" + nationalID + ", password=" + password
+                + ", userType=" + userType + "]";
     }
 
     public String getUserType() {
