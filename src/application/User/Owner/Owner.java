@@ -17,8 +17,8 @@ public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
         super(userIDFromField); //temporary
     }
 
-    public Owner(String email, String id, String password) {
-        super(email, id, password);
+    public Owner(String name, String email, String id, String password) {
+        super(name, email, id, password);
     }
 
 
@@ -45,7 +45,7 @@ public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
 
         CustomerService newCustomerService = new CustomerService(name, mobileNum, genID, nationalID, email, genPass, imagePath);
         DatabaseManipulator.writeToDatabase(Assets.cSEmployeesFilePath, newCustomerService, true);
-        Credentials credentials = new Credentials(email, genID, genPass, Assets.userTypes[1]);
+        Credentials credentials = new Credentials(email, genID, genPass, Assets.userTypes[1], nationalID);
         DatabaseManipulator.writeToDatabase(Assets.credentialsFilePath, credentials, true);
 
         return new String[]{genID, genPass};
@@ -58,7 +58,7 @@ public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
 
         Supervisor newSupervisor = new Supervisor(name, mobileNum, genID, nationalID, email, genPass, imagePath);
         DatabaseManipulator.writeToDatabase(Assets.supervisorFilePath, newSupervisor, true);
-        Credentials credentials = new Credentials(email, genID, genPass, Assets.userTypes[2]);
+        Credentials credentials = new Credentials(email, genID, genPass, Assets.userTypes[2], nationalID);
         DatabaseManipulator.writeToDatabase(Assets.credentialsFilePath, credentials, true);
 
         return new String[]{genID, genPass};
@@ -71,7 +71,7 @@ public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
 
         Designer newDesigner = new Designer(name, mobileNum, genID, nationalID, email, genPass, imagePath);
         DatabaseManipulator.writeToDatabase(Assets.designersFilePath, newDesigner, true);
-        Credentials credentials = new Credentials(email, genID, genPass, Assets.userTypes[3]);
+        Credentials credentials = new Credentials(email, genID, genPass, Assets.userTypes[3], nationalID);
         DatabaseManipulator.writeToDatabase(Assets.credentialsFilePath, credentials, true);
 
         return new String[]{genID, genPass};
