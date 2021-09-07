@@ -52,9 +52,13 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
             </Tab>
-            <Tab fx:id="newOrdersTab" text="New Orders">
+            <Tab fx:id="newOrdersTab" onSelectionChanged="#newOrdersTabOnClick" text="New Orders">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <BorderPane fx:id="newOrdersBorderPane" prefHeight="200.0" prefWidth="200.0">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </BorderPane>
                </content>
             </Tab>
             <Tab fx:id="ongoingOrdersTab" text="Ongoing Orders">
