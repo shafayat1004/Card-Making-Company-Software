@@ -3,6 +3,7 @@ package application.Scenes;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.Parent;
@@ -39,6 +41,7 @@ public class DashboardOwnerController extends Controller{
     @FXML protected ComboBox<String> nameComboBox;
     @FXML private CheckBox addNewEmpChkBox;
     @FXML private Button loadEmpMangrButton;
+    @FXML private Button createBranchButton;
 
     @FXML private BorderPane empMangrBorderPane;
     @FXML private BorderPane newOrdersBorderPane;
@@ -79,6 +82,23 @@ public class DashboardOwnerController extends Controller{
     
     }
     @FXML
+    void createBranchButtonOnClick(ActionEvent event) {
+        TextInputDialog dialog = new TextInputDialog();
+                    dialog.setTitle("Create Branch");
+                    dialog.setHeaderText(null);
+                    dialog.setContentText("Please enter district or upazilla name");
+                    Optional<String> input = dialog.showAndWait();
+                    if (input.get() != null){
+
+                        if(currentUser.createBranch(input.get())) showInformationAlert("Success", "Created Successfully");
+                        else showInformationAlert("Branch exists", "Branch already exists");
+                    }
+                    else{
+                        showWarningAlert("Important", "Please enter Branch");
+                        dialog.showAndWait();
+                    }
+    }
+    @FXML
     void addNewEmpChkBoxOnClick(ActionEvent event) {
         if(addNewEmpChkBox.isSelected()){
             nameComboBox.setDisable(true);
@@ -98,7 +118,7 @@ public class DashboardOwnerController extends Controller{
             if (selectedLocation.equals("Not Applicable")){
                 if (selectedDesignation.equals(Assets.userTypes[3])) { //if it is Designer
                     
-                    ArrayList<Object> designerList = DatabaseManipulator.getUserListFromDatabase(Assets.designersFilePath);
+                    ArrayList<Object> designerList = DatabaseManipulator.getObjectListFromDatabase(Assets.designersFilePath);
                     for (Object object : designerList) {
                         nameComboBox.getItems().add(((User)object).toString());
                     }
@@ -115,7 +135,7 @@ public class DashboardOwnerController extends Controller{
                     locationComboBox.valueProperty().set(null);
                     if (selectedDesignation.equals(Assets.userTypes[3])) { //if it is Designer
                     
-                        ArrayList<Object> designerList = DatabaseManipulator.getUserListFromDatabase(Assets.designersFilePath);
+                        ArrayList<Object> designerList = DatabaseManipulator.getObjectListFromDatabase(Assets.designersFilePath);
                         for (Object object : designerList) {
                             nameComboBox.getItems().add(((User)object).toString());
                         }
