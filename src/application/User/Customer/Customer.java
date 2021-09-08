@@ -21,7 +21,7 @@ public class Customer extends User{
         
     }
     public Order createOrder(String cardType, String paperType, String color,
-    String orderQuantity, String deliverTo, String orderType, String fileName, String orderNote, LocalDate deliverBy){
+    Integer orderQuantity, String deliverTo, String orderType, String fileName, String orderNote, LocalDate deliverBy){
 
         int orderNum = DatabaseManipulator.getCount(Assets.ordersFilePath) + 1;
         String orderID = "" + orderNum;
