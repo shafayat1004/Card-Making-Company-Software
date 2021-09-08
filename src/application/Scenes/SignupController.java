@@ -50,6 +50,7 @@ public class SignupController extends Controller{
                         DatabaseManipulator.writeToDatabase(Assets.ownersFilePath, owner, false);
                         credentials = new Credentials(emailFromField, userIDFromField, passwordFromField, "Owner", "N/A");
                         DatabaseManipulator.writeToDatabase(Assets.credentialsFilePath, credentials, true);
+                        showInformationAlert("Success", "You can signin now :)");
                         
                     }
                     else{
@@ -57,6 +58,7 @@ public class SignupController extends Controller{
                         DatabaseManipulator.writeToDatabase(Assets.customersFilePath, customer, true);
                         credentials = new Credentials(emailFromField, userIDFromField, passwordFromField, "Customer", "N/A");
                         DatabaseManipulator.writeToDatabase(Assets.credentialsFilePath, credentials, true);
+                        showInformationAlert("Success", "You can signin now :)");
                     }
                 }
                 else{
