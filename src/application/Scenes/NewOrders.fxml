@@ -52,7 +52,6 @@
             <TableColumn fx:id="orderIDCol" minWidth="90.0" prefWidth="-1.0" text="Order ID" />
             <TableColumn fx:id="orderedOnCol" minWidth="90.0" prefWidth="-1.0" text="Ordered On" />
             <TableColumn fx:id="branchCol" minWidth="130.0" prefWidth="-1.0" text="Branch" />
-            <TableColumn fx:id="customerNameCol" minWidth="130.0" prefWidth="-1.0" text="Customer Name" />
             <TableColumn fx:id="customerIDCol" minWidth="100.0" prefWidth="-1.0" text="Customer ID" />
             <TableColumn fx:id="orderTypeCol" minWidth="90.0" prefWidth="-1.0" text="Order Type" />
             <TableColumn fx:id="orderQuantityCol" minWidth="120.0" prefWidth="-1.0" text="Order Quantity" />
@@ -64,4 +63,14 @@
          </BorderPane.margin>
       </TableView>
    </center>
+   <top>
+      <HBox alignment="CENTER_LEFT" fillHeight="false" BorderPane.alignment="BOTTOM_LEFT">
+         <children>
+            <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshButtonOnClick" prefHeight="24.0" prefWidth="172.0" text="Refresh" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </HBox>
+   </top>
 </BorderPane>
