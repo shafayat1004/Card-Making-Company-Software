@@ -9,23 +9,29 @@ public class Branch implements Serializable{
     private String upazillaOrCCorp; //Primary Field //not scalabale as it assumes only one branch per upazillaorCityCorp
     private String supervisorID; 
     private ArrayList<String> customerServiceIDs;
-    private int[] customersServedPerMonth;
-    private int[] expensesPerMonth;
-    private int[] revenuePerMonth;
+    private ArrayList<Integer> customersServedPerMonth;
+    private ArrayList<Integer> expensesPerMonth;
+    private ArrayList<Integer> revenuePerMonth;
 
     public Branch(String upazillaOrCCorp){
         this.upazillaOrCCorp = upazillaOrCCorp;
         customerServiceIDs = new ArrayList<String>();
-        customersServedPerMonth = new int[]{0,0,0,0,0,0,0,0,0,0,0,0};
-        expensesPerMonth = new int[]{0,0,0,0,0,0,0,0,0,0,0,0};
-        revenuePerMonth = new int[]{0,0,0,0,0,0,0,0,0,0,0,0};
+
+       for (int i = 0; i < 12; i++) {
+            customersServedPerMonth.add((Integer)(int)Math.floor(Math.random()*(500-200+1)+200));
+            expensesPerMonth.add((Integer)(int)Math.floor(Math.random()*(20000-10000+1)+10000));
+            revenuePerMonth.add((Integer)(int)Math.floor(Math.random()*(50000-15000+1)+15000));
+       }
     }
     public Branch(String supervisorID, ArrayList<String> customerServiceIDs){
         this.supervisorID = supervisorID;
         this.customerServiceIDs = customerServiceIDs;
-        customersServedPerMonth = new int[]{0,0,0,0,0,0,0,0,0,0,0,0};
-        expensesPerMonth = new int[]{0,0,0,0,0,0,0,0,0,0,0,0};
-        revenuePerMonth = new int[]{0,0,0,0,0,0,0,0,0,0,0,0};
+        
+        for (int i = 0; i < 12; i++) {
+            customersServedPerMonth.add((Integer)(int)Math.floor(Math.random()*(500-200+1)+200));
+            expensesPerMonth.add((Integer)(int)Math.floor(Math.random()*(20000-10000+1)+10000));
+            revenuePerMonth.add((Integer)(int)Math.floor(Math.random()*(50000-15000+1)+15000));
+        }
 
     }
     public String getSupervisorID() {
@@ -65,22 +71,22 @@ public class Branch implements Serializable{
     //     return revenuePerMonth[currMonth-1];
     // }
     public int getExpensesOfMonth(int monthNo) {
-        return expensesPerMonth[monthNo-1];
+        return expensesPerMonth.get(monthNo-1);
     }
     public int getRevenueOfMonth(int monthNo) {
-        return revenuePerMonth[monthNo-1];
+        return revenuePerMonth.get(monthNo-1);
     }
     public int getCustomersServedOfMonth(int monthNo) {
-        return customersServedPerMonth[monthNo-1];
+        return customersServedPerMonth.get(monthNo-1);
     }
-    public void addExpensesOfMonth(int monthNo, int addedExpense) {
-        expensesPerMonth[monthNo-1] += addedExpense;
-    }
-    public void addRevenueOfMonth(int monthNo, int addedRevenue) {
-        revenuePerMonth[monthNo-1] += addedRevenue;
-    }
-    public void addCustomersServedOfMonth(int monthNo, int addedCustomers) {
-        customersServedPerMonth[monthNo-1] += addedCustomers;
-    }
+    // public void addExpensesOfMonth(int monthNo, int addedExpense) {
+    //     expensesPerMonth.get(monthNo-1) += addedExpense;
+    // }
+    // public void addRevenueOfMonth(int monthNo, int addedRevenue) {
+    //     revenuePerMonth.get(monthNo-1) += addedRevenue;
+    // }
+    // public void addCustomersServedOfMonth(int monthNo, int addedCustomers) {
+    //     customersServedPerMonth.get(monthNo-1) += addedCustomers;
+    // }
 
 }
