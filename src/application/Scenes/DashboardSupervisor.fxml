@@ -5,9 +5,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Scenes.DashboardSupervisorController">
@@ -73,7 +75,119 @@
             </Tab>
             <Tab fx:id="transactionsTab" text="Transactions">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Expense">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Jan" />
+                                    <TextField fx:id="expenseJan" />
+                                    <Label layoutX="640.0" layoutY="298.0" text="Feb" />
+                                    <TextField fx:id="expenseFeb" layoutX="565.0" layoutY="314.0" />
+                                    <Label layoutX="640.0" layoutY="318.0" text="Mar" />
+                                    <TextField fx:id="expenseMar" layoutX="565.0" layoutY="334.0" />
+                                    <Label layoutX="640.0" layoutY="338.0" text="April" />
+                                    <TextField fx:id="expenseApril" layoutX="565.0" layoutY="354.0" />
+                                    <Label layoutX="640.0" layoutY="358.0" text="May" />
+                                    <TextField fx:id="expenseMay" layoutX="565.0" layoutY="374.0" />
+                                    <Label layoutX="640.0" layoutY="378.0" text="June" />
+                                    <TextField fx:id="expenseJune" layoutX="565.0" layoutY="394.0" />
+                                    <Label layoutX="640.0" layoutY="398.0" text="July" />
+                                    <TextField fx:id="expenseJuly" layoutX="565.0" layoutY="414.0" />
+                                    <Label layoutX="640.0" layoutY="418.0" text="August" />
+                                    <TextField fx:id="expenseAug" layoutX="565.0" layoutY="434.0" />
+                                    <Label layoutX="640.0" layoutY="438.0" text="September" />
+                                    <TextField fx:id="expenseSep" layoutX="565.0" layoutY="454.0" />
+                                    <Label layoutX="640.0" layoutY="458.0" text="October" />
+                                    <TextField fx:id="expenseOct" layoutX="565.0" layoutY="474.0" />
+                                    <Label layoutX="34.0" layoutY="486.0" text="Nov" />
+                                    <TextField fx:id="expenseNov" layoutX="10.0" layoutY="502.0" />
+                                    <Label layoutX="34.0" layoutY="506.0" text="Dec" />
+                                    <TextField fx:id="expenseDec" layoutX="10.0" layoutY="522.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" fillWidth="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Revenue">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Jan" />
+                                    <TextField fx:id="revenueJan" />
+                                    <Label layoutX="640.0" layoutY="298.0" text="Feb" />
+                                    <TextField fx:id="revenueFeb" layoutX="565.0" layoutY="314.0" />
+                                    <Label layoutX="640.0" layoutY="318.0" text="Mar" />
+                                    <TextField fx:id="revenueMar" layoutX="565.0" layoutY="334.0" />
+                                    <Label layoutX="640.0" layoutY="338.0" text="April" />
+                                    <TextField fx:id="revenueApr" layoutX="565.0" layoutY="354.0" />
+                                    <Label layoutX="640.0" layoutY="358.0" text="May" />
+                                    <TextField fx:id="revenueMay" layoutX="565.0" layoutY="374.0" />
+                                    <Label layoutX="640.0" layoutY="378.0" text="June" />
+                                    <TextField fx:id="revenueJune" layoutX="565.0" layoutY="394.0" />
+                                    <Label layoutX="640.0" layoutY="398.0" text="July" />
+                                    <TextField fx:id="revenueJuly" layoutX="565.0" layoutY="414.0" />
+                                    <Label layoutX="640.0" layoutY="418.0" text="August" />
+                                    <TextField fx:id="revenueAug" layoutX="565.0" layoutY="434.0" />
+                                    <Label layoutX="640.0" layoutY="438.0" text="September" />
+                                    <TextField fx:id="revenueSep" layoutX="565.0" layoutY="454.0" />
+                                    <Label layoutX="640.0" layoutY="458.0" text="October" />
+                                    <TextField fx:id="revenueOct" layoutX="565.0" layoutY="474.0" />
+                                    <Label layoutX="34.0" layoutY="486.0" text="Nov" />
+                                    <TextField fx:id="revenueNov" layoutX="10.0" layoutY="502.0" />
+                                    <Label layoutX="34.0" layoutY="506.0" text="Dec" />
+                                    <TextField fx:id="revenueDec" layoutX="10.0" layoutY="522.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" fillWidth="false" layoutX="630.0" layoutY="10.0" prefHeight="551.0" prefWidth="159.0">
+                                 <children>
+                                    <Label text="Customers Served" wrapText="true">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Jan" />
+                                    <TextField fx:id="cusServedJan" />
+                                    <Label layoutX="640.0" layoutY="298.0" text="Feb" />
+                                    <TextField fx:id="cusServedFeb" layoutX="565.0" layoutY="314.0" />
+                                    <Label layoutX="640.0" layoutY="318.0" text="Mar" />
+                                    <TextField fx:id="cusServedMar" layoutX="565.0" layoutY="334.0" />
+                                    <Label layoutX="640.0" layoutY="338.0" text="April" />
+                                    <TextField fx:id="cusServedApr" layoutX="565.0" layoutY="354.0" />
+                                    <Label layoutX="640.0" layoutY="358.0" text="May" />
+                                    <TextField fx:id="cusServedMay" layoutX="565.0" layoutY="374.0" />
+                                    <Label layoutX="640.0" layoutY="378.0" text="June" />
+                                    <TextField fx:id="cusServedJune" layoutX="565.0" layoutY="394.0" />
+                                    <Label layoutX="640.0" layoutY="398.0" text="July" />
+                                    <TextField fx:id="cusServedJuly" layoutX="565.0" layoutY="414.0" />
+                                    <Label layoutX="640.0" layoutY="418.0" text="August" />
+                                    <TextField fx:id="cusServedAug" layoutX="565.0" layoutY="434.0" />
+                                    <Label layoutX="640.0" layoutY="438.0" text="September" />
+                                    <TextField fx:id="cusServedSep" layoutX="565.0" layoutY="454.0" />
+                                    <Label layoutX="640.0" layoutY="458.0" text="October" />
+                                    <TextField fx:id="cusServedOct" layoutX="565.0" layoutY="474.0" />
+                                    <Label layoutX="34.0" layoutY="486.0" text="Nov" />
+                                    <TextField fx:id="cusServedNov" layoutX="10.0" layoutY="502.0" />
+                                    <Label layoutX="34.0" layoutY="506.0" text="Dec" />
+                                    <TextField fx:id="cusServedDec" layoutX="10.0" layoutY="522.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </center>
+                     <bottom>
+                        <Button fx:id="addExpenseRevenue" mnemonicParsing="false" onAction="#addExpenseRevenueOnClick" text="addToDatabase" BorderPane.alignment="CENTER" />
+                     </bottom>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </BorderPane>
                </content>
             </Tab>
             <Tab fx:id="branchEmpListTab" text="Branch Employee Lists">
