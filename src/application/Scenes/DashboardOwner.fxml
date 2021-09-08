@@ -87,6 +87,7 @@
                               <CheckBox fx:id="addNewEmpChkBox" mnemonicParsing="false" onAction="#addNewEmpChkBoxOnClick" text="Add New Employee" />
                               <ComboBox fx:id="nameComboBox" layoutX="643.0" layoutY="28.0" minWidth="150.0" onAction="#nameIsSelected" onMouseClicked="#nameComboBoxOnClick" prefHeight="24.0" promptText="Name" />
                               <Button fx:id="loadEmpMangrButton" minWidth="50.0" mnemonicParsing="false" onAction="#loadEmpMangrButtonOnClick" prefHeight="24.0" text="Load" />
+                              <Button fx:id="createBranchButton" mnemonicParsing="false" onAction="#createBranchButtonOnClick" text="Create Branch" />
                            </children>
                         </HBox>
                      </top>
