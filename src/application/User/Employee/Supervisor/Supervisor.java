@@ -104,4 +104,9 @@ public class Supervisor extends Employee implements SupervisorPrivilages, CSPriv
         // TODO Auto-generated method stub
         
     }
+    @Override
+    public void viewNewOrders() {
+        // TODO Auto-generated method stub
+        
+    }
 }
