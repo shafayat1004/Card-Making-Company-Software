@@ -10,8 +10,9 @@ import application.Assets.Assets;
 public class Order implements Serializable{
     private String orderID;
     
-    private String customerID, designerID, csEmployeeID, cardType, paperType, color, orderQuantity, deliverTo, orderType, fileName, orderNote, orderStatus;
+    private String customerID, designerID, csEmployeeID, cardType, paperType, color, deliverTo, orderType, fileName, orderNote, orderStatus;
     private LocalDateTime orderedOn, deliveredOn;
+    private Integer orderQuantity;
     private LocalDate deliverBy;
     private String draftFilePath;
     private String rejectionCause;
@@ -19,7 +20,7 @@ public class Order implements Serializable{
     
     
     public Order(String orderID, String customerID, String cardType, String paperType, String color,
-    String orderQuantity, String deliverTo, String orderType, String fileName, String orderNote, LocalDate deliverBy) {
+    Integer orderQuantity, String deliverTo, String orderType, String fileName, String orderNote, LocalDate deliverBy) {
 
         this.orderID = orderID;
         this.customerID = customerID;
@@ -83,12 +84,12 @@ public class Order implements Serializable{
     }
 
 
-    public String getOrderQuantity() {
+    public Integer getOrderQuantity() {
         return orderQuantity;
     }
 
 
-    public void setOrderQuantity(String orderQuantity) {
+    public void setOrderQuantity(Integer orderQuantity) {
         this.orderQuantity = orderQuantity;
     }
 
