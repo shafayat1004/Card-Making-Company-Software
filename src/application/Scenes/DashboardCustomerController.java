@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -259,8 +258,8 @@ public class DashboardCustomerController extends Controller{
                     
                 } 
                 
-                Order newOrder = currentUser.createOrder(cardTypeLabel.getText(), paperTypeLabel.getText(), colorLabel.getText(), orderQuantityLabel.getText(), fileNameLabel.getText(), deliverToLabel.getText(), orderTypeLabel.getText(), orderNoteArea.getText(), deliveryByDate.getValue());
-                
+                Order newOrder = currentUser.createOrder(cardTypeLabel.getText(), paperTypeLabel.getText(), colorLabel.getText(), Integer.parseInt(orderQuantityLabel.getText()), deliverToLabel.getText(), orderTypeLabel.getText(), fileNameLabel.getText(), orderNoteArea.getText(), deliveryByDate.getValue());
+                //TODO Simulating SMS
                 System.out.println(newOrder.getOrderID());
 
                 TextInputDialog dialog = new TextInputDialog();
@@ -326,7 +325,7 @@ public class DashboardCustomerController extends Controller{
             statusOrderID.setText(order.getOrderID());
             statusOrderStatus.setText(order.getOrderStatus());
             statusOrderedOn.setText(order.getOrderedOn().toString());
-            statusOrderQuantity.setText(order.getOrderQuantity());
+            statusOrderQuantity.setText(order.getOrderQuantity().toString());
             statusDeliveryTo.setText(order.getDeliverTo());
             statusDeliveryOn.setText(order.getDeliverBy().toString());
 
