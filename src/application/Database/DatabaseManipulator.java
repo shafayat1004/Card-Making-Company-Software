@@ -17,6 +17,8 @@ import application.Assets.Assets;
 import application.Database.Address.Address;
 import application.Order.Order;
 import application.User.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 public class DatabaseManipulator {
@@ -121,8 +123,15 @@ public class DatabaseManipulator {
             }
         }
     }
+    public static ObservableList<Order> getOrderListFromDatabase() {
 
-    public static ArrayList<Object> getUserListFromDatabase (String fileName){
+        ObservableList<Order> orderList = FXCollections.observableArrayList();
+        for (Object object : getObjectListFromDatabase(Assets.ordersFilePath)) {
+            orderList.add((Order)object);
+        }
+        return orderList;
+    }
+    public static ArrayList<Object> getObjectListFromDatabase (String fileName){
         File file = new File (fileName);
         
         if (file.exists ()){
@@ -403,6 +412,43 @@ public class DatabaseManipulator {
         writeToDatabase(filepath, editedInstance, true);
     }
     
+    public static boolean branchExistsInDatabase(String location) {
+        boolean found = false;
+        File file = new File (Assets.branchesFilePath);
+        if (file.exists ()){
+            ObjectInputStream ois = null;
+            Object object = null;
+            try{
+                ois = new ObjectInputStream (new FileInputStream (Assets.branchesFilePath));
+                while (true){
+                    object = ois.readObject();
+                    if (((Branch)object).getUpazillaOrCCorp().equals(location)){
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            catch (EOFException e){
+                
+            }
+            catch (Exception e){
+                e.printStackTrace ();
+            }
+            finally{
+                try{
+                    if (ois != null) {
+                        ois.close();
+                        return found;
+                    }
+                }
+                catch (IOException e){
+                    e.printStackTrace ();
+                }
+            }
+        }
+        
+        return false; 
+    }
 
     public static void deleteABranch(String upazillaOrCCorp){
         File file = new File(Assets.branchesFilePath);
