@@ -1,6 +1,7 @@
 package application.User.Owner;
 
 import application.Assets.Assets;
+import application.Database.Branch;
 import application.Database.Credentials;
 import application.Database.DatabaseManipulator;
 import application.Privilages.CustomerService.CSPrivilages;
@@ -75,6 +76,14 @@ public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
         DatabaseManipulator.writeToDatabase(Assets.credentialsFilePath, credentials, true);
 
         return new String[]{genID, genPass};
+    }
+    public boolean createBranch(String location){
+        Branch newBranch = new Branch(location);
+        if (!DatabaseManipulator.branchExistsInDatabase(location)){
+            DatabaseManipulator.writeToDatabase(Assets.branchesFilePath, newBranch, true);
+            return true;
+        }
+        else return false;
     }
 
 
@@ -187,6 +196,12 @@ public class Owner extends User implements SupervisorPrivilages, CSPrivilages{
 
     @Override
     public void contactSupervisor() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void viewNewOrders() {
         // TODO Auto-generated method stub
         
     }
